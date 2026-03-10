@@ -363,9 +363,8 @@
 
     /* ── Tag Popup ────────────────────────────────── */
     .tag-popup {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%) scale(0.95);
+      position: fixed;
+      transform: scale(0.95);
       background: #fff;
       border: 1px solid #e6e2db;
       border-radius: 12px;
@@ -373,7 +372,7 @@
       padding: 16px 18px;
       max-width: 260px;
       min-width: 220px;
-      z-index: 100;
+      z-index: 99999;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.18s ease, transform 0.18s ease;
@@ -382,15 +381,7 @@
     .tag-popup.visible {
       opacity: 1;
       pointer-events: auto;
-      transform: translateX(-50%) scale(1);
-    }
-
-    .tag-popup.above {
-      bottom: calc(100% + 10px);
-    }
-
-    .tag-popup.below {
-      top: calc(100% + 10px);
+      transform: scale(1);
     }
 
     /* Arrow fill */
@@ -1783,6 +1774,9 @@
       <section id="about">
         <p class="brand-mark fade-in fade-in-d1">sidkodr</p>
         <h1 class="hero-heading fade-in fade-in-d2">Siddarth Srinivas</h1>
+        <p class="fade-in fade-in-d2"
+          style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: #c85a2a; margin: 0.25rem 0 0.5rem;">
+          "A Vision without execution is a hallucination."</p>
         <p class="hero-subheading fade-in fade-in-d2">AI/ML Engineer</p>
 
         <p class="hero-college fade-in fade-in-d3">
@@ -1792,9 +1786,32 @@
 
         <article class="about-card fade-in fade-in-d4">
           <p class="about-bio">
-            I build practical AI systems — combining computer vision, edge AI, and deep learning with real-world
-            hardware to solve problems that matter. From beehive monitoring on a Jetson Nano to surgical simulation
-            feedback pipelines, my work sits at the intersection of applied ML and systems engineering.
+            I've never been great at sitting still with an idea.
+          </p>
+          <p class="about-bio">
+            Most people pick a lane. I've spent the last three years refusing to. One month I'm training a Convolutional
+            Neural Network to listen to beehives on a Jetson Nano. The next I'm building Large Language Model pipelines
+            that generate surgical coaching feedback for Virtual Reality simulators. Then I'm automating container
+            security compliance for enterprise DevOps. These aren't accidents — this is how I think. I follow the
+            problem, not the domain.
+          </p>
+          <p class="about-bio">
+            When I got interested in how bees communicate stress, I didn't write a paper about it. I built a system that
+            listens to hive sounds, watches for predators with a camera, and runs entirely offline in the field. That
+            system got a ₹10 lakh government grant and a filed patent — not because the idea was clever, but because it
+            worked.
+          </p>
+          <p class="about-bio">
+            That's the thread running through everything I do. I'm drawn to the exact moment where thinking has to stop
+            and building has to start — where a model leaves a Jupyter notebook and has to survive contact with the real
+            world. I've done that across agricultural technology, medical simulation, industrial safety, and
+            infrastructure automation. Seven internships across five industries by 21. Not because I couldn't commit —
+            because I was hungry to understand how different worlds actually operate.
+          </p>
+          <p class="about-bio">
+            I'm finishing my Bachelor of Engineering in Artificial Intelligence and Machine Learning at New Horizon
+            College of Engineering. But most of what I know came from shipping things, breaking things, and refusing to
+            stop until they worked.
           </p>
           <div class="tags-container">
             <div class="tag-wrap">
@@ -1975,17 +1992,101 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Gained hands-on experience with enterprise networking devices including routers, switches, and
-                firewalls. Performed network monitoring and Level-1 troubleshooting — incident handling, log analysis,
-                and SLA-driven ticket management. Assisted in IT infrastructure operations, documentation, backup
-                procedures, and adherence to industry best practices.</p>
+              <p>Enterprise networking was completely new territory for me — and so was the codebase I was handed.
+                Rather than pretend otherwise, I treated the first few weeks as a deliberate learning phase. Knowledge
+                transfer sessions with my manager, research into the problem space, and studying how similar automation
+                challenges had been tackled elsewhere.</p>
+              <p>The system I worked on sits between the client and the engineer — when a ticket comes in, a bot handles
+                initial troubleshooting autonomously and only escalates when it genuinely can't resolve the issue. My
+                contribution was on the logging side — making the bot's decision trail visible and traceable, so
+                engineers could understand exactly what the bot had already tried before a ticket reached them.</p>
+              <p>Alongside the technical work, I spent time understanding the Information Technology Infrastructure
+                Library and IT Service Management frameworks that govern how IT service operations actually run — not
+                just how to fix things, but how organisations think about incidents, service requests, and escalation at
+                a process level. That context made me significantly more useful than someone who only understood the
+                code.</p>
             </div>
             <div class="exp-detail-tags">
-              <span class="tag">Networking</span>
-              <span class="tag">IT Infrastructure</span>
-              <span class="tag">Troubleshooting</span>
-              <span class="tag">SLA Management</span>
-              <span class="tag">Documentation</span>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-networking">Networking</span>
+                <div class="tag-popup" id="popup-ml-networking">
+                  <div class="tag-popup-title">Networking</div>
+                  <div class="tag-popup-desc">The practice of connecting computers and devices so they can communicate
+                    and share resources.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Configuring routers and switches so that
+                    different departments in an office can access the same servers securely.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-itinfra">IT Infrastructure</span>
+                <div class="tag-popup" id="popup-ml-itinfra">
+                  <div class="tag-popup-title">IT Infrastructure</div>
+                  <div class="tag-popup-desc">The collective hardware, software, networks, and facilities that an
+                    organisation uses to deliver IT services.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Managing the servers, firewalls, and cables
+                    that keep a company's internal systems running 24/7.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-itil">ITIL</span>
+                <div class="tag-popup" id="popup-ml-itil">
+                  <div class="tag-popup-title">ITIL</div>
+                  <div class="tag-popup-desc">Information Technology Infrastructure Library — a globally recognised
+                    framework of best practices for delivering IT services efficiently.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Using ITIL's incident management process to
+                    ensure every client issue is logged, prioritised, and resolved within agreed timeframes.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-itsm">ITSM</span>
+                <div class="tag-popup" id="popup-ml-itsm">
+                  <div class="tag-popup-title">ITSM</div>
+                  <div class="tag-popup-desc">IT Service Management — the practice of designing, delivering, and
+                    improving IT services to meet business needs.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Building a ticketing system that routes
+                    client issues through defined workflows so nothing falls through the cracks.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-automation">Automation</span>
+                <div class="tag-popup" id="popup-ml-automation">
+                  <div class="tag-popup-title">Automation</div>
+                  <div class="tag-popup-desc">Using software or scripts to perform repetitive tasks without human
+                    intervention.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> A bot that automatically attempts to resolve
+                    common network issues before escalating them to an engineer.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-logging">Logging</span>
+                <div class="tag-popup" id="popup-ml-logging">
+                  <div class="tag-popup-title">Logging</div>
+                  <div class="tag-popup-desc">Recording a system's actions and decisions in a structured, traceable log
+                    for debugging and auditing.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Capturing every step a troubleshooting bot
+                    takes so engineers can see exactly what was tried before a ticket reaches them.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-troubleshooting">Troubleshooting</span>
+                <div class="tag-popup" id="popup-ml-troubleshooting">
+                  <div class="tag-popup-title">Troubleshooting</div>
+                  <div class="tag-popup-desc">The systematic process of identifying and resolving problems in a system
+                    or network.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Analysing incident logs to diagnose why a
+                    client's network connection keeps dropping during peak hours.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-python">Python</span>
+                <div class="tag-popup" id="popup-ml-python">
+                  <div class="tag-popup-title">Python</div>
+                  <div class="tag-popup-desc">A versatile, beginner-friendly programming language widely used for
+                    automation, data analysis, and AI development.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Writing scripts to automate log parsing and
+                    generate structured reports from raw system data.</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -2011,23 +2112,123 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Built a VR-based surgical simulation feedback system that parses performance logs (XML), processes them
-                through LLMs (OpenAI/Gemini), and generates structured coach-style feedback for surgical trainees.
-                Developed Python pipelines for performance metric parsing, automated report generation, and
-                cost-efficient API integration. Researched generative medical imaging using Stable Diffusion and custom
-                fine-tuned models to synthesize MRI scans for spine pathologies. Also built SBOM-based container
-                security tooling, GitLab CI/CD pipelines, and multi-sheet Excel compliance report generators.</p>
+              <p>Simulatory builds surgical simulators for spinal robotic surgery — the kind of product where the end
+                user is a surgeon and the stakes are someone's spine. That context shaped every decision I made.</p>
+              <p>The project I'm most proud of is now in production. Without getting into the specifics — the core idea
+                was this: every surgical simulation generates a trail of raw data that means nothing on its own. I built
+                a pipeline that takes that data, makes sense of it, and turns it into structured coaching feedback that
+                helps trainee surgeons understand exactly where they excelled and where they need to improve. Watching
+                something you built alone go from an idea to a tool that's actively being used in surgical training —
+                and hearing that surgeons find it genuinely useful — is a feeling that's hard to describe.</p>
+              <p>The hardest part wasn't the technology — it was that I was the only person in the company who could
+                build it. No technical peers, no senior engineer to sanity-check my thinking, no one to catch what I
+                missed. In most environments, uncertainty gets distributed across a team. Here, it all stopped with me.
+                That meant I couldn't afford to be 90% sure about anything. Before every decision — architectural,
+                technical, or otherwise — I had to research it from multiple angles, stress-test my own reasoning, and
+                be completely confident before I committed. That level of accountability, early in my career, changed
+                how I think. I don't just look for solutions anymore — I look for the failure modes in my solutions.</p>
+              <p>I also worked on an annotation model that identifies anatomical structures on screen during simulations
+                in real time, and explored generative medical imaging to synthesise training data — though resource
+                constraints kept that at the research stage.</p>
+              <p>Working in medical technology taught me something I didn't expect: that the right pace isn't always the
+                fastest pace. Every change went through rigorous testing before deployment. AI tools helped me move
+                quickly — but knowing when to slow down and verify was the real skill.</p>
             </div>
             <div class="exp-detail-tags">
-              <span class="tag">Python</span>
-              <span class="tag">LLMs</span>
-              <span class="tag">OpenAI</span>
-              <span class="tag">Gemini</span>
-              <span class="tag">GitLab CI/CD</span>
-              <span class="tag">Docker</span>
-              <span class="tag">SBOM</span>
-              <span class="tag">Stable Diffusion</span>
-              <span class="tag">Medical Imaging</span>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-python">Python</span>
+                <div class="tag-popup" id="popup-sim-python">
+                  <div class="tag-popup-title">Python</div>
+                  <div class="tag-popup-desc">A versatile programming language widely used for building AI pipelines,
+                    automation scripts, and data processing systems.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Writing the end-to-end pipeline that ingests
+                    surgical simulation logs, processes them, and sends structured data to a Large Language Model for
+                    feedback generation.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-llm">Large Language Models</span>
+                <div class="tag-popup" id="popup-sim-llm">
+                  <div class="tag-popup-title">Large Language Models</div>
+                  <div class="tag-popup-desc">Advanced AI models trained on vast amounts of text that can understand,
+                    reason about, and generate human-like language.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Using GPT to interpret raw surgical
+                    performance data and generate structured, meaningful coaching feedback for trainee surgeons.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-medai">Medical AI</span>
+                <div class="tag-popup" id="popup-sim-medai">
+                  <div class="tag-popup-title">Medical AI</div>
+                  <div class="tag-popup-desc">The application of artificial intelligence to healthcare problems — from
+                    diagnostics to training to drug discovery.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Building AI systems that analyse surgical
+                    simulation data to help trainee surgeons improve their technique in a safe, controlled environment.
+                  </div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-surgsim">Surgical Simulation</span>
+                <div class="tag-popup" id="popup-sim-surgsim">
+                  <div class="tag-popup-title">Surgical Simulation</div>
+                  <div class="tag-popup-desc">Virtual reality or software-based systems that replicate real surgical
+                    procedures for training purposes without risk to real patients.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> The VR-based spinal surgery simulators built
+                    by Simulatory, where every trainee action is logged and analysed for performance feedback.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-annotation">Annotation Models</span>
+                <div class="tag-popup" id="popup-sim-annotation">
+                  <div class="tag-popup-title">Annotation Models</div>
+                  <div class="tag-popup-desc">Machine learning models trained to identify, label, and highlight specific
+                    objects or regions within images or video frames.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> A model that detects which part of the spine
+                    is visible on screen during a simulation and highlights it in real time for the trainee.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-genai">Generative AI</span>
+                <div class="tag-popup" id="popup-sim-genai">
+                  <div class="tag-popup-title">Generative AI</div>
+                  <div class="tag-popup-desc">A class of AI models that can create new content — images, text, audio —
+                    by learning patterns from existing data.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Using Stable Diffusion to generate synthetic
+                    medical images of spine pathologies to supplement limited real training data.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-sd">Stable Diffusion</span>
+                <div class="tag-popup" id="popup-sim-sd">
+                  <div class="tag-popup-title">Stable Diffusion</div>
+                  <div class="tag-popup-desc">An open-source generative AI model capable of producing realistic images
+                    from text descriptions or by learning from existing image datasets.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Experimenting with fine-tuned Stable
+                    Diffusion models to synthesise MRI scan images of spinal conditions for use as training data.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-api">API Integration</span>
+                <div class="tag-popup" id="popup-sim-api">
+                  <div class="tag-popup-title">API Integration</div>
+                  <div class="tag-popup-desc">Connecting different software systems together through their Application
+                    Programming Interfaces so they can communicate and share data.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Integrating the OpenAI API into the surgical
+                    feedback pipeline so that processed simulation data could be sent to GPT and structured responses
+                    returned automatically.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-solo">Solo Engineering</span>
+                <div class="tag-popup" id="popup-sim-solo">
+                  <div class="tag-popup-title">Solo Engineering</div>
+                  <div class="tag-popup-desc">Designing, building, testing, and deploying a complete technical system
+                    independently without a supporting engineering team.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Being the sole technical person responsible
+                    for the entire Machine Learning stack at Simulatory — from architecture decisions to production
+                    deployment.</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -2053,19 +2254,124 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Developed and optimized scripts for automated SBOM extraction and version comparison across container
-                images. Integrated compliance checks into GitLab CI/CD pipelines, flagging version mismatches and
-                generating detailed Excel reports. Enhanced reporting with automated summaries, version highlights, and
-                compliance metrics across multi-sheet Excel outputs.</p>
+              <p>Every software deployment carries risk — and one of the quietest risks is version mismatch. A
+                dependency that's one version off from what the requirements document specifies can break things in ways
+                that are hard to trace. MyCom wanted to use AI to catch these mismatches automatically, before anything
+                went live.</p>
+              <p>Before this system existed, the team had to manually cross-check every package version across every
+                file against the requirements document before each deployment. It was slow, error-prone, and entirely
+                dependent on someone being thorough enough to catch everything. I built the system that eliminates that
+                entirely. It extracts a Software Bill of Materials from container images, compares every package version
+                against the requirements document automatically, flags anything that doesn't match, and compiles
+                everything into a structured Excel report — in a fraction of the time it would take a human to do the
+                same check manually.</p>
+              <p>The version comparison script existed in a basic form when I arrived — but by the time I was done, it
+                had been so fundamentally reworked it was essentially new. And the part I'm most proud of wasn't what
+                they asked for. Beyond the core comparison, I added individual package-level breakdowns, an overall
+                compliance summary table, and additional metrics that gave the team a much richer picture of their
+                codebase health before every deployment. Nobody asked for those extras — I added them because they
+                seemed useful. They turned out to be the most referenced parts of the report.</p>
+              <p>The next stage was integrating this into GitLab CI/CD so it would run automatically on every build —
+                making version compliance a permanent, invisible part of the deployment pipeline rather than a manual
+                check. I didn't get to finish that before my internship ended, but the foundation was built and ready
+                for it.</p>
             </div>
             <div class="exp-detail-tags">
-              <span class="tag">Python</span>
-              <span class="tag">Bash</span>
-              <span class="tag">SBOM</span>
-              <span class="tag">Docker</span>
-              <span class="tag">GitLab CI/CD</span>
-              <span class="tag">Excel Automation</span>
-              <span class="tag">Compliance</span>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-python">Python</span>
+                <div class="tag-popup" id="popup-mc-python">
+                  <div class="tag-popup-title">Python</div>
+                  <div class="tag-popup-desc">A versatile programming language widely used for automation, data
+                    processing, and building AI-powered tools.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Writing the scripts that extract package
+                    metadata from container images and automatically compare versions against requirements documents.
+                  </div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-bash">Bash</span>
+                <div class="tag-popup" id="popup-mc-bash">
+                  <div class="tag-popup-title">Bash</div>
+                  <div class="tag-popup-desc">A command-line scripting language used to automate tasks and interact
+                    directly with the operating system.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Writing shell scripts to trigger SBOM
+                    extraction and feed the output into the Python comparison pipeline.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-sbom">SBOM</span>
+                <div class="tag-popup" id="popup-mc-sbom">
+                  <div class="tag-popup-title">SBOM</div>
+                  <div class="tag-popup-desc">Software Bill of Materials — a complete, structured list of every package,
+                    library, and dependency inside a software system.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Extracting the full list of packages inside a
+                    Docker container image to verify every version matches deployment requirements.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-docker">Docker</span>
+                <div class="tag-popup" id="popup-mc-docker">
+                  <div class="tag-popup-title">Docker</div>
+                  <div class="tag-popup-desc">A platform that packages software into isolated containers so it runs
+                    consistently across different environments.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Pulling container images and extracting their
+                    package manifests to feed into the version comparison and compliance pipeline.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-vcs">Version Control</span>
+                <div class="tag-popup" id="popup-mc-vcs">
+                  <div class="tag-popup-title">Version Control</div>
+                  <div class="tag-popup-desc">The practice of tracking and managing changes to software over time so
+                    teams can collaborate without overwriting each other's work.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Managing the SBOM comparison scripts in Git
+                    so changes were tracked and the team could review the history of every update.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-compliance">Compliance Automation</span>
+                <div class="tag-popup" id="popup-mc-compliance">
+                  <div class="tag-popup-title">Compliance Automation</div>
+                  <div class="tag-popup-desc">Using software to automatically verify that a system meets required
+                    standards or specifications — replacing manual checks.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Automatically comparing every package version
+                    in a deployment against the requirements document and flagging mismatches before anything goes live.
+                  </div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-excel">Excel Reporting</span>
+                <div class="tag-popup" id="popup-mc-excel">
+                  <div class="tag-popup-title">Excel Reporting</div>
+                  <div class="tag-popup-desc">Generating structured, formatted spreadsheet reports that make complex
+                    data easy to read and act on.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Producing multi-sheet Excel reports with
+                    individual package comparisons, overall compliance summaries, and version mismatch highlights for
+                    the internal team.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-gitlab">GitLab CI/CD</span>
+                <div class="tag-popup" id="popup-mc-gitlab">
+                  <div class="tag-popup-title">GitLab CI/CD</div>
+                  <div class="tag-popup-desc">A continuous integration and deployment platform that automatically
+                    builds, tests, and deploys code every time a change is pushed.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> The planned next stage — integrating the
+                    compliance pipeline into GitLab so version checks would run automatically on every deployment
+                    without human intervention.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-devops">DevOps</span>
+                <div class="tag-popup" id="popup-mc-devops">
+                  <div class="tag-popup-title">DevOps</div>
+                  <div class="tag-popup-desc">A set of practices that combines software development and IT operations to
+                    deliver software faster and more reliably.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Building automated compliance tooling that
+                    sits between the development team and production deployments, reducing manual overhead and
+                    deployment risk.</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -2091,15 +2397,67 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Collaborated with the quality control team to ensure products meet the highest standards. Contributed
-                to operational cost reduction initiatives and process efficiency improvements across the product
-                lifecycle.</p>
+              <p>Aster Digital Health gave me my first real look at the other side of software — not building it, but
+                breaking it.</p>
+              <p>My role was software testing. Systematic, methodical, unglamorous. I worked through their web platform
+                looking for bugs, inconsistencies, and anything that slipped through during deployment. Small things — a
+                broken flow here, an edge case there — that users would have caught in the worst possible moment.</p>
+              <p>It taught me something I've carried into every technical role since: the people who care enough to find
+                the small problems before they ship are the ones who make everything else look good.</p>
             </div>
             <div class="exp-detail-tags">
-              <span class="tag">Product Management</span>
-              <span class="tag">Quality Assurance</span>
-              <span class="tag">Operations</span>
-              <span class="tag">Healthcare Tech</span>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ast-testing">Software Testing</span>
+                <div class="tag-popup" id="popup-ast-testing">
+                  <div class="tag-popup-title">Software Testing</div>
+                  <div class="tag-popup-desc">The process of evaluating a software application to find bugs,
+                    inconsistencies, or anything that doesn't work as intended.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Systematically navigating through Aster's web
+                    platform to identify broken flows, UI issues, and edge cases before they reached real users.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ast-qa">Quality Assurance</span>
+                <div class="tag-popup" id="popup-ast-qa">
+                  <div class="tag-popup-title">Quality Assurance</div>
+                  <div class="tag-popup-desc">The practice of ensuring a product meets defined standards of quality
+                    before it is released.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Reviewing deployed features to catch small
+                    errors and inconsistencies that slipped through the development process.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ast-bugreport">Bug Reporting</span>
+                <div class="tag-popup" id="popup-ast-bugreport">
+                  <div class="tag-popup-title">Bug Reporting</div>
+                  <div class="tag-popup-desc">Documenting identified issues in a software system in a clear,
+                    reproducible way so developers can find and fix them.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Logging discovered issues with steps to
+                    reproduce, expected behaviour, and actual behaviour so the development team could act on them
+                    efficiently.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ast-webtest">Web Platform Testing</span>
+                <div class="tag-popup" id="popup-ast-webtest">
+                  <div class="tag-popup-title">Web Platform Testing</div>
+                  <div class="tag-popup-desc">Testing a web-based application across different browsers, devices, and
+                    user flows to ensure it works correctly for all users.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Testing Aster's digital health platform
+                    across different scenarios to ensure patients and healthcare providers had a seamless experience.
+                  </div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ast-healthtech">Healthcare Tech</span>
+                <div class="tag-popup" id="popup-ast-healthtech">
+                  <div class="tag-popup-title">Healthcare Tech</div>
+                  <div class="tag-popup-desc">Technology products and platforms built specifically for the healthcare
+                    industry — covering everything from patient management to digital diagnostics.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Working within a digital health company whose
+                    platform directly impacts how patients and providers interact with healthcare services.</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -2125,17 +2483,87 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Mastered fundamentals of diverse chatbot frameworks and AI platforms, expanding the company's
-                technological capabilities. Developed a solid understanding of neural networks and layer distributions,
-                enabling more efficient algorithm implementation. Contributed to building a client-specific chatbot that
-                improved user engagement and satisfaction metrics.</p>
+              <p>Flipick was where I first understood that AI isn't magic — it's architecture.</p>
+              <p>This was 2023, right when the world was waking up to what Large Language Models could do. I joined as
+                an AI intern and spent the bulk of my time doing something that's underrated in a field obsessed with
+                shipping: learning deeply. Neural network architectures, how layers distribute information, how chatbot
+                frameworks actually function beneath the surface. Not as an academic exercise — as foundation.</p>
+              <p>The internship culminated in building a client-deployable chatbot from scratch. It never went into
+                production, but that wasn't the point. The point was understanding every decision that goes into
+                building something that could — how you design for real users, how you think about failure modes, how
+                you make something robust enough to hand to a client.</p>
+              <p>Looking back, Flipick gave me the conceptual bedrock that everything I've built since has stood on. The
+                surgical feedback pipeline, the annotation models, the RAG systems — none of that would have come as
+                naturally without the six months I spent at Flipick just understanding how the technology actually
+                works.</p>
             </div>
             <div class="exp-detail-tags">
-              <span class="tag">Python</span>
-              <span class="tag">Chatbots</span>
-              <span class="tag">Neural Networks</span>
-              <span class="tag">AI Platforms</span>
-              <span class="tag">NLP</span>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="fp-chatbot">Chatbot Development</span>
+                <div class="tag-popup" id="popup-fp-chatbot">
+                  <div class="tag-popup-title">Chatbot Development</div>
+                  <div class="tag-popup-desc">The process of designing and building conversational AI systems that can
+                    interact with users through natural language.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Building a client-deployable chatbot from
+                    scratch — designing the conversation flow, integrating the language model, and making it robust
+                    enough to handle real user interactions.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="fp-nn">Neural Networks</span>
+                <div class="tag-popup" id="popup-fp-nn">
+                  <div class="tag-popup-title">Neural Networks</div>
+                  <div class="tag-popup-desc">Computational systems loosely inspired by the human brain, made up of
+                    layers of interconnected nodes that learn patterns from data.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Studying how different neural network
+                    architectures process and distribute information across layers to understand why certain models
+                    perform better for conversational tasks.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="fp-llm">Large Language Models</span>
+                <div class="tag-popup" id="popup-fp-llm">
+                  <div class="tag-popup-title">Large Language Models</div>
+                  <div class="tag-popup-desc">Advanced AI models trained on vast amounts of text that can understand,
+                    reason about, and generate human-like language at scale.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Understanding how Large Language Models power
+                    modern chatbots — and how to build systems around them that are reliable enough to deploy to real
+                    clients.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="fp-frameworks">AI Frameworks</span>
+                <div class="tag-popup" id="popup-fp-frameworks">
+                  <div class="tag-popup-title">AI Frameworks</div>
+                  <div class="tag-popup-desc">Software libraries and tools that provide pre-built components for
+                    building, training, and deploying artificial intelligence systems.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Learning how different chatbot and AI
+                    frameworks structure their pipelines, and how to choose the right one based on client requirements.
+                  </div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="fp-nlp">Natural Language Processing</span>
+                <div class="tag-popup" id="popup-fp-nlp">
+                  <div class="tag-popup-title">Natural Language Processing</div>
+                  <div class="tag-popup-desc">A branch of AI focused on enabling computers to understand, interpret, and
+                    generate human language in a meaningful way.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Understanding how text is tokenised,
+                    embedded, and interpreted by language models to generate relevant, contextually appropriate
+                    responses.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="fp-convai">Conversational AI</span>
+                <div class="tag-popup" id="popup-fp-convai">
+                  <div class="tag-popup-title">Conversational AI</div>
+                  <div class="tag-popup-desc">AI systems designed to simulate natural human conversation — understanding
+                    user intent and responding in a coherent, helpful way.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Designing chatbot flows that handle diverse
+                    user inputs gracefully, including unexpected questions and edge cases that real users inevitably
+                    throw at any deployed system.</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -2161,16 +2589,87 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Built and executed social media strategies across Facebook, Instagram, and YouTube, driving significant
-                growth in brand awareness and engagement. Developed creative content and collaborated with external
-                parties on influencer campaigns, email campaigns, and performance marketing initiatives.</p>
+              <p>Indimotard isn't a typical garage. It's a destination for serious motorcycle enthusiasts — the kind of
+                place where people bring their Ducatis and BMWs and stay for hours. The brand had a story worth telling.
+                My job was to tell it.</p>
+              <p>I ran their social media presence across Instagram, Facebook, and YouTube — capturing the daily life of
+                the garage, documenting services on high-end bikes, and working with brands on collaboration posts. The
+                work was equal parts creative and strategic: what to shoot, how to frame it, when to post it, and how to
+                make a motorcycle garage feel like a community rather than a business.</p>
+              <p>In six months, the Instagram following went from 6,000 to 13,000. More importantly, the number of
+                customers walking in directly because of Instagram went up too. Follower counts are vanity metrics until
+                they translate to real footfall — at Indimotard, they did.</p>
+              <p>I was doing this simultaneously with my AI internship at Flipick. Both were part-time, both were in
+                completely different domains, and that was entirely deliberate. I was 19 and wanted to understand as
+                many different worlds as possible. I don't regret a single overlap.</p>
             </div>
             <div class="exp-detail-tags">
-              <span class="tag">Social Media</span>
-              <span class="tag">Content Strategy</span>
-              <span class="tag">Brand Management</span>
-              <span class="tag">Influencer Marketing</span>
-              <span class="tag">Performance Campaigns</span>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="im-smstrategy">Social Media Strategy</span>
+                <div class="tag-popup" id="popup-im-smstrategy">
+                  <div class="tag-popup-title">Social Media Strategy</div>
+                  <div class="tag-popup-desc">The plan behind a brand's social media presence — deciding what to post,
+                    when to post it, and how to grow an engaged audience.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Developing a content strategy for Indimotard
+                    that balanced garage documentation, bike showcases, and brand collaborations to build a loyal
+                    community of motorcycle enthusiasts.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="im-content">Content Creation</span>
+                <div class="tag-popup" id="popup-im-content">
+                  <div class="tag-popup-title">Content Creation</div>
+                  <div class="tag-popup-desc">Producing original photos, videos, and written material that represents a
+                    brand's identity and engages its audience.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Capturing daily garage activity, documenting
+                    services on high-end motorcycles, and creating visually compelling posts that reflected the premium,
+                    enthusiast culture of Indimotard.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="im-brandcollab">Brand Collaborations</span>
+                <div class="tag-popup" id="popup-im-brandcollab">
+                  <div class="tag-popup-title">Brand Collaborations</div>
+                  <div class="tag-popup-desc">Partnerships between a brand and external companies or creators to produce
+                    content that benefits both parties.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Working with motorcycle and lifestyle brands
+                    on co-branded posts that expanded Indimotard's reach while aligning with their identity as a
+                    destination for serious bike enthusiasts.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="im-iggrowth">Instagram Growth</span>
+                <div class="tag-popup" id="popup-im-iggrowth">
+                  <div class="tag-popup-title">Instagram Growth</div>
+                  <div class="tag-popup-desc">The strategic process of growing a brand's Instagram following and
+                    engagement through consistent, quality content and community interaction.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Growing Indimotard's Instagram following from
+                    6,000 to 13,000 in six months — with a measurable increase in customers walking in directly from
+                    Instagram.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="im-community">Community Building</span>
+                <div class="tag-popup" id="popup-im-community">
+                  <div class="tag-popup-title">Community Building</div>
+                  <div class="tag-popup-desc">Creating a sense of belonging and loyalty around a brand so that followers
+                    become genuine advocates rather than passive consumers.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Positioning Indimotard not just as a garage
+                    but as a community hub for motorcycle enthusiasts — making the Instagram page feel like a place
+                    people wanted to follow, not just a business account.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="im-creative">Creative Direction</span>
+                <div class="tag-popup" id="popup-im-creative">
+                  <div class="tag-popup-title">Creative Direction</div>
+                  <div class="tag-popup-desc">The process of defining the visual and narrative identity of a brand's
+                    content — deciding how it looks, feels, and communicates.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Making consistent creative decisions about
+                    how to shoot, frame, and present Indimotard's content so that every post felt cohesive and on-brand.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -2196,16 +2695,89 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Learned creation and management of marketing campaigns on Google Ads and Facebook AdSense. Completed
-                Google Ads certification. Applied SEO strategies to increase traffic, interactions, and lead generation
-                across campaigns.</p>
+              <p>Medvarsity makes online courses for medical professionals — a niche where the audience is highly
+                educated, time-poor, and extremely hard to reach with generic marketing. Getting their attention
+                requires precision, not volume.</p>
+              <p>I spent the first part of the internship learning the fundamentals properly — Google Ads certification,
+                Facebook AdSense, SEO strategy, keyword research. Not as box-ticking exercises, but as tools I was going
+                to actually use. By the end of the internship, I was handed a real budget and ran a live campaign
+                independently — applying everything I'd learned to reach Medvarsity's target audience of medical
+                professionals.</p>
+              <p>What surprised me was how much the skills transferred beyond the job. Understanding how to position
+                something for a specific audience, how to write copy that converts, how to think about what someone is
+                searching for and why — those instincts have followed me into every domain since. I use them when I'm
+                writing documentation, pitching ideas, and thinking about how to communicate technical work to
+                non-technical people.</p>
+              <p>Three internships in roughly the same window at 19 wasn't chaos — it was curriculum. Each one taught me
+                something the others couldn't.</p>
             </div>
             <div class="exp-detail-tags">
-              <span class="tag">Google Ads</span>
-              <span class="tag">Facebook AdSense</span>
-              <span class="tag">SEO</span>
-              <span class="tag">Digital Marketing</span>
-              <span class="tag">Google Ads Certified</span>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mv-gads">Google Ads</span>
+                <div class="tag-popup" id="popup-mv-gads">
+                  <div class="tag-popup-title">Google Ads</div>
+                  <div class="tag-popup-desc">Google's online advertising platform that lets businesses show ads to
+                    people searching for relevant terms on Google.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Running a live campaign on Google Ads to
+                    reach medical professionals searching for online continuing education courses — targeting by
+                    keyword, profession, and intent.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mv-fbads">Facebook AdSense</span>
+                <div class="tag-popup" id="popup-mv-fbads">
+                  <div class="tag-popup-title">Facebook AdSense</div>
+                  <div class="tag-popup-desc">Meta's advertising platform that allows businesses to run targeted ads
+                    across Facebook and Instagram based on user demographics and behaviour.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Creating targeted ad campaigns on Facebook to
+                    reach Medvarsity's audience of healthcare professionals with course recommendations relevant to
+                    their specialty.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mv-seo">SEO</span>
+                <div class="tag-popup" id="popup-mv-seo">
+                  <div class="tag-popup-title">SEO</div>
+                  <div class="tag-popup-desc">Search Engine Optimisation — the practice of improving a website's
+                    visibility in search engine results to attract more organic traffic.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Researching keywords that medical
+                    professionals use when searching for online courses and applying on-page SEO strategies to improve
+                    Medvarsity's search rankings.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mv-digimarketing">Digital Marketing</span>
+                <div class="tag-popup" id="popup-mv-digimarketing">
+                  <div class="tag-popup-title">Digital Marketing</div>
+                  <div class="tag-popup-desc">The use of online channels — search engines, social media, email, and more
+                    — to promote products or services to a target audience.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Designing and executing a digital marketing
+                    strategy for a medical education platform, balancing paid advertising with organic growth tactics.
+                  </div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mv-campaign">Campaign Management</span>
+                <div class="tag-popup" id="popup-mv-campaign">
+                  <div class="tag-popup-title">Campaign Management</div>
+                  <div class="tag-popup-desc">The end-to-end process of planning, launching, monitoring, and optimising
+                    a marketing campaign to achieve specific goals.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Managing a live Google Ads campaign
+                    independently with a real budget — setting targeting parameters, writing ad copy, monitoring
+                    performance, and adjusting based on results.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mv-gadscert">Google Ads Certified</span>
+                <div class="tag-popup" id="popup-mv-gadscert">
+                  <div class="tag-popup-title">Google Ads Certified</div>
+                  <div class="tag-popup-desc">An official Google certification that validates proficiency in creating
+                    and managing Google Ads campaigns.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Completing the Google Ads certification and
+                    immediately applying the strategies learned to a live campaign for Medvarsity's medical professional
+                    audience.</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -3563,56 +4135,93 @@
       revealObserver.observe(el);
     });
 
-    /* ── Interest Tag Popups ─────────────────── */
-    let activePopup = null;
-    let activeTag = null;
+    document.addEventListener('DOMContentLoaded', function () {
+      /* ── Interest Tag Popups ─────────────────── */
+      let activePopup = null;
+      let activeTag = null;
+      let activePopupOriginalParent = null;
+      let activePopupNextSibling = null;
 
-    function positionPopup(popup, wrap) {
-      popup.classList.remove('above', 'below');
-      const rect = wrap.getBoundingClientRect();
-      const spaceAbove = rect.top;
-      if (spaceAbove > 200) {
-        popup.classList.add('above');
-      } else {
-        popup.classList.add('below');
-      }
-    }
+      function positionPopup(popup, wrap) {
+        popup.classList.remove('above', 'below');
 
-    function closeActivePopup() {
-      if (activePopup) {
-        activePopup.classList.remove('visible');
-        activeTag.classList.remove('active');
-        activePopup = null;
-        activeTag = null;
-      }
-    }
+        // Move popup to body so position:fixed works even inside transformed ancestors
+        activePopupOriginalParent = popup.parentNode;
+        activePopupNextSibling = popup.nextSibling;
+        document.body.appendChild(popup);
 
-    document.querySelectorAll('.tags-container .tag[data-popup]').forEach(tag => {
-      tag.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const id = tag.getAttribute('data-popup');
-        const popup = document.getElementById('popup-' + id);
-        const wrap = tag.closest('.tag-wrap');
-
-        if (activePopup === popup) {
-          closeActivePopup();
-          return;
-        }
-
-        closeActivePopup();
-        positionPopup(popup, wrap);
+        // Temporarily make popup visible off-screen to measure its height
+        popup.style.left = '-9999px';
+        popup.style.top = '0px';
         popup.classList.add('visible');
-        tag.classList.add('active');
-        activePopup = popup;
-        activeTag = tag;
-      });
-    });
+        const popupRect = popup.getBoundingClientRect();
+        const popupWidth = popupRect.width || 240;
+        const popupHeight = popupRect.height || 150;
+        popup.classList.remove('visible');
 
-    document.addEventListener('click', (e) => {
-      if (activePopup && !e.target.closest('.tag-wrap')) {
-        closeActivePopup();
+        const rect = wrap.getBoundingClientRect();
+        const spaceAbove = rect.top;
+        const centerX = rect.left + rect.width / 2;
+        let left = centerX - popupWidth / 2;
+        // Clamp to viewport edges
+        if (left < 8) left = 8;
+        if (left + popupWidth > window.innerWidth - 8) left = window.innerWidth - 8 - popupWidth;
+        popup.style.left = left + 'px';
+        if (spaceAbove > 200) {
+          popup.classList.add('above');
+          popup.style.top = (rect.top - 10 - popupHeight) + 'px';
+        } else {
+          popup.classList.add('below');
+          popup.style.top = (rect.bottom + 10) + 'px';
+        }
       }
-    });
+
+      function closeActivePopup() {
+        if (activePopup) {
+          activePopup.classList.remove('visible');
+          activeTag.classList.remove('active');
+          // Move popup back to its original position in the DOM
+          if (activePopupOriginalParent) {
+            if (activePopupNextSibling) {
+              activePopupOriginalParent.insertBefore(activePopup, activePopupNextSibling);
+            } else {
+              activePopupOriginalParent.appendChild(activePopup);
+            }
+          }
+          activePopup = null;
+          activeTag = null;
+          activePopupOriginalParent = null;
+          activePopupNextSibling = null;
+        }
+      }
+
+      document.querySelectorAll('.tags-container .tag[data-popup], .exp-detail-tags .tag[data-popup]').forEach(tag => {
+        tag.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = tag.getAttribute('data-popup');
+          const popup = document.getElementById('popup-' + id);
+          const wrap = tag.closest('.tag-wrap');
+
+          if (activePopup === popup) {
+            closeActivePopup();
+            return;
+          }
+
+          closeActivePopup();
+          positionPopup(popup, wrap);
+          popup.classList.add('visible');
+          tag.classList.add('active');
+          activePopup = popup;
+          activeTag = tag;
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (activePopup && !e.target.closest('.tag-wrap')) {
+          closeActivePopup();
+        }
+      });
+    }); // end DOMContentLoaded for popups
 
     /* ── Community: Grid ↔ Detail Slide ───────── */
     const commGridView = document.getElementById('commGridView');
