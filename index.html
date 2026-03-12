@@ -696,6 +696,15 @@
       margin-bottom: 1.25rem;
     }
 
+    .exp-detail-desc h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin: 0 0 1rem 0;
+      line-height: 1.4;
+    }
+
     .exp-detail-desc p {
       font-size: 0.95rem;
       color: var(--text);
@@ -1992,19 +2001,26 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Enterprise networking was completely new territory for me — and so was the codebase I was handed.
-                Rather than pretend otherwise, I treated the first few weeks as a deliberate learning phase. Knowledge
-                transfer sessions with my manager, research into the problem space, and studying how similar automation
-                challenges had been tackled elsewhere.</p>
-              <p>The system I worked on sits between the client and the engineer — when a ticket comes in, a bot handles
-                initial troubleshooting autonomously and only escalates when it genuinely can't resolve the issue. My
-                contribution was on the logging side — making the bot's decision trail visible and traceable, so
-                engineers could understand exactly what the bot had already tried before a ticket reached them.</p>
-              <p>Alongside the technical work, I spent time understanding the Information Technology Infrastructure
-                Library and IT Service Management frameworks that govern how IT service operations actually run — not
-                just how to fix things, but how organisations think about incidents, service requests, and escalation at
-                a process level. That context made me significantly more useful than someone who only understood the
-                code.</p>
+              <h4>Closing the Loop on Automated Escalation</h4>
+              <p>When a support ticket arrives in an enterprise environment, the first question an engineer asks is:
+                what has already been tried? Without a clear answer, they duplicate effort, lose time, and often start
+                from scratch on problems that were partially solved. That gap — between what an automated system does
+                and what a human engineer can see — was the problem I was brought in to address.</p>
+              <p>The system I worked on sits between the client and the engineer. A bot handles initial troubleshooting
+                autonomously and escalates only when it cannot resolve the issue. The problem was that when escalation
+                happened, the bot's entire decision trail was invisible. Engineers had no way of knowing which steps had
+                been attempted, which had failed, or why the bot had given up. Every handoff started blind.</p>
+              <p>My work was to fix that. I built out the logging layer that made the bot's reasoning visible and
+                traceable — so that by the time a ticket reached a human engineer, they had a complete record of what
+                the bot had already tried. The handoff became informative rather than abrupt.</p>
+              <p>Enterprise networking and the codebase were both new to me when I started. I treated the first few
+                weeks as a structured orientation — knowledge transfer sessions, research into the problem space, and
+                studying how similar automation challenges had been approached elsewhere. I also spent time learning the
+                IT Infrastructure Library and IT Service Management frameworks that govern how enterprise service
+                operations actually run — not just the technical mechanics, but how organisations formally think about
+                incidents, escalation, and service continuity. Understanding that process layer shaped how I approached
+                the logging design, because the output had to be useful to engineers operating within those frameworks,
+                not just technically correct.</p>
             </div>
             <div class="exp-detail-tags">
               <div class="tag-wrap">
@@ -2112,27 +2128,30 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Simulatory builds surgical simulators for spinal robotic surgery — the kind of product where the end
-                user is a surgeon and the stakes are someone's spine. That context shaped every decision I made.</p>
-              <p>The project I'm most proud of is now in production. Without getting into the specifics — the core idea
-                was this: every surgical simulation generates a trail of raw data that means nothing on its own. I built
-                a pipeline that takes that data, makes sense of it, and turns it into structured coaching feedback that
-                helps trainee surgeons understand exactly where they excelled and where they need to improve. Watching
-                something you built alone go from an idea to a tool that's actively being used in surgical training —
-                and hearing that surgeons find it genuinely useful — is a feeling that's hard to describe.</p>
-              <p>The hardest part wasn't the technology — it was that I was the only person in the company who could
-                build it. No technical peers, no senior engineer to sanity-check my thinking, no one to catch what I
-                missed. In most environments, uncertainty gets distributed across a team. Here, it all stopped with me.
-                That meant I couldn't afford to be 90% sure about anything. Before every decision — architectural,
-                technical, or otherwise — I had to research it from multiple angles, stress-test my own reasoning, and
-                be completely confident before I committed. That level of accountability, early in my career, changed
-                how I think. I don't just look for solutions anymore — I look for the failure modes in my solutions.</p>
-              <p>I also worked on an annotation model that identifies anatomical structures on screen during simulations
-                in real time, and explored generative medical imaging to synthesise training data — though resource
-                constraints kept that at the research stage.</p>
-              <p>Working in medical technology taught me something I didn't expect: that the right pace isn't always the
-                fastest pace. Every change went through rigorous testing before deployment. AI tools helped me move
-                quickly — but knowing when to slow down and verify was the real skill.</p>
+              <h4>From Raw Simulation Data to Structured Surgical Coaching</h4>
+              <p>Surgical simulation generates enormous amounts of raw performance data. The problem is that data alone
+                tells a trainee surgeon very little — it doesn't explain what went wrong, why it went wrong, or what to
+                do differently. At Simulatory, which builds robotic surgical simulators for spinal procedures, that gap
+                between raw output and actionable insight was the problem I was asked to solve.</p>
+              <p>I built a pipeline that ingests the raw data produced by each simulation, processes and structures it,
+                and generates coaching feedback that tells trainee surgeons specifically where they performed well and
+                where they need to improve. The system is now in production and actively used in surgical training. The
+                feedback it generates is the kind that previously didn't exist in a structured form — surgeons had
+                intuition, but not a systematic, data-driven account of each trainee's performance.</p>
+              <p>The technical challenge was significant, but the harder problem was organisational. I was the only
+                person in the company who could build this. No senior engineer to review my architecture, no technical
+                peers to pressure-test my thinking, no safety net for the decisions I got wrong. In that environment,
+                being mostly confident wasn't enough — every architectural and technical decision had to be fully
+                stress-tested before I committed to it. That constraint changed how I approach problems. I stopped
+                looking only for solutions and started looking for the failure modes in my solutions before anyone else
+                could find them.</p>
+              <p>Alongside the core pipeline, I built an annotation model that identifies anatomical structures on
+                screen during simulations in real time, and explored generative medical imaging as a route to
+                synthesising training data — though resource constraints kept that work at the research stage.</p>
+              <p>Working in medical technology also recalibrated my sense of pace. In a domain where the end user is a
+                surgeon and the product is someone's spine, speed is never the primary objective. Every change went
+                through rigorous testing before deployment. Knowing when to slow down and verify — not just how to move
+                fast — turned out to be the more important skill.</p>
             </div>
             <div class="exp-detail-tags">
               <div class="tag-wrap">
@@ -2254,27 +2273,29 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Every software deployment carries risk — and one of the quietest risks is version mismatch. A
-                dependency that's one version off from what the requirements document specifies can break things in ways
-                that are hard to trace. MyCom wanted to use AI to catch these mismatches automatically, before anything
-                went live.</p>
-              <p>Before this system existed, the team had to manually cross-check every package version across every
-                file against the requirements document before each deployment. It was slow, error-prone, and entirely
-                dependent on someone being thorough enough to catch everything. I built the system that eliminates that
-                entirely. It extracts a Software Bill of Materials from container images, compares every package version
-                against the requirements document automatically, flags anything that doesn't match, and compiles
-                everything into a structured Excel report — in a fraction of the time it would take a human to do the
-                same check manually.</p>
-              <p>The version comparison script existed in a basic form when I arrived — but by the time I was done, it
-                had been so fundamentally reworked it was essentially new. And the part I'm most proud of wasn't what
-                they asked for. Beyond the core comparison, I added individual package-level breakdowns, an overall
-                compliance summary table, and additional metrics that gave the team a much richer picture of their
-                codebase health before every deployment. Nobody asked for those extras — I added them because they
-                seemed useful. They turned out to be the most referenced parts of the report.</p>
-              <p>The next stage was integrating this into GitLab CI/CD so it would run automatically on every build —
-                making version compliance a permanent, invisible part of the deployment pipeline rather than a manual
-                check. I didn't get to finish that before my internship ended, but the foundation was built and ready
-                for it.</p>
+              <h4>Automating SBOM Extraction and Version Compliance in Container Deployments</h4>
+              <p>In enterprise software deployment, version mismatch is one of the most silent failure modes. A single
+                dependency running one version off from what the requirements document specifies can break systems in
+                ways that are difficult to trace and expensive to fix after the fact. At MyCom, that risk was being
+                managed entirely by hand — before every deployment, engineers manually cross-checked every package
+                version across every file against the requirements document. The process was slow, dependent on
+                individual thoroughness, and fundamentally unscalable.</p>
+              <p>The problem I was asked to solve was straightforward to state but non-trivial to build: eliminate that
+                manual check entirely, and replace it with something automatic, reliable, and fast.</p>
+              <p>I built a system that extracts a Software Bill of Materials from container images, compares every
+                package version against the requirements document automatically, flags every mismatch, and compiles the
+                results into a structured report — in a fraction of the time the manual process required. A version
+                comparison script existed in a basic form when I arrived, but the final system was so fundamentally
+                rearchitected that it was effectively built from scratch.</p>
+              <p>The part I'm most satisfied with wasn't in the original brief. Beyond the core compliance check, I
+                added individual package-level breakdowns, an overall compliance summary table, and additional codebase
+                health metrics that gave the team a richer picture of their deployment readiness. These additions
+                weren't requested — I included them because the data was already there and the insight seemed worth
+                surfacing. They became the most referenced sections of the report.</p>
+              <p>The next stage was integrating the system into GitLab CI/CD so compliance checks would run
+                automatically on every build — making version verification a permanent, invisible layer of the
+                deployment pipeline rather than a pre-deployment ritual. The internship ended before that integration
+                was complete, but the architecture was designed for it and the foundation was in place.</p>
             </div>
             <div class="exp-detail-tags">
               <div class="tag-wrap">
@@ -2397,13 +2418,18 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Aster Digital Health gave me my first real look at the other side of software — not building it, but
-                breaking it.</p>
-              <p>My role was software testing. Systematic, methodical, unglamorous. I worked through their web platform
-                looking for bugs, inconsistencies, and anything that slipped through during deployment. Small things — a
-                broken flow here, an edge case there — that users would have caught in the worst possible moment.</p>
-              <p>It taught me something I've carried into every technical role since: the people who care enough to find
-                the small problems before they ship are the ones who make everything else look good.</p>
+              <h4>Finding What Slips Through: Software Quality Assurance at Scale</h4>
+              <p>Production bugs in web platforms rarely originate from core functionality — they surface in edge cases,
+                incomplete user flows, and untested state transitions that pass code review but fail under real usage
+                conditions. At Aster Digital Health, the problem was identifying these failure points in a live
+                healthcare web platform before they reached end users.</p>
+              <p>My role was systematic black-box testing across the platform. This involved mapping user flows,
+                designing test cases around boundary conditions and edge cases, reproducing reported and discovered
+                bugs, isolating root causes, and producing structured defect reports that development teams could action
+                directly.</p>
+              <p>The work built a testing mindset that has carried into every technical role since — treating every
+                assumption in a system design as a potential failure point, and verifying rather than inferring how a
+                system behaves under conditions it wasn't explicitly built for.</p>
             </div>
             <div class="exp-detail-tags">
               <div class="tag-wrap">
@@ -2483,19 +2509,24 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Flipick was where I first understood that AI isn't magic — it's architecture.</p>
-              <p>This was 2023, right when the world was waking up to what Large Language Models could do. I joined as
-                an AI intern and spent the bulk of my time doing something that's underrated in a field obsessed with
-                shipping: learning deeply. Neural network architectures, how layers distribute information, how chatbot
-                frameworks actually function beneath the surface. Not as an academic exercise — as foundation.</p>
-              <p>The internship culminated in building a client-deployable chatbot from scratch. It never went into
-                production, but that wasn't the point. The point was understanding every decision that goes into
-                building something that could — how you design for real users, how you think about failure modes, how
-                you make something robust enough to hand to a client.</p>
-              <p>Looking back, Flipick gave me the conceptual bedrock that everything I've built since has stood on. The
-                surgical feedback pipeline, the annotation models, the RAG systems — none of that would have come as
-                naturally without the six months I spent at Flipick just understanding how the technology actually
-                works.</p>
+              <h4>Ground-Up Chatbot Development: Neural Architecture to Client Deployment</h4>
+              <p>In 2023, most teams building with Large Language Models were focused on what they could ship. The
+                harder problem — and the more important one — was understanding what was actually happening inside these
+                systems: how information flows through transformer layers, where models fail, and what architectural
+                decisions determine whether something is robust enough to deploy to a real client.</p>
+              <p>At Flipick, that was the problem I set out to solve for myself before writing a single line of
+                production code. The internship was structured around deep technical grounding first — neural network
+                architectures, attention mechanisms, how information propagates through layers, and how chatbot
+                frameworks function beneath their abstractions. Not as background reading, but as the foundation every
+                subsequent decision would rest on.</p>
+              <p>The culminating project was building a client-deployable chatbot from scratch — designing the
+                architecture, handling failure modes, and making the system robust enough to hand off to an external
+                client. The system didn't go into production, but the objective was never deployment. It was building
+                something that could be deployed, and understanding every decision that distinction requires.</p>
+              <p>That architectural foundation has carried directly into every system I've built since — Large Language
+                Model feedback pipelines, annotation models, Retrieval-Augmented Generation systems. The difference
+                between knowing how to use a tool and understanding how it works is the difference between building
+                something that functions in a demo and building something that holds up in production.</p>
             </div>
             <div class="exp-detail-tags">
               <div class="tag-wrap">
@@ -2589,19 +2620,22 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Indimotard isn't a typical garage. It's a destination for serious motorcycle enthusiasts — the kind of
-                place where people bring their Ducatis and BMWs and stay for hours. The brand had a story worth telling.
-                My job was to tell it.</p>
-              <p>I ran their social media presence across Instagram, Facebook, and YouTube — capturing the daily life of
-                the garage, documenting services on high-end bikes, and working with brands on collaboration posts. The
-                work was equal parts creative and strategic: what to shoot, how to frame it, when to post it, and how to
-                make a motorcycle garage feel like a community rather than a business.</p>
-              <p>In six months, the Instagram following went from 6,000 to 13,000. More importantly, the number of
-                customers walking in directly because of Instagram went up too. Follower counts are vanity metrics until
-                they translate to real footfall — at Indimotard, they did.</p>
-              <p>I was doing this simultaneously with my AI internship at Flipick. Both were part-time, both were in
-                completely different domains, and that was entirely deliberate. I was 19 and wanted to understand as
-                many different worlds as possible. I don't regret a single overlap.</p>
+              <h4>Content Strategy and Digital Presence Management for a Specialist Motorcycle Service Workshop</h4>
+              <p>Indimotard had an audience worth reaching — serious motorcycle enthusiasts who treat high-end bikes as
+                a lifestyle, not just a vehicle. The problem was that their social media presence wasn't converting that
+                potential into measurable growth or consistent footfall. The brand had a story worth telling, but no
+                systematic approach to telling it across platforms.</p>
+              <p>I took over their social media operations across Instagram, Facebook, and YouTube with a clear
+                objective: grow an engaged following and translate that following into customers walking through the
+                door.</p>
+              <p>The approach was strategic before it was creative. That meant identifying what content resonated with
+                the target audience — documentation of high-end service work, behind-the-scenes garage content, and
+                brand collaboration posts — and building a consistent publishing cadence across platforms. Each piece of
+                content was planned around what to shoot, how to frame it, and when to publish it to maximise reach and
+                engagement within a niche but highly engaged audience segment.</p>
+              <p>The results were concrete. Instagram following grew from 6,000 to 13,000 in six months. More
+                significantly, inbound footfall attributable directly to Instagram increased over the same period — the
+                follower growth translated into real customer acquisition, not just reach metrics.</p>
             </div>
             <div class="exp-detail-tags">
               <div class="tag-wrap">
@@ -2695,21 +2729,22 @@
               </div>
             </div>
             <div class="exp-detail-desc">
-              <p>Medvarsity makes online courses for medical professionals — a niche where the audience is highly
-                educated, time-poor, and extremely hard to reach with generic marketing. Getting their attention
-                requires precision, not volume.</p>
-              <p>I spent the first part of the internship learning the fundamentals properly — Google Ads certification,
-                Facebook AdSense, SEO strategy, keyword research. Not as box-ticking exercises, but as tools I was going
-                to actually use. By the end of the internship, I was handed a real budget and ran a live campaign
-                independently — applying everything I'd learned to reach Medvarsity's target audience of medical
-                professionals.</p>
-              <p>What surprised me was how much the skills transferred beyond the job. Understanding how to position
-                something for a specific audience, how to write copy that converts, how to think about what someone is
-                searching for and why — those instincts have followed me into every domain since. I use them when I'm
-                writing documentation, pitching ideas, and thinking about how to communicate technical work to
-                non-technical people.</p>
-              <p>Three internships in roughly the same window at 19 wasn't chaos — it was curriculum. Each one taught me
-                something the others couldn't.</p>
+              <h4>Audience Segmentation and Paid Campaign Management for a Niche Medical Education Platform</h4>
+              <p>Reaching medical professionals with online advertising is a distinct and difficult problem. The
+                audience is highly educated, time-poor, and resistant to generic marketing — broad reach strategies
+                don't work because the signal-to-noise ratio for this demographic is extremely low. At Medvarsity, which
+                produces online courses for medical professionals, the problem was designing and executing campaigns
+                precise enough to cut through to a highly specific audience without wasting budget on irrelevant reach.
+              </p>
+              <p>Before running anything live, I spent the first phase of the internship building the technical
+                foundation properly — Google Ads certification, Facebook AdSense, Search Engine Optimisation strategy,
+                and keyword research methodology. The objective was to understand the mechanics of each platform well
+                enough to make deliberate decisions rather than default ones.</p>
+              <p>By the end of the internship I was managing a live campaign independently with a real allocated budget
+                — applying audience segmentation, keyword targeting, and conversion-focused copy to reach Medvarsity's
+                target demographic. The work required thinking precisely about who the audience was, what they were
+                searching for, and how to position the product in a way that was relevant to their specific professional
+                context.</p>
             </div>
             <div class="exp-detail-tags">
               <div class="tag-wrap">
@@ -3991,6 +4026,12 @@
     document.querySelectorAll('.sidebar-nav a').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 900) closeMenu();
+
+        const href = link.getAttribute('href');
+        if (href === '#experience' && activeDetailId !== null) closeExpDetail();
+        if (href === '#projects' && activeProjId !== null) closeProjDetail();
+        if (href === '#recognition' && activeRecogId !== null) closeRecogDetail();
+        if (href === '#community' && activeCommId !== null) closeCommDetail();
       });
     });
 
