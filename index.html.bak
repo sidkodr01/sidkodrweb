@@ -1,0 +1,4303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sidkodr — Siddarth Srinivas | AI/ML Engineer</title>
+  <meta name="description"
+    content="Personal portfolio of Siddarth Srinivas — AI/ML Engineer building practical systems at the intersection of computer vision, edge AI, and real-world hardware.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ── Reset & Base ─────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #f6f4f0;
+      color: #111110;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── CSS Custom Properties ────────────────────── */
+    :root {
+      --accent: #c85a2a;
+      --accent-soft: #f0ebe4;
+      --bg: #f6f4f0;
+      --card: #ffffff;
+      --border: #e6e2db;
+      --text: #111110;
+      --text-secondary: #65625d;
+      --text-muted: #a09c97;
+      --tag-bg: #eceae5;
+      --sidebar-width: 300px;
+    }
+
+    /* ── Layout ───────────────────────────────────── */
+    .site-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ──────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-width);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 2.5rem 1.75rem;
+      z-index: 100;
+      overflow-y: auto;
+    }
+
+    .sidebar-profile {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c85a2a 0%, #e8a47a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: #fff;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 20px rgba(200, 90, 42, 0.18);
+    }
+
+    .sidebar-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .role-badge {
+      display: inline-block;
+      background: rgba(200, 90, 42, 0.1);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    .sidebar-bio {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .sidebar-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 1.5rem 0;
+    }
+
+    .sidebar-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .sidebar-nav a {
+      display: block;
+      padding: 0.55rem 0.85rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      background: rgba(200, 90, 42, 0.07);
+      color: var(--accent);
+    }
+
+    .sidebar-social {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .sidebar-social a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.35rem 0;
+      transition: color 0.2s ease;
+    }
+
+    .sidebar-social a:hover {
+      color: var(--accent);
+    }
+
+    .sidebar-social svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+
+    /* ── Mobile Header ────────────────────────────── */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      z-index: 200;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+    }
+
+    .mobile-header-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .menu-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+      z-index: 99;
+    }
+
+    /* ── Main Content ─────────────────────────────── */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 3.5rem 4rem 4rem;
+      max-width: 880px;
+    }
+
+    /* ── Hero / About ─────────────────────────────── */
+    .brand-mark {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 4.5rem;
+      color: var(--text);
+      letter-spacing: -2px;
+      margin-bottom: 0.25rem;
+      line-height: 1.1;
+    }
+
+    .hero-heading {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      line-height: 1.3;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-subheading {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-subheading .dot-sep {
+      color: var(--accent);
+      margin: 0 0.15rem;
+    }
+
+    .hero-college {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+      padding-left: 0.85rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .hero-college strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .about-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 2rem 2.25rem;
+      border: 1px solid var(--border);
+      margin-bottom: 1.75rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .about-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .about-bio {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .tag-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .tag.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* ── Tag Popup ────────────────────────────────── */
+    .tag-popup {
+      position: fixed;
+      transform: scale(0.95);
+      background: #fff;
+      border: 1px solid #e6e2db;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+      padding: 16px 18px;
+      max-width: 260px;
+      min-width: 220px;
+      z-index: 99999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .tag-popup.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+
+    /* Arrow fill */
+    .tag-popup::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+    }
+
+    .tag-popup.above::after {
+      bottom: -12px;
+      border-top-color: #fff;
+    }
+
+    .tag-popup.below::after {
+      top: -12px;
+      border-bottom-color: #fff;
+    }
+
+    /* Arrow border */
+    .tag-popup::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 7px solid transparent;
+    }
+
+    .tag-popup.above::before {
+      bottom: -14px;
+      border-top-color: #e6e2db;
+    }
+
+    .tag-popup.below::before {
+      top: -14px;
+      border-bottom-color: #e6e2db;
+    }
+
+    .tag-popup-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .tag-popup-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 0.55rem;
+    }
+
+    .tag-popup-example {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      border-top: 1px solid var(--border);
+      padding-top: 0.5rem;
+    }
+
+    .tag-popup-example strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ── Section Headers ──────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .section-header::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+    }
+
+    /* ── Experience Section ────────────────────────── */
+    #experience {
+      padding-top: 3.5rem;
+    }
+
+    .exp-stage {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── State A: Logo Grid ───────────────────────── */
+    .exp-grid-view {
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+      will-change: transform, opacity;
+    }
+
+    .exp-grid-view.hidden {
+      transform: translateX(-100%);
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .exp-grid-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .exp-grid-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      border-color: var(--accent);
+    }
+
+    .exp-grid-logo {
+      max-height: 48px;
+      max-width: 140px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 12px auto;
+    }
+
+    .exp-detail-logo {
+      max-height: 32px;
+      max-width: 120px;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-grid-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    .exp-grid-role {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .exp-grid-duration {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .card-cta {
+      font-size: 12px;
+      color: #c85a2a;
+      font-weight: 500;
+      margin-top: auto;
+      text-decoration: none;
+      border: none;
+    }
+
+    /* ── State B: Detail View ─────────────────────── */
+    .exp-detail-view {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+      will-change: transform, opacity;
+    }
+
+    .exp-detail-view.active {
+      position: relative;
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .exp-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem 0;
+      margin-bottom: 1.5rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .exp-back-btn:hover {
+      opacity: 0.7;
+    }
+
+    .exp-back-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .exp-detail-hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2.5rem 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .exp-detail-watermark {
+      position: absolute;
+      top: -20px;
+      right: -10px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 10rem;
+      color: var(--accent);
+      opacity: 0.04;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .exp-detail-header {
+      position: relative;
+      z-index: 1;
+    }
+
+    .exp-detail-company {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.5px;
+    }
+
+    .exp-detail-role {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 0.6rem;
+    }
+
+    .exp-detail-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .exp-detail-meta .type-badge {
+      background: rgba(200, 90, 42, 0.1);
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .exp-detail-meta .meta-sep {
+      color: var(--border);
+    }
+
+    .exp-detail-desc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .exp-detail-desc h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin: 0 0 1rem 0;
+      line-height: 1.4;
+    }
+
+    .exp-detail-desc p {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .exp-detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .exp-detail-tags .tag {
+      font-size: 0.76rem;
+    }
+
+    /* ── Projects Section ──────────────────────────── */
+    #projects {
+      padding-top: 3.5rem;
+    }
+
+    .proj-stage {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .proj-grid-view {
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+      will-change: transform, opacity;
+    }
+
+    .proj-grid-view.hidden {
+      transform: translateX(-100%);
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .proj-grid-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid transparent;
+      border-radius: 14px;
+      padding: 1.5rem 1.25rem;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .proj-grid-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      border-left-color: var(--accent);
+    }
+
+    .proj-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .proj-grid-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    .proj-grid-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .proj-grid-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.15rem;
+    }
+
+    .proj-grid-tags .tag {
+      font-size: 0.68rem;
+      padding: 0.2rem 0.6rem;
+    }
+
+    .proj-view-link {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+
+    /* ── Project Detail View ──────────────────────── */
+    .proj-detail-view {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+      will-change: transform, opacity;
+    }
+
+    .proj-detail-view.active {
+      position: relative;
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .proj-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem 0;
+      margin-bottom: 1.5rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .proj-back-btn:hover {
+      opacity: 0.7;
+    }
+
+    .proj-back-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .proj-detail-hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2.5rem 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .proj-detail-watermark {
+      position: absolute;
+      top: -20px;
+      right: -10px;
+      font-size: 10rem;
+      color: var(--accent);
+      opacity: 0.04;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .proj-detail-header {
+      position: relative;
+      z-index: 1;
+    }
+
+    .proj-detail-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.5px;
+    }
+
+    .proj-detail-tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.6rem;
+    }
+
+    .proj-category-badge {
+      display: inline-block;
+      background: rgba(200, 90, 42, 0.1);
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* PSO blocks */
+    .proj-pso {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .pso-block {
+      margin-bottom: 1.5rem;
+    }
+
+    .pso-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .pso-label {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .pso-label .pso-icon {
+      font-size: 1rem;
+    }
+
+    .pso-text {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* Tech stack groups */
+    .proj-tech {
+      margin-bottom: 1.25rem;
+    }
+
+    .tech-group {
+      margin-bottom: 0.75rem;
+    }
+
+    .tech-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .tech-group-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.35rem;
+    }
+
+    .tech-group-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tech-group-tags .tag {
+      font-size: 0.74rem;
+    }
+
+    /* Project links row */
+    .proj-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .proj-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.45rem 1rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .proj-link-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .proj-link-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    /* ── Recognition Section ──────────────────────── */
+    #recognition {
+      padding-top: 3.5rem;
+    }
+
+    .recog-stage {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .recog-grid-view {
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+      will-change: transform, opacity;
+    }
+
+    .recog-grid-view.hidden {
+      transform: translateX(-100%);
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .recog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .recog-grid-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid transparent;
+      border-radius: 14px;
+      padding: 1.5rem 1.25rem;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .recog-grid-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      border-left-color: var(--accent);
+    }
+
+    .recog-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .recog-grid-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    .recog-grid-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .recog-view-link {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+
+    /* ── Recognition Detail View ──────────────────── */
+    .recog-detail-view {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+      will-change: transform, opacity;
+    }
+
+    .recog-detail-view.active {
+      position: relative;
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .recog-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem 0;
+      margin-bottom: 1.5rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .recog-back-btn:hover {
+      opacity: 0.7;
+    }
+
+    .recog-back-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .recog-detail-hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2.5rem 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .recog-detail-watermark {
+      position: absolute;
+      top: -20px;
+      right: -10px;
+      font-size: 10rem;
+      color: var(--accent);
+      opacity: 0.04;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .recog-detail-header {
+      position: relative;
+      z-index: 1;
+    }
+
+    .recog-detail-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.5px;
+    }
+
+    .recog-detail-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.6rem;
+    }
+
+    .recog-detail-year {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+
+    /* Key-value details block */
+    .recog-kv {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 1.25rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 2rem;
+    }
+
+    .recog-kv-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .recog-kv-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .recog-kv-value {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .recog-desc-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .recog-desc-block p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    .recog-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .recog-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.45rem 1rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .recog-link-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ── Community Section ────────────────────────── */
+    #community {
+      padding-top: 3.5rem;
+    }
+
+    .comm-stage {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .comm-grid-view {
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+      will-change: transform, opacity;
+    }
+
+    .comm-grid-view.hidden {
+      transform: translateX(-100%);
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .comm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .comm-grid-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid transparent;
+      border-radius: 14px;
+      padding: 1.5rem 1.25rem;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .comm-grid-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      border-left-color: var(--accent);
+    }
+
+    .comm-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .comm-grid-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    .comm-grid-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ── Community Detail View ────────────────────── */
+    .comm-detail-view {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+      will-change: transform, opacity;
+    }
+
+    .comm-detail-view.active {
+      position: relative;
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .comm-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem 0;
+      margin-bottom: 1.5rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .comm-back-btn:hover {
+      opacity: 0.7;
+    }
+
+    .comm-back-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .comm-detail-hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2.5rem 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .comm-detail-watermark {
+      position: absolute;
+      top: -20px;
+      right: -10px;
+      font-size: 10rem;
+      color: var(--accent);
+      opacity: 0.04;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .comm-detail-header {
+      position: relative;
+      z-index: 1;
+    }
+
+    .comm-detail-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.5px;
+    }
+
+    .comm-detail-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .comm-detail-block h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .comm-detail-block p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    .comm-detail-block ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .comm-detail-block ul li {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .comm-detail-block ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .comm-impact {
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
+      border-left: 3px solid var(--accent);
+    }
+
+    /* ── Placeholder Sections ─────────────────────── */
+    .section-placeholder {
+      padding: 2rem 0;
+    }
+
+    /* ── Animations ───────────────────────────────── */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .fade-in-d1 {
+      animation-delay: 0.1s;
+    }
+
+    .fade-in-d2 {
+      animation-delay: 0.2s;
+    }
+
+    .fade-in-d3 {
+      animation-delay: 0.35s;
+    }
+
+    .fade-in-d4 {
+      animation-delay: 0.5s;
+    }
+
+    .fade-in-d5 {
+      animation-delay: 0.65s;
+    }
+
+    @keyframes sidebarSlide {
+      from {
+        opacity: 0;
+        transform: translateX(-12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .sidebar-animate {
+      opacity: 0;
+      animation: sidebarSlide 0.5s ease forwards;
+    }
+
+    .sidebar-animate-d1 {
+      animation-delay: 0.05s;
+    }
+
+    .sidebar-animate-d2 {
+      animation-delay: 0.15s;
+    }
+
+    .sidebar-animate-d3 {
+      animation-delay: 0.25s;
+    }
+
+    .sidebar-animate-d4 {
+      animation-delay: 0.35s;
+    }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ───────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.35s ease;
+        width: 280px;
+        padding-top: 5rem;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .sidebar-overlay.visible {
+        display: block;
+      }
+
+      .mobile-header {
+        display: flex;
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 5rem 1.5rem 3rem;
+        max-width: 100%;
+      }
+
+      .brand-mark {
+        font-size: 3rem;
+      }
+
+      .hero-heading {
+        font-size: 1.25rem;
+      }
+
+      .about-card {
+        padding: 1.5rem;
+      }
+
+      .exp-grid,
+      .proj-grid,
+      .recog-grid,
+      .comm-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .exp-detail-hero,
+      .proj-detail-hero,
+      .recog-detail-hero,
+      .comm-detail-hero {
+        padding: 1.75rem 1.5rem 1.5rem;
+      }
+
+      .exp-detail-company,
+      .proj-detail-name,
+      .recog-detail-name,
+      .comm-detail-name {
+        font-size: 1.5rem;
+      }
+
+      .exp-detail-watermark,
+      .proj-detail-watermark,
+      .recog-detail-watermark,
+      .comm-detail-watermark {
+        font-size: 7rem;
+      }
+
+      .exp-detail-desc,
+      .proj-pso,
+      .recog-kv,
+      .recog-desc-block,
+      .comm-detail-block {
+        padding: 1.5rem;
+      }
+
+      .recog-kv {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-mark {
+        font-size: 2.35rem;
+        letter-spacing: -1px;
+      }
+
+      .hero-heading {
+        font-size: 1.1rem;
+      }
+
+      .hero-subheading {
+        font-size: 0.95rem;
+      }
+
+      .main-content {
+        padding: 4.5rem 1.15rem 2.5rem;
+      }
+
+      .exp-grid,
+      .proj-grid,
+      .recog-grid,
+      .comm-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .exp-detail-hero,
+      .proj-detail-hero,
+      .recog-detail-hero,
+      .comm-detail-hero {
+        padding: 1.5rem 1.25rem;
+      }
+
+      .exp-detail-company,
+      .proj-detail-name,
+      .recog-detail-name,
+      .comm-detail-name {
+        font-size: 1.3rem;
+      }
+
+      .exp-detail-watermark,
+      .proj-detail-watermark,
+      .recog-detail-watermark,
+      .comm-detail-watermark {
+        font-size: 5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Mobile Header ───────────────────────────── -->
+  <header class="mobile-header">
+    <span class="mobile-header-name">sidkodr</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="site-wrapper">
+
+    <!-- ── Sidebar ─────────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-profile sidebar-animate sidebar-animate-d1">
+        <div class="avatar" aria-label="Avatar placeholder">SS</div>
+        <p class="sidebar-name">Siddarth Srinivas</p>
+        <span class="role-badge">AI/ML Engineer</span>
+        <p class="sidebar-bio">Building practical AI systems at the intersection of computer vision, edge AI, and
+          real-world hardware.</p>
+      </div>
+
+      <div class="sidebar-divider sidebar-animate sidebar-animate-d2"></div>
+
+      <nav class="sidebar-animate sidebar-animate-d3" aria-label="Primary navigation">
+        <ul class="sidebar-nav">
+          <li><a href="#about" class="active">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#recognition">Recognition</a></li>
+          <li><a href="#community">Community</a></li>
+          <li><a href="#interests">Interests</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-divider sidebar-animate sidebar-animate-d3"></div>
+
+      <div class="sidebar-social sidebar-animate sidebar-animate-d4">
+        <a href="https://github.com/sidkodr01" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+          </svg>
+          sidkodr01
+        </a>
+        <a href="https://linkedin.com/in/sidkodr" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          </svg>
+          sidkodr
+        </a>
+        <a href="mailto:siddarthiyer2004@gmail.com">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+          </svg>
+          siddarthiyer2004@gmail.com
+        </a>
+      </div>
+    </aside>
+
+    <!-- ── Main Content ────────────────────────────── -->
+    <main class="main-content">
+
+      <!-- ABOUT SECTION -->
+      <section id="about">
+        <p class="brand-mark fade-in fade-in-d1">sidkodr</p>
+        <h1 class="hero-heading fade-in fade-in-d2">Siddarth Srinivas</h1>
+        <p class="fade-in fade-in-d2"
+          style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: #c85a2a; margin: 0.25rem 0 0.5rem;">
+          "A Vision without execution is a hallucination."</p>
+        <p class="hero-subheading fade-in fade-in-d2">AI/ML Engineer</p>
+
+        <p class="hero-college fade-in fade-in-d3">
+          <strong>New Horizon College of Engineering</strong>, Bengaluru — B.E. in Artificial Intelligence and Machine
+          Learning (Expected May 2026) · GPA: 8.66 / 10.0
+        </p>
+
+        <article class="about-card fade-in fade-in-d4">
+          <p class="about-bio">
+            I've never been great at sitting still with an idea.
+          </p>
+          <p class="about-bio">
+            Most people pick a lane. I've spent the last three years refusing to. One month I'm training a Convolutional
+            Neural Network to listen to beehives on a Jetson Nano. The next I'm building Large Language Model pipelines
+            that generate surgical coaching feedback for Virtual Reality simulators. Then I'm automating container
+            security compliance for enterprise DevOps. These aren't accidents — this is how I think. I follow the
+            problem, not the domain.
+          </p>
+          <p class="about-bio">
+            When I got interested in how bees communicate stress, I didn't write a paper about it. I built a system that
+            listens to hive sounds, watches for predators with a camera, and runs entirely offline in the field. That
+            system got a ₹10 lakh government grant and a filed patent — not because the idea was clever, but because it
+            worked.
+          </p>
+          <p class="about-bio">
+            That's the thread running through everything I do. I'm drawn to the exact moment where thinking has to stop
+            and building has to start — where a model leaves a Jupyter notebook and has to survive contact with the real
+            world. I've done that across agricultural technology, medical simulation, industrial safety, and
+            infrastructure automation. Seven internships across five industries by 21. Not because I couldn't commit —
+            because I was hungry to understand how different worlds actually operate.
+          </p>
+          <p class="about-bio">
+            I'm finishing my Bachelor of Engineering in Artificial Intelligence and Machine Learning at New Horizon
+            College of Engineering. But most of what I know came from shipping things, breaking things, and refusing to
+            stop until they worked.
+          </p>
+          <div class="tags-container">
+            <div class="tag-wrap">
+              <span class="tag" data-popup="cv">Computer Vision</span>
+              <div class="tag-popup" id="popup-cv">
+                <div class="tag-popup-title">Computer Vision</div>
+                <div class="tag-popup-desc">Teaching machines to interpret and understand visual data from the world.
+                </div>
+                <div class="tag-popup-example"><strong>Example:</strong> Detecting whether a worker has entered a
+                  hazardous zone using a live camera feed.</div>
+              </div>
+            </div>
+            <div class="tag-wrap">
+              <span class="tag" data-popup="edge">Edge AI</span>
+              <div class="tag-popup" id="popup-edge">
+                <div class="tag-popup-title">Edge AI</div>
+                <div class="tag-popup-desc">Running AI models directly on local hardware instead of the cloud — faster,
+                  cheaper, and works offline.</div>
+                <div class="tag-popup-example"><strong>Example:</strong> A Jetson Nano detecting predators around a
+                  beehive in real time with no internet connection.</div>
+              </div>
+            </div>
+            <div class="tag-wrap">
+              <span class="tag" data-popup="dl">Deep Learning</span>
+              <div class="tag-popup" id="popup-dl">
+                <div class="tag-popup-title">Deep Learning</div>
+                <div class="tag-popup-desc">Neural networks with many layers that learn complex patterns from large
+                  amounts of data.</div>
+                <div class="tag-popup-example"><strong>Example:</strong> A CNN + BiLSTM model that listens to hive
+                  sounds and detects colony stress.</div>
+              </div>
+            </div>
+            <div class="tag-wrap">
+              <span class="tag" data-popup="robotics">Robotics</span>
+              <div class="tag-popup" id="popup-robotics">
+                <div class="tag-popup-title">Robotics</div>
+                <div class="tag-popup-desc">Designing and building physical machines that can sense, think, and act in
+                  the real world.</div>
+                <div class="tag-popup-example"><strong>Example:</strong> Building and flying a custom drone for
+                  agricultural field surveillance.</div>
+              </div>
+            </div>
+            <div class="tag-wrap">
+              <span class="tag" data-popup="agtech">Agricultural Technology</span>
+              <div class="tag-popup" id="popup-agtech">
+                <div class="tag-popup-title">Agricultural Technology</div>
+                <div class="tag-popup-desc">Applying modern technology to solve farming challenges and improve
+                  sustainability.</div>
+                <div class="tag-popup-example"><strong>Example:</strong> Monitoring beehive health with AI to prevent
+                  colony collapse and protect crop pollination.</div>
+              </div>
+            </div>
+            <div class="tag-wrap">
+              <span class="tag" data-popup="devops">DevOps</span>
+              <div class="tag-popup" id="popup-devops">
+                <div class="tag-popup-title">DevOps</div>
+                <div class="tag-popup-desc">Automating software delivery pipelines to make development faster, safer,
+                  and more reliable.</div>
+                <div class="tag-popup-example"><strong>Example:</strong> Building GitLab CI/CD pipelines that
+                  automatically verify container images and generate compliance reports.</div>
+              </div>
+            </div>
+            <div class="tag-wrap">
+              <span class="tag" data-popup="product">Product Development</span>
+              <div class="tag-popup" id="popup-product">
+                <div class="tag-popup-title">Product Development</div>
+                <div class="tag-popup-desc">Taking an idea from concept to a working product — combining engineering,
+                  design, and user thinking.</div>
+                <div class="tag-popup-example"><strong>Example:</strong> Building the VRSpine surgical simulator
+                  feedback system end-to-end at Simulatory AG.</div>
+              </div>
+            </div>
+            <div class="tag-wrap">
+              <span class="tag" data-popup="entrepreneur">Entrepreneurship</span>
+              <div class="tag-popup" id="popup-entrepreneur">
+                <div class="tag-popup-title">Entrepreneurship</div>
+                <div class="tag-popup-desc">Identifying real problems and building scalable solutions — including
+                  startups, patents, and grants.</div>
+                <div class="tag-popup-example"><strong>Example:</strong> Filing a patent and securing a ₹10 lakh
+                  government grant for the apiculture monitoring system.</div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- EXPERIENCE SECTION -->
+      <section id="experience">
+        <div class="section-header scroll-reveal">
+          <h2>Experience</h2>
+        </div>
+
+        <div class="exp-stage" id="expStage">
+
+          <!-- State A: Logo Grid -->
+          <div class="exp-grid-view" id="expGridView">
+            <div class="exp-grid">
+
+              <div class="exp-grid-card scroll-reveal" data-exp="0">
+                <img src="logos/microland.png" alt="Microland logo" class="exp-grid-logo">
+                <span class="exp-grid-name">Microland</span>
+                <span class="exp-grid-role">Technical Operations Intern</span>
+                <span class="exp-grid-duration">Jan 2026 – Present</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="exp-grid-card scroll-reveal" data-exp="1">
+                <img src="logos/simulatory.svg" alt="Simulatory AG logo" class="exp-grid-logo">
+                <span class="exp-grid-name">Simulatory AG</span>
+                <span class="exp-grid-role">Software Developer & ML Intern</span>
+                <span class="exp-grid-duration">Jun 2025 – Jan 2026</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="exp-grid-card scroll-reveal" data-exp="2">
+                <img src="logos/mycom.png" alt="MyCom logo" class="exp-grid-logo">
+                <span class="exp-grid-name">MyCom</span>
+                <span class="exp-grid-role">R&D Intern</span>
+                <span class="exp-grid-duration">May 2025 – Oct 2025</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="exp-grid-card scroll-reveal" data-exp="3">
+                <img src="logos/aster.png" alt="Aster Digital Health logo" class="exp-grid-logo">
+                <span class="exp-grid-name">Aster Digital Health</span>
+                <span class="exp-grid-role">Product Management Intern</span>
+                <span class="exp-grid-duration">May 2024 – Jun 2024</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="exp-grid-card scroll-reveal" data-exp="4">
+                <img src="logos/Flipick.jpeg" alt="Flipick logo" class="exp-grid-logo">
+                <span class="exp-grid-name">Flipick</span>
+                <span class="exp-grid-role">AI Intern</span>
+                <span class="exp-grid-duration">Jun 2023 – Dec 2023</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="exp-grid-card scroll-reveal" data-exp="5">
+                <img src="logos/indimotard.png" alt="Indimotard logo" class="exp-grid-logo">
+                <span class="exp-grid-name">Indimotard</span>
+                <span class="exp-grid-role">Social Media Manager</span>
+                <span class="exp-grid-duration">Jun 2023 – Dec 2023</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="exp-grid-card scroll-reveal" data-exp="6">
+                <img src="logos/medvarsity.png" alt="Medvarity Online Ltd. logo" class="exp-grid-logo">
+                <span class="exp-grid-name">Medvarity Online Ltd.</span>
+                <span class="exp-grid-role">Marketing Intern</span>
+                <span class="exp-grid-duration">Jun 2023 – Dec 2023</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- State B: Detail Views (one per company, toggled by JS) -->
+          <div class="exp-detail-view" id="expDetail0">
+            <button class="exp-back-btn" onclick="closeExpDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Experience
+            </button>
+            <div class="exp-detail-hero">
+              <span class="exp-detail-watermark">M</span>
+              <div class="exp-detail-header">
+                <img src="logos/microland.png" alt="Microland logo" class="exp-detail-logo">
+                <h3 class="exp-detail-company">Microland</h3>
+                <p class="exp-detail-role">Technical Operations Intern</p>
+                <div class="exp-detail-meta">
+                  <span>Jan 2026 – Present</span>
+                  <span class="meta-sep">·</span>
+                  <span>Bangalore, KA</span>
+                  <span class="type-badge">Internship</span>
+                </div>
+              </div>
+            </div>
+            <div class="exp-detail-desc">
+              <h4>Closing the Loop on Automated Escalation</h4>
+              <p>When a support ticket arrives in an enterprise environment, the first question an engineer asks is:
+                what has already been tried? Without a clear answer, they duplicate effort, lose time, and often start
+                from scratch on problems that were partially solved. That gap — between what an automated system does
+                and what a human engineer can see — was the problem I was brought in to address.</p>
+              <p>The system I worked on sits between the client and the engineer. A bot handles initial troubleshooting
+                autonomously and escalates only when it cannot resolve the issue. The problem was that when escalation
+                happened, the bot's entire decision trail was invisible. Engineers had no way of knowing which steps had
+                been attempted, which had failed, or why the bot had given up. Every handoff started blind.</p>
+              <p>My work was to fix that. I built out the logging layer that made the bot's reasoning visible and
+                traceable — so that by the time a ticket reached a human engineer, they had a complete record of what
+                the bot had already tried. The handoff became informative rather than abrupt.</p>
+              <p>Enterprise networking and the codebase were both new to me when I started. I treated the first few
+                weeks as a structured orientation — knowledge transfer sessions, research into the problem space, and
+                studying how similar automation challenges had been approached elsewhere. I also spent time learning the
+                IT Infrastructure Library and IT Service Management frameworks that govern how enterprise service
+                operations actually run — not just the technical mechanics, but how organisations formally think about
+                incidents, escalation, and service continuity. Understanding that process layer shaped how I approached
+                the logging design, because the output had to be useful to engineers operating within those frameworks,
+                not just technically correct.</p>
+            </div>
+            <div class="exp-detail-tags">
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-networking">Networking</span>
+                <div class="tag-popup" id="popup-ml-networking">
+                  <div class="tag-popup-title">Networking</div>
+                  <div class="tag-popup-desc">The practice of connecting computers and devices so they can communicate
+                    and share resources.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Configuring routers and switches so that
+                    different departments in an office can access the same servers securely.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-itinfra">IT Infrastructure</span>
+                <div class="tag-popup" id="popup-ml-itinfra">
+                  <div class="tag-popup-title">IT Infrastructure</div>
+                  <div class="tag-popup-desc">The collective hardware, software, networks, and facilities that an
+                    organisation uses to deliver IT services.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Managing the servers, firewalls, and cables
+                    that keep a company's internal systems running 24/7.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-itil">ITIL</span>
+                <div class="tag-popup" id="popup-ml-itil">
+                  <div class="tag-popup-title">ITIL</div>
+                  <div class="tag-popup-desc">Information Technology Infrastructure Library — a globally recognised
+                    framework of best practices for delivering IT services efficiently.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Using ITIL's incident management process to
+                    ensure every client issue is logged, prioritised, and resolved within agreed timeframes.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-itsm">ITSM</span>
+                <div class="tag-popup" id="popup-ml-itsm">
+                  <div class="tag-popup-title">ITSM</div>
+                  <div class="tag-popup-desc">IT Service Management — the practice of designing, delivering, and
+                    improving IT services to meet business needs.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Building a ticketing system that routes
+                    client issues through defined workflows so nothing falls through the cracks.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-automation">Automation</span>
+                <div class="tag-popup" id="popup-ml-automation">
+                  <div class="tag-popup-title">Automation</div>
+                  <div class="tag-popup-desc">Using software or scripts to perform repetitive tasks without human
+                    intervention.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> A bot that automatically attempts to resolve
+                    common network issues before escalating them to an engineer.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-logging">Logging</span>
+                <div class="tag-popup" id="popup-ml-logging">
+                  <div class="tag-popup-title">Logging</div>
+                  <div class="tag-popup-desc">Recording a system's actions and decisions in a structured, traceable log
+                    for debugging and auditing.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Capturing every step a troubleshooting bot
+                    takes so engineers can see exactly what was tried before a ticket reaches them.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-troubleshooting">Troubleshooting</span>
+                <div class="tag-popup" id="popup-ml-troubleshooting">
+                  <div class="tag-popup-title">Troubleshooting</div>
+                  <div class="tag-popup-desc">The systematic process of identifying and resolving problems in a system
+                    or network.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Analysing incident logs to diagnose why a
+                    client's network connection keeps dropping during peak hours.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ml-python">Python</span>
+                <div class="tag-popup" id="popup-ml-python">
+                  <div class="tag-popup-title">Python</div>
+                  <div class="tag-popup-desc">A versatile, beginner-friendly programming language widely used for
+                    automation, data analysis, and AI development.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Writing scripts to automate log parsing and
+                    generate structured reports from raw system data.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-detail-view" id="expDetail1">
+            <button class="exp-back-btn" onclick="closeExpDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Experience
+            </button>
+            <div class="exp-detail-hero">
+              <span class="exp-detail-watermark">S</span>
+              <div class="exp-detail-header">
+                <img src="logos/simulatory.svg" alt="Simulatory AG logo" class="exp-detail-logo">
+                <h3 class="exp-detail-company">Simulatory AG</h3>
+                <p class="exp-detail-role">Software Developer & ML Intern</p>
+                <div class="exp-detail-meta">
+                  <span>Jun 2025 – Jan 2026</span>
+                  <span class="meta-sep">·</span>
+                  <span>Bangalore, KA</span>
+                  <span class="type-badge">Internship</span>
+                </div>
+              </div>
+            </div>
+            <div class="exp-detail-desc">
+              <h4>From Raw Simulation Data to Structured Surgical Coaching</h4>
+              <p>Surgical simulation generates enormous amounts of raw performance data. The problem is that data alone
+                tells a trainee surgeon very little — it doesn't explain what went wrong, why it went wrong, or what to
+                do differently. At Simulatory, which builds robotic surgical simulators for spinal procedures, that gap
+                between raw output and actionable insight was the problem I was asked to solve.</p>
+              <p>I built a pipeline that ingests the raw data produced by each simulation, processes and structures it,
+                and generates coaching feedback that tells trainee surgeons specifically where they performed well and
+                where they need to improve. The system is now in production and actively used in surgical training. The
+                feedback it generates is the kind that previously didn't exist in a structured form — surgeons had
+                intuition, but not a systematic, data-driven account of each trainee's performance.</p>
+              <p>The technical challenge was significant, but the harder problem was organisational. I was the only
+                person in the company who could build this. No senior engineer to review my architecture, no technical
+                peers to pressure-test my thinking, no safety net for the decisions I got wrong. In that environment,
+                being mostly confident wasn't enough — every architectural and technical decision had to be fully
+                stress-tested before I committed to it. That constraint changed how I approach problems. I stopped
+                looking only for solutions and started looking for the failure modes in my solutions before anyone else
+                could find them.</p>
+              <p>Alongside the core pipeline, I built an annotation model that identifies anatomical structures on
+                screen during simulations in real time, and explored generative medical imaging as a route to
+                synthesising training data — though resource constraints kept that work at the research stage.</p>
+              <p>Working in medical technology also recalibrated my sense of pace. In a domain where the end user is a
+                surgeon and the product is someone's spine, speed is never the primary objective. Every change went
+                through rigorous testing before deployment. Knowing when to slow down and verify — not just how to move
+                fast — turned out to be the more important skill.</p>
+            </div>
+            <div class="exp-detail-tags">
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-python">Python</span>
+                <div class="tag-popup" id="popup-sim-python">
+                  <div class="tag-popup-title">Python</div>
+                  <div class="tag-popup-desc">A versatile programming language widely used for building AI pipelines,
+                    automation scripts, and data processing systems.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Writing the end-to-end pipeline that ingests
+                    surgical simulation logs, processes them, and sends structured data to a Large Language Model for
+                    feedback generation.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-llm">Large Language Models</span>
+                <div class="tag-popup" id="popup-sim-llm">
+                  <div class="tag-popup-title">Large Language Models</div>
+                  <div class="tag-popup-desc">Advanced AI models trained on vast amounts of text that can understand,
+                    reason about, and generate human-like language.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Using GPT to interpret raw surgical
+                    performance data and generate structured, meaningful coaching feedback for trainee surgeons.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-medai">Medical AI</span>
+                <div class="tag-popup" id="popup-sim-medai">
+                  <div class="tag-popup-title">Medical AI</div>
+                  <div class="tag-popup-desc">The application of artificial intelligence to healthcare problems — from
+                    diagnostics to training to drug discovery.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Building AI systems that analyse surgical
+                    simulation data to help trainee surgeons improve their technique in a safe, controlled environment.
+                  </div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-surgsim">Surgical Simulation</span>
+                <div class="tag-popup" id="popup-sim-surgsim">
+                  <div class="tag-popup-title">Surgical Simulation</div>
+                  <div class="tag-popup-desc">Virtual reality or software-based systems that replicate real surgical
+                    procedures for training purposes without risk to real patients.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> The VR-based spinal surgery simulators built
+                    by Simulatory, where every trainee action is logged and analysed for performance feedback.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-annotation">Annotation Models</span>
+                <div class="tag-popup" id="popup-sim-annotation">
+                  <div class="tag-popup-title">Annotation Models</div>
+                  <div class="tag-popup-desc">Machine learning models trained to identify, label, and highlight specific
+                    objects or regions within images or video frames.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> A model that detects which part of the spine
+                    is visible on screen during a simulation and highlights it in real time for the trainee.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-genai">Generative AI</span>
+                <div class="tag-popup" id="popup-sim-genai">
+                  <div class="tag-popup-title">Generative AI</div>
+                  <div class="tag-popup-desc">A class of AI models that can create new content — images, text, audio —
+                    by learning patterns from existing data.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Using Stable Diffusion to generate synthetic
+                    medical images of spine pathologies to supplement limited real training data.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-sd">Stable Diffusion</span>
+                <div class="tag-popup" id="popup-sim-sd">
+                  <div class="tag-popup-title">Stable Diffusion</div>
+                  <div class="tag-popup-desc">An open-source generative AI model capable of producing realistic images
+                    from text descriptions or by learning from existing image datasets.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Experimenting with fine-tuned Stable
+                    Diffusion models to synthesise MRI scan images of spinal conditions for use as training data.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-api">API Integration</span>
+                <div class="tag-popup" id="popup-sim-api">
+                  <div class="tag-popup-title">API Integration</div>
+                  <div class="tag-popup-desc">Connecting different software systems together through their Application
+                    Programming Interfaces so they can communicate and share data.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Integrating the OpenAI API into the surgical
+                    feedback pipeline so that processed simulation data could be sent to GPT and structured responses
+                    returned automatically.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="sim-solo">Solo Engineering</span>
+                <div class="tag-popup" id="popup-sim-solo">
+                  <div class="tag-popup-title">Solo Engineering</div>
+                  <div class="tag-popup-desc">Designing, building, testing, and deploying a complete technical system
+                    independently without a supporting engineering team.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Being the sole technical person responsible
+                    for the entire Machine Learning stack at Simulatory — from architecture decisions to production
+                    deployment.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-detail-view" id="expDetail2">
+            <button class="exp-back-btn" onclick="closeExpDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Experience
+            </button>
+            <div class="exp-detail-hero">
+              <span class="exp-detail-watermark">M</span>
+              <div class="exp-detail-header">
+                <img src="logos/mycom.png" alt="MyCom logo" class="exp-detail-logo">
+                <h3 class="exp-detail-company">MyCom</h3>
+                <p class="exp-detail-role">R&D Intern</p>
+                <div class="exp-detail-meta">
+                  <span>May 2025 – Oct 2025</span>
+                  <span class="meta-sep">·</span>
+                  <span>Bangalore, KA</span>
+                  <span class="type-badge">Internship</span>
+                </div>
+              </div>
+            </div>
+            <div class="exp-detail-desc">
+              <h4>Automating SBOM Extraction and Version Compliance in Container Deployments</h4>
+              <p>In enterprise software deployment, version mismatch is one of the most silent failure modes. A single
+                dependency running one version off from what the requirements document specifies can break systems in
+                ways that are difficult to trace and expensive to fix after the fact. At MyCom, that risk was being
+                managed entirely by hand — before every deployment, engineers manually cross-checked every package
+                version across every file against the requirements document. The process was slow, dependent on
+                individual thoroughness, and fundamentally unscalable.</p>
+              <p>The problem I was asked to solve was straightforward to state but non-trivial to build: eliminate that
+                manual check entirely, and replace it with something automatic, reliable, and fast.</p>
+              <p>I built a system that extracts a Software Bill of Materials from container images, compares every
+                package version against the requirements document automatically, flags every mismatch, and compiles the
+                results into a structured report — in a fraction of the time the manual process required. A version
+                comparison script existed in a basic form when I arrived, but the final system was so fundamentally
+                rearchitected that it was effectively built from scratch.</p>
+              <p>The part I'm most satisfied with wasn't in the original brief. Beyond the core compliance check, I
+                added individual package-level breakdowns, an overall compliance summary table, and additional codebase
+                health metrics that gave the team a richer picture of their deployment readiness. These additions
+                weren't requested — I included them because the data was already there and the insight seemed worth
+                surfacing. They became the most referenced sections of the report.</p>
+              <p>The next stage was integrating the system into GitLab CI/CD so compliance checks would run
+                automatically on every build — making version verification a permanent, invisible layer of the
+                deployment pipeline rather than a pre-deployment ritual. The internship ended before that integration
+                was complete, but the architecture was designed for it and the foundation was in place.</p>
+            </div>
+            <div class="exp-detail-tags">
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-python">Python</span>
+                <div class="tag-popup" id="popup-mc-python">
+                  <div class="tag-popup-title">Python</div>
+                  <div class="tag-popup-desc">A versatile programming language widely used for automation, data
+                    processing, and building AI-powered tools.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Writing the scripts that extract package
+                    metadata from container images and automatically compare versions against requirements documents.
+                  </div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-bash">Bash</span>
+                <div class="tag-popup" id="popup-mc-bash">
+                  <div class="tag-popup-title">Bash</div>
+                  <div class="tag-popup-desc">A command-line scripting language used to automate tasks and interact
+                    directly with the operating system.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Writing shell scripts to trigger SBOM
+                    extraction and feed the output into the Python comparison pipeline.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-sbom">SBOM</span>
+                <div class="tag-popup" id="popup-mc-sbom">
+                  <div class="tag-popup-title">SBOM</div>
+                  <div class="tag-popup-desc">Software Bill of Materials — a complete, structured list of every package,
+                    library, and dependency inside a software system.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Extracting the full list of packages inside a
+                    Docker container image to verify every version matches deployment requirements.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-docker">Docker</span>
+                <div class="tag-popup" id="popup-mc-docker">
+                  <div class="tag-popup-title">Docker</div>
+                  <div class="tag-popup-desc">A platform that packages software into isolated containers so it runs
+                    consistently across different environments.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Pulling container images and extracting their
+                    package manifests to feed into the version comparison and compliance pipeline.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-vcs">Version Control</span>
+                <div class="tag-popup" id="popup-mc-vcs">
+                  <div class="tag-popup-title">Version Control</div>
+                  <div class="tag-popup-desc">The practice of tracking and managing changes to software over time so
+                    teams can collaborate without overwriting each other's work.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Managing the SBOM comparison scripts in Git
+                    so changes were tracked and the team could review the history of every update.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-compliance">Compliance Automation</span>
+                <div class="tag-popup" id="popup-mc-compliance">
+                  <div class="tag-popup-title">Compliance Automation</div>
+                  <div class="tag-popup-desc">Using software to automatically verify that a system meets required
+                    standards or specifications — replacing manual checks.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Automatically comparing every package version
+                    in a deployment against the requirements document and flagging mismatches before anything goes live.
+                  </div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-excel">Excel Reporting</span>
+                <div class="tag-popup" id="popup-mc-excel">
+                  <div class="tag-popup-title">Excel Reporting</div>
+                  <div class="tag-popup-desc">Generating structured, formatted spreadsheet reports that make complex
+                    data easy to read and act on.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Producing multi-sheet Excel reports with
+                    individual package comparisons, overall compliance summaries, and version mismatch highlights for
+                    the internal team.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-gitlab">GitLab CI/CD</span>
+                <div class="tag-popup" id="popup-mc-gitlab">
+                  <div class="tag-popup-title">GitLab CI/CD</div>
+                  <div class="tag-popup-desc">A continuous integration and deployment platform that automatically
+                    builds, tests, and deploys code every time a change is pushed.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> The planned next stage — integrating the
+                    compliance pipeline into GitLab so version checks would run automatically on every deployment
+                    without human intervention.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mc-devops">DevOps</span>
+                <div class="tag-popup" id="popup-mc-devops">
+                  <div class="tag-popup-title">DevOps</div>
+                  <div class="tag-popup-desc">A set of practices that combines software development and IT operations to
+                    deliver software faster and more reliably.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Building automated compliance tooling that
+                    sits between the development team and production deployments, reducing manual overhead and
+                    deployment risk.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-detail-view" id="expDetail3">
+            <button class="exp-back-btn" onclick="closeExpDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Experience
+            </button>
+            <div class="exp-detail-hero">
+              <span class="exp-detail-watermark">A</span>
+              <div class="exp-detail-header">
+                <img src="logos/aster.png" alt="Aster Digital Health logo" class="exp-detail-logo">
+                <h3 class="exp-detail-company">Aster Digital Health</h3>
+                <p class="exp-detail-role">Product Management Intern</p>
+                <div class="exp-detail-meta">
+                  <span>May 2024 – Jun 2024</span>
+                  <span class="meta-sep">·</span>
+                  <span>Bangalore, KA</span>
+                  <span class="type-badge">Internship</span>
+                </div>
+              </div>
+            </div>
+            <div class="exp-detail-desc">
+              <h4>Finding What Slips Through: Software Quality Assurance at Scale</h4>
+              <p>Production bugs in web platforms rarely originate from core functionality — they surface in edge cases,
+                incomplete user flows, and untested state transitions that pass code review but fail under real usage
+                conditions. At Aster Digital Health, the problem was identifying these failure points in a live
+                healthcare web platform before they reached end users.</p>
+              <p>My role was systematic black-box testing across the platform. This involved mapping user flows,
+                designing test cases around boundary conditions and edge cases, reproducing reported and discovered
+                bugs, isolating root causes, and producing structured defect reports that development teams could action
+                directly.</p>
+              <p>The work built a testing mindset that has carried into every technical role since — treating every
+                assumption in a system design as a potential failure point, and verifying rather than inferring how a
+                system behaves under conditions it wasn't explicitly built for.</p>
+            </div>
+            <div class="exp-detail-tags">
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ast-testing">Software Testing</span>
+                <div class="tag-popup" id="popup-ast-testing">
+                  <div class="tag-popup-title">Software Testing</div>
+                  <div class="tag-popup-desc">The process of evaluating a software application to find bugs,
+                    inconsistencies, or anything that doesn't work as intended.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Systematically navigating through Aster's web
+                    platform to identify broken flows, UI issues, and edge cases before they reached real users.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ast-qa">Quality Assurance</span>
+                <div class="tag-popup" id="popup-ast-qa">
+                  <div class="tag-popup-title">Quality Assurance</div>
+                  <div class="tag-popup-desc">The practice of ensuring a product meets defined standards of quality
+                    before it is released.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Reviewing deployed features to catch small
+                    errors and inconsistencies that slipped through the development process.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ast-bugreport">Bug Reporting</span>
+                <div class="tag-popup" id="popup-ast-bugreport">
+                  <div class="tag-popup-title">Bug Reporting</div>
+                  <div class="tag-popup-desc">Documenting identified issues in a software system in a clear,
+                    reproducible way so developers can find and fix them.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Logging discovered issues with steps to
+                    reproduce, expected behaviour, and actual behaviour so the development team could act on them
+                    efficiently.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ast-webtest">Web Platform Testing</span>
+                <div class="tag-popup" id="popup-ast-webtest">
+                  <div class="tag-popup-title">Web Platform Testing</div>
+                  <div class="tag-popup-desc">Testing a web-based application across different browsers, devices, and
+                    user flows to ensure it works correctly for all users.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Testing Aster's digital health platform
+                    across different scenarios to ensure patients and healthcare providers had a seamless experience.
+                  </div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="ast-healthtech">Healthcare Tech</span>
+                <div class="tag-popup" id="popup-ast-healthtech">
+                  <div class="tag-popup-title">Healthcare Tech</div>
+                  <div class="tag-popup-desc">Technology products and platforms built specifically for the healthcare
+                    industry — covering everything from patient management to digital diagnostics.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Working within a digital health company whose
+                    platform directly impacts how patients and providers interact with healthcare services.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-detail-view" id="expDetail4">
+            <button class="exp-back-btn" onclick="closeExpDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Experience
+            </button>
+            <div class="exp-detail-hero">
+              <span class="exp-detail-watermark">F</span>
+              <div class="exp-detail-header">
+                <img src="logos/Flipick.jpeg" alt="Flipick logo" class="exp-detail-logo">
+                <h3 class="exp-detail-company">Flipick</h3>
+                <p class="exp-detail-role">AI Intern</p>
+                <div class="exp-detail-meta">
+                  <span>Jun 2023 – Dec 2023</span>
+                  <span class="meta-sep">·</span>
+                  <span>Bangalore, KA</span>
+                  <span class="type-badge">Internship</span>
+                </div>
+              </div>
+            </div>
+            <div class="exp-detail-desc">
+              <h4>Ground-Up Chatbot Development: Neural Architecture to Client Deployment</h4>
+              <p>In 2023, most teams building with Large Language Models were focused on what they could ship. The
+                harder problem — and the more important one — was understanding what was actually happening inside these
+                systems: how information flows through transformer layers, where models fail, and what architectural
+                decisions determine whether something is robust enough to deploy to a real client.</p>
+              <p>At Flipick, that was the problem I set out to solve for myself before writing a single line of
+                production code. The internship was structured around deep technical grounding first — neural network
+                architectures, attention mechanisms, how information propagates through layers, and how chatbot
+                frameworks function beneath their abstractions. Not as background reading, but as the foundation every
+                subsequent decision would rest on.</p>
+              <p>The culminating project was building a client-deployable chatbot from scratch — designing the
+                architecture, handling failure modes, and making the system robust enough to hand off to an external
+                client. The system didn't go into production, but the objective was never deployment. It was building
+                something that could be deployed, and understanding every decision that distinction requires.</p>
+              <p>That architectural foundation has carried directly into every system I've built since — Large Language
+                Model feedback pipelines, annotation models, Retrieval-Augmented Generation systems. The difference
+                between knowing how to use a tool and understanding how it works is the difference between building
+                something that functions in a demo and building something that holds up in production.</p>
+            </div>
+            <div class="exp-detail-tags">
+              <div class="tag-wrap">
+                <span class="tag" data-popup="fp-chatbot">Chatbot Development</span>
+                <div class="tag-popup" id="popup-fp-chatbot">
+                  <div class="tag-popup-title">Chatbot Development</div>
+                  <div class="tag-popup-desc">The process of designing and building conversational AI systems that can
+                    interact with users through natural language.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Building a client-deployable chatbot from
+                    scratch — designing the conversation flow, integrating the language model, and making it robust
+                    enough to handle real user interactions.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="fp-nn">Neural Networks</span>
+                <div class="tag-popup" id="popup-fp-nn">
+                  <div class="tag-popup-title">Neural Networks</div>
+                  <div class="tag-popup-desc">Computational systems loosely inspired by the human brain, made up of
+                    layers of interconnected nodes that learn patterns from data.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Studying how different neural network
+                    architectures process and distribute information across layers to understand why certain models
+                    perform better for conversational tasks.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="fp-llm">Large Language Models</span>
+                <div class="tag-popup" id="popup-fp-llm">
+                  <div class="tag-popup-title">Large Language Models</div>
+                  <div class="tag-popup-desc">Advanced AI models trained on vast amounts of text that can understand,
+                    reason about, and generate human-like language at scale.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Understanding how Large Language Models power
+                    modern chatbots — and how to build systems around them that are reliable enough to deploy to real
+                    clients.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="fp-frameworks">AI Frameworks</span>
+                <div class="tag-popup" id="popup-fp-frameworks">
+                  <div class="tag-popup-title">AI Frameworks</div>
+                  <div class="tag-popup-desc">Software libraries and tools that provide pre-built components for
+                    building, training, and deploying artificial intelligence systems.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Learning how different chatbot and AI
+                    frameworks structure their pipelines, and how to choose the right one based on client requirements.
+                  </div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="fp-nlp">Natural Language Processing</span>
+                <div class="tag-popup" id="popup-fp-nlp">
+                  <div class="tag-popup-title">Natural Language Processing</div>
+                  <div class="tag-popup-desc">A branch of AI focused on enabling computers to understand, interpret, and
+                    generate human language in a meaningful way.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Understanding how text is tokenised,
+                    embedded, and interpreted by language models to generate relevant, contextually appropriate
+                    responses.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="fp-convai">Conversational AI</span>
+                <div class="tag-popup" id="popup-fp-convai">
+                  <div class="tag-popup-title">Conversational AI</div>
+                  <div class="tag-popup-desc">AI systems designed to simulate natural human conversation — understanding
+                    user intent and responding in a coherent, helpful way.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Designing chatbot flows that handle diverse
+                    user inputs gracefully, including unexpected questions and edge cases that real users inevitably
+                    throw at any deployed system.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-detail-view" id="expDetail5">
+            <button class="exp-back-btn" onclick="closeExpDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Experience
+            </button>
+            <div class="exp-detail-hero">
+              <span class="exp-detail-watermark">I</span>
+              <div class="exp-detail-header">
+                <img src="logos/indimotard.png" alt="Indimotard logo" class="exp-detail-logo">
+                <h3 class="exp-detail-company">Indimotard</h3>
+                <p class="exp-detail-role">Social Media Manager</p>
+                <div class="exp-detail-meta">
+                  <span>Jun 2023 – Dec 2023</span>
+                  <span class="meta-sep">·</span>
+                  <span>Bangalore, KA</span>
+                  <span class="type-badge">Part-time</span>
+                </div>
+              </div>
+            </div>
+            <div class="exp-detail-desc">
+              <h4>Content Strategy and Digital Presence Management for a Specialist Motorcycle Service Workshop</h4>
+              <p>Indimotard had an audience worth reaching — serious motorcycle enthusiasts who treat high-end bikes as
+                a lifestyle, not just a vehicle. The problem was that their social media presence wasn't converting that
+                potential into measurable growth or consistent footfall. The brand had a story worth telling, but no
+                systematic approach to telling it across platforms.</p>
+              <p>I took over their social media operations across Instagram, Facebook, and YouTube with a clear
+                objective: grow an engaged following and translate that following into customers walking through the
+                door.</p>
+              <p>The approach was strategic before it was creative. That meant identifying what content resonated with
+                the target audience — documentation of high-end service work, behind-the-scenes garage content, and
+                brand collaboration posts — and building a consistent publishing cadence across platforms. Each piece of
+                content was planned around what to shoot, how to frame it, and when to publish it to maximise reach and
+                engagement within a niche but highly engaged audience segment.</p>
+              <p>The results were concrete. Instagram following grew from 6,000 to 13,000 in six months. More
+                significantly, inbound footfall attributable directly to Instagram increased over the same period — the
+                follower growth translated into real customer acquisition, not just reach metrics.</p>
+            </div>
+            <div class="exp-detail-tags">
+              <div class="tag-wrap">
+                <span class="tag" data-popup="im-smstrategy">Social Media Strategy</span>
+                <div class="tag-popup" id="popup-im-smstrategy">
+                  <div class="tag-popup-title">Social Media Strategy</div>
+                  <div class="tag-popup-desc">The plan behind a brand's social media presence — deciding what to post,
+                    when to post it, and how to grow an engaged audience.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Developing a content strategy for Indimotard
+                    that balanced garage documentation, bike showcases, and brand collaborations to build a loyal
+                    community of motorcycle enthusiasts.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="im-content">Content Creation</span>
+                <div class="tag-popup" id="popup-im-content">
+                  <div class="tag-popup-title">Content Creation</div>
+                  <div class="tag-popup-desc">Producing original photos, videos, and written material that represents a
+                    brand's identity and engages its audience.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Capturing daily garage activity, documenting
+                    services on high-end motorcycles, and creating visually compelling posts that reflected the premium,
+                    enthusiast culture of Indimotard.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="im-brandcollab">Brand Collaborations</span>
+                <div class="tag-popup" id="popup-im-brandcollab">
+                  <div class="tag-popup-title">Brand Collaborations</div>
+                  <div class="tag-popup-desc">Partnerships between a brand and external companies or creators to produce
+                    content that benefits both parties.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Working with motorcycle and lifestyle brands
+                    on co-branded posts that expanded Indimotard's reach while aligning with their identity as a
+                    destination for serious bike enthusiasts.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="im-iggrowth">Instagram Growth</span>
+                <div class="tag-popup" id="popup-im-iggrowth">
+                  <div class="tag-popup-title">Instagram Growth</div>
+                  <div class="tag-popup-desc">The strategic process of growing a brand's Instagram following and
+                    engagement through consistent, quality content and community interaction.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Growing Indimotard's Instagram following from
+                    6,000 to 13,000 in six months — with a measurable increase in customers walking in directly from
+                    Instagram.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="im-community">Community Building</span>
+                <div class="tag-popup" id="popup-im-community">
+                  <div class="tag-popup-title">Community Building</div>
+                  <div class="tag-popup-desc">Creating a sense of belonging and loyalty around a brand so that followers
+                    become genuine advocates rather than passive consumers.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Positioning Indimotard not just as a garage
+                    but as a community hub for motorcycle enthusiasts — making the Instagram page feel like a place
+                    people wanted to follow, not just a business account.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="im-creative">Creative Direction</span>
+                <div class="tag-popup" id="popup-im-creative">
+                  <div class="tag-popup-title">Creative Direction</div>
+                  <div class="tag-popup-desc">The process of defining the visual and narrative identity of a brand's
+                    content — deciding how it looks, feels, and communicates.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Making consistent creative decisions about
+                    how to shoot, frame, and present Indimotard's content so that every post felt cohesive and on-brand.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-detail-view" id="expDetail6">
+            <button class="exp-back-btn" onclick="closeExpDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Experience
+            </button>
+            <div class="exp-detail-hero">
+              <span class="exp-detail-watermark">M</span>
+              <div class="exp-detail-header">
+                <img src="logos/medvarsity.png" alt="Medvarity Online Ltd. logo" class="exp-detail-logo">
+                <h3 class="exp-detail-company">Medvarity Online Ltd.</h3>
+                <p class="exp-detail-role">Marketing Intern</p>
+                <div class="exp-detail-meta">
+                  <span>Jun 2023 – Dec 2023</span>
+                  <span class="meta-sep">·</span>
+                  <span>Bangalore, KA</span>
+                  <span class="type-badge">Internship</span>
+                </div>
+              </div>
+            </div>
+            <div class="exp-detail-desc">
+              <h4>Audience Segmentation and Paid Campaign Management for a Niche Medical Education Platform</h4>
+              <p>Reaching medical professionals with online advertising is a distinct and difficult problem. The
+                audience is highly educated, time-poor, and resistant to generic marketing — broad reach strategies
+                don't work because the signal-to-noise ratio for this demographic is extremely low. At Medvarsity, which
+                produces online courses for medical professionals, the problem was designing and executing campaigns
+                precise enough to cut through to a highly specific audience without wasting budget on irrelevant reach.
+              </p>
+              <p>Before running anything live, I spent the first phase of the internship building the technical
+                foundation properly — Google Ads certification, Facebook AdSense, Search Engine Optimisation strategy,
+                and keyword research methodology. The objective was to understand the mechanics of each platform well
+                enough to make deliberate decisions rather than default ones.</p>
+              <p>By the end of the internship I was managing a live campaign independently with a real allocated budget
+                — applying audience segmentation, keyword targeting, and conversion-focused copy to reach Medvarsity's
+                target demographic. The work required thinking precisely about who the audience was, what they were
+                searching for, and how to position the product in a way that was relevant to their specific professional
+                context.</p>
+            </div>
+            <div class="exp-detail-tags">
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mv-gads">Google Ads</span>
+                <div class="tag-popup" id="popup-mv-gads">
+                  <div class="tag-popup-title">Google Ads</div>
+                  <div class="tag-popup-desc">Google's online advertising platform that lets businesses show ads to
+                    people searching for relevant terms on Google.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Running a live campaign on Google Ads to
+                    reach medical professionals searching for online continuing education courses — targeting by
+                    keyword, profession, and intent.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mv-fbads">Facebook AdSense</span>
+                <div class="tag-popup" id="popup-mv-fbads">
+                  <div class="tag-popup-title">Facebook AdSense</div>
+                  <div class="tag-popup-desc">Meta's advertising platform that allows businesses to run targeted ads
+                    across Facebook and Instagram based on user demographics and behaviour.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Creating targeted ad campaigns on Facebook to
+                    reach Medvarsity's audience of healthcare professionals with course recommendations relevant to
+                    their specialty.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mv-seo">SEO</span>
+                <div class="tag-popup" id="popup-mv-seo">
+                  <div class="tag-popup-title">SEO</div>
+                  <div class="tag-popup-desc">Search Engine Optimisation — the practice of improving a website's
+                    visibility in search engine results to attract more organic traffic.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Researching keywords that medical
+                    professionals use when searching for online courses and applying on-page SEO strategies to improve
+                    Medvarsity's search rankings.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mv-digimarketing">Digital Marketing</span>
+                <div class="tag-popup" id="popup-mv-digimarketing">
+                  <div class="tag-popup-title">Digital Marketing</div>
+                  <div class="tag-popup-desc">The use of online channels — search engines, social media, email, and more
+                    — to promote products or services to a target audience.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Designing and executing a digital marketing
+                    strategy for a medical education platform, balancing paid advertising with organic growth tactics.
+                  </div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mv-campaign">Campaign Management</span>
+                <div class="tag-popup" id="popup-mv-campaign">
+                  <div class="tag-popup-title">Campaign Management</div>
+                  <div class="tag-popup-desc">The end-to-end process of planning, launching, monitoring, and optimising
+                    a marketing campaign to achieve specific goals.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Managing a live Google Ads campaign
+                    independently with a real budget — setting targeting parameters, writing ad copy, monitoring
+                    performance, and adjusting based on results.</div>
+                </div>
+              </div>
+              <div class="tag-wrap">
+                <span class="tag" data-popup="mv-gadscert">Google Ads Certified</span>
+                <div class="tag-popup" id="popup-mv-gadscert">
+                  <div class="tag-popup-title">Google Ads Certified</div>
+                  <div class="tag-popup-desc">An official Google certification that validates proficiency in creating
+                    and managing Google Ads campaigns.</div>
+                  <div class="tag-popup-example"><strong>Example:</strong> Completing the Google Ads certification and
+                    immediately applying the strategies learned to a live campaign for Medvarsity's medical professional
+                    audience.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PROJECTS SECTION -->
+      <section id="projects">
+        <div class="section-header scroll-reveal">
+          <h2>Projects</h2>
+        </div>
+
+        <div class="proj-stage" id="projStage">
+
+          <!-- State A: Project Grid -->
+          <div class="proj-grid-view" id="projGridView">
+            <div class="proj-grid">
+
+              <div class="proj-grid-card scroll-reveal" data-proj="0">
+                <div class="proj-icon">🏗️</div>
+                <span class="proj-grid-name">Industrial Safety Monitoring System</span>
+                <span class="proj-grid-desc">Real-time computer vision safety enforcement for construction sites</span>
+                <div class="proj-grid-tags">
+                  <span class="tag">YOLOv5</span>
+                  <span class="tag">Computer Vision</span>
+                  <span class="tag">Python</span>
+                </div>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="proj-grid-card scroll-reveal" data-proj="1">
+                <div class="proj-icon">🐝</div>
+                <span class="proj-grid-name">ML-Driven Apiculture Monitoring</span>
+                <span class="proj-grid-desc">Multi-modal edge AI for intelligent beehive health monitoring</span>
+                <div class="proj-grid-tags">
+                  <span class="tag">Edge AI</span>
+                  <span class="tag">Jetson Nano</span>
+                  <span class="tag">Deep Learning</span>
+                </div>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="proj-grid-card scroll-reveal" data-proj="2">
+                <div class="proj-icon">🚁</div>
+                <span class="proj-grid-name">Agricultural Surveillance Drone</span>
+                <span class="proj-grid-desc">Custom-built drone for aerial farm monitoring and surveillance</span>
+                <div class="proj-grid-tags">
+                  <span class="tag">Robotics</span>
+                  <span class="tag">Hardware</span>
+                </div>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="proj-grid-card scroll-reveal" data-proj="3">
+                <div class="proj-icon">🔐</div>
+                <span class="proj-grid-name">Container SBOM & Attestation Tool</span>
+                <span class="proj-grid-desc">Automated container compliance verification and Excel reporting
+                  pipeline</span>
+                <div class="proj-grid-tags">
+                  <span class="tag">Docker</span>
+                  <span class="tag">GitLab CI/CD</span>
+                  <span class="tag">Python</span>
+                </div>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="proj-grid-card scroll-reveal" data-proj="4">
+                <div class="proj-icon">🏥</div>
+                <span class="proj-grid-name">Surgical Simulation Feedback Pipeline</span>
+                <span class="proj-grid-desc">LLM-powered coach feedback system for VR surgical training</span>
+                <div class="proj-grid-tags">
+                  <span class="tag">LLMs</span>
+                  <span class="tag">OpenAI</span>
+                  <span class="tag">Gemini</span>
+                </div>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="proj-grid-card scroll-reveal" data-proj="5">
+                <div class="proj-icon">📄</div>
+                <span class="proj-grid-name">PDF RAG Chatbot</span>
+                <span class="proj-grid-desc">Semantic document Q&A chatbot using retrieval-augmented generation</span>
+                <div class="proj-grid-tags">
+                  <span class="tag">LangChain</span>
+                  <span class="tag">FAISS</span>
+                  <span class="tag">RAG</span>
+                </div>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="proj-grid-card scroll-reveal" data-proj="6">
+                <div class="proj-icon">🎓</div>
+                <span class="proj-grid-name">Student Analytics Chatbot</span>
+                <span class="proj-grid-desc">RAG-powered academic performance and placement analytics chatbot</span>
+                <div class="proj-grid-tags">
+                  <span class="tag">Gemini</span>
+                  <span class="tag">Supabase</span>
+                  <span class="tag">RAG</span>
+                </div>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- State B: Project Detail Views -->
+
+          <!-- Project 0: Industrial Safety -->
+          <div class="proj-detail-view" id="projDetail0">
+            <button class="proj-back-btn" onclick="closeProjDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Projects
+            </button>
+            <div class="proj-detail-hero">
+              <span class="proj-detail-watermark">🏗️</span>
+              <div class="proj-detail-header">
+                <h3 class="proj-detail-name">Industrial Safety Monitoring System</h3>
+                <p class="proj-detail-tagline">Real-time computer vision safety enforcement for construction sites</p>
+                <span class="proj-category-badge">Computer Vision</span>
+              </div>
+            </div>
+            <div class="proj-pso">
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚠️</span> Problem</div>
+                <p class="pso-text">Construction and industrial sites contain hazardous zones where worker entry causes
+                  serious accidents. Traditional safety measures rely on manual supervision and physical barriers —
+                  slow, expensive, and error-prone.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚙️</span> Solution</div>
+                <p class="pso-text">Built a YOLOv5-based computer vision system that monitors live video feeds, defines
+                  programmable virtual safety boundaries using ROI and bounding boxes, and detects workers crossing into
+                  restricted zones in real time. Triggers instant visual/audio alerts on violation.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">✅</span> Outcome</div>
+                <p class="pso-text">Deployed as a cost-effective system compatible with existing camera infrastructure.
+                  Presented as a research paper at ICICC 2025 (Paper ID: 1346). Designed to scale across different site
+                  layouts without additional hardware.</p>
+              </div>
+            </div>
+            <div class="proj-tech">
+              <div class="tech-group">
+                <div class="tech-group-label">AI / ML</div>
+                <div class="tech-group-tags">
+                  <span class="tag">YOLOv5</span>
+                  <span class="tag">Object Detection</span>
+                  <span class="tag">ROI-based Boundary Mapping</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Languages</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Python</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Other</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Real-time Video Analysis</span>
+                  <span class="tag">Alert Systems</span>
+                </div>
+              </div>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="proj-link-btn" target="_blank">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+                GitHub
+              </a>
+              <a href="#" class="proj-link-btn" target="_blank">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z" />
+                </svg>
+                Research Paper
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 1: Apiculture -->
+          <div class="proj-detail-view" id="projDetail1">
+            <button class="proj-back-btn" onclick="closeProjDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Projects
+            </button>
+            <div class="proj-detail-hero">
+              <span class="proj-detail-watermark">🐝</span>
+              <div class="proj-detail-header">
+                <h3 class="proj-detail-name">ML-Driven Apiculture Monitoring System</h3>
+                <p class="proj-detail-tagline">Multi-modal edge AI for intelligent beehive health monitoring</p>
+                <span class="proj-category-badge">Edge AI</span>
+              </div>
+            </div>
+            <div class="proj-pso">
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚠️</span> Problem</div>
+                <p class="pso-text">Bee populations are declining globally. Traditional hive monitoring relies on manual
+                  inspections — infrequent, disruptive, and unable to catch fast-moving threats like predator attacks or
+                  colony collapse disorder early enough.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚙️</span> Solution</div>
+                <p class="pso-text">Built a two-module edge AI system: (1) A YOLO-based predator detection module
+                  running on Jetson Nano that identifies hornets and wasps around hives in real time. (2) A CNN + BiLSTM
+                  acoustic model that continuously analyzes hive sounds to detect colony stress, abnormal behaviour, and
+                  estimate honey yield — all without opening the hive.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">✅</span> Outcome</div>
+                <p class="pso-text">Filed as a patent (Application No: 202441071459). Received a ₹10 lakh government
+                  grant from the Government of Andhra Pradesh for further development. Non-invasive, continuous
+                  monitoring with no cloud dependency.</p>
+              </div>
+            </div>
+            <div class="proj-tech">
+              <div class="tech-group">
+                <div class="tech-group-label">AI / ML</div>
+                <div class="tech-group-tags">
+                  <span class="tag">YOLOv5</span>
+                  <span class="tag">CNN</span>
+                  <span class="tag">BiLSTM</span>
+                  <span class="tag">Deep Learning</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Hardware</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Jetson Nano</span>
+                  <span class="tag">Microphone Sensors</span>
+                  <span class="tag">Camera Modules</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Languages</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Python</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Other</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Edge Inference</span>
+                  <span class="tag">Acoustic Analysis</span>
+                </div>
+              </div>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="proj-link-btn" target="_blank">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 2: Drone -->
+          <div class="proj-detail-view" id="projDetail2">
+            <button class="proj-back-btn" onclick="closeProjDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Projects
+            </button>
+            <div class="proj-detail-hero">
+              <span class="proj-detail-watermark">🚁</span>
+              <div class="proj-detail-header">
+                <h3 class="proj-detail-name">Agricultural Surveillance Drone</h3>
+                <p class="proj-detail-tagline">Custom-built drone for aerial farm monitoring and surveillance</p>
+                <span class="proj-category-badge">Robotics</span>
+              </div>
+            </div>
+            <div class="proj-pso">
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚠️</span> Problem</div>
+                <p class="pso-text">Manual field inspections are time-consuming and physically demanding for farmers,
+                  especially across large land areas. Existing commercial drones are expensive and not tailored to
+                  specific agricultural needs.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚙️</span> Solution</div>
+                <p class="pso-text">Designed and assembled a drone from components, studying aerodynamics, Bernoulli's
+                  principle, and flight dynamics (pitch, roll, yaw). Integrated sensors and electronics to enable stable
+                  flight and aerial field surveillance for agricultural monitoring use cases.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">✅</span> Outcome</div>
+                <p class="pso-text">Functional drone prototype with stable flight characteristics. Demonstrated
+                  understanding of full hardware stack from frame assembly to flight controller integration. Foundation
+                  for future precision agriculture applications.</p>
+              </div>
+            </div>
+            <div class="proj-tech">
+              <div class="tech-group">
+                <div class="tech-group-label">Hardware</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Drone Frame</span>
+                  <span class="tag">Flight Controller</span>
+                  <span class="tag">ESCs</span>
+                  <span class="tag">Brushless Motors</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Concepts</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Aerodynamics</span>
+                  <span class="tag">Flight Dynamics</span>
+                  <span class="tag">Sensor Integration</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Other</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Electronics Assembly</span>
+                  <span class="tag">Agricultural Monitoring</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: SBOM Tool -->
+          <div class="proj-detail-view" id="projDetail3">
+            <button class="proj-back-btn" onclick="closeProjDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Projects
+            </button>
+            <div class="proj-detail-hero">
+              <span class="proj-detail-watermark">🔐</span>
+              <div class="proj-detail-header">
+                <h3 class="proj-detail-name">Container SBOM & Attestation Analysis Tool</h3>
+                <p class="proj-detail-tagline">Automated container compliance verification and Excel reporting pipeline
+                </p>
+                <span class="proj-category-badge">DevOps</span>
+              </div>
+            </div>
+            <div class="proj-pso">
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚠️</span> Problem</div>
+                <p class="pso-text">Enterprise software teams struggle to track what packages are running inside
+                  container images at scale, making compliance audits slow and error-prone when done manually.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚙️</span> Solution</div>
+                <p class="pso-text">Built a Bash/Python pipeline that verifies container images using cosign
+                  attestations, extracts full package metadata from SBOMs, compares expected vs detected versions, flags
+                  mismatches, and auto-generates multi-sheet Excel compliance reports with summaries, highlights, and
+                  metrics.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">✅</span> Outcome</div>
+                <p class="pso-text">Deployed as part of GitLab CI/CD pipelines at MyCom. Reduced manual compliance
+                  checking time significantly. Reports used directly in internal audits.</p>
+              </div>
+            </div>
+            <div class="proj-tech">
+              <div class="tech-group">
+                <div class="tech-group-label">DevOps</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Docker</span>
+                  <span class="tag">GitLab CI/CD</span>
+                  <span class="tag">cosign</span>
+                  <span class="tag">SBOM</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Languages</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Bash</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Other</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Excel Automation</span>
+                  <span class="tag">Compliance Reporting</span>
+                </div>
+              </div>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="proj-link-btn" target="_blank">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 4: Surgical Simulation -->
+          <div class="proj-detail-view" id="projDetail4">
+            <button class="proj-back-btn" onclick="closeProjDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Projects
+            </button>
+            <div class="proj-detail-hero">
+              <span class="proj-detail-watermark">🏥</span>
+              <div class="proj-detail-header">
+                <h3 class="proj-detail-name">Surgical Simulation Feedback Pipeline</h3>
+                <p class="proj-detail-tagline">LLM-powered coach feedback system for VR surgical training</p>
+                <span class="proj-category-badge">AI / NLP</span>
+              </div>
+            </div>
+            <div class="proj-pso">
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚠️</span> Problem</div>
+                <p class="pso-text">Surgical trainees using VR simulators receive raw performance metric data (XML logs)
+                  with no structured interpretation — making it hard to understand what went wrong and how to improve.
+                </p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚙️</span> Solution</div>
+                <p class="pso-text">Built a Python pipeline that parses PerfMetrics XML logs from VR surgical
+                  simulators, feeds structured data into LLMs (OpenAI/Gemini), and generates detailed coach-style
+                  feedback reports in Markdown/HTML — covering step-wise analysis, error identification, and improvement
+                  recommendations.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">✅</span> Outcome</div>
+                <p class="pso-text">Integrated into Simulatory AG's VRSpine Pro training platform. Enabled automated,
+                  scalable feedback generation for surgical trainees. Cost-efficient token usage through careful prompt
+                  engineering.</p>
+              </div>
+            </div>
+            <div class="proj-tech">
+              <div class="tech-group">
+                <div class="tech-group-label">AI / ML</div>
+                <div class="tech-group-tags">
+                  <span class="tag">OpenAI API</span>
+                  <span class="tag">Gemini API</span>
+                  <span class="tag">Prompt Engineering</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Languages</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Python</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Other</div>
+                <div class="tech-group-tags">
+                  <span class="tag">XML Parsing</span>
+                  <span class="tag">Markdown/HTML Reports</span>
+                  <span class="tag">LLM Pipelines</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5: PDF RAG -->
+          <div class="proj-detail-view" id="projDetail5">
+            <button class="proj-back-btn" onclick="closeProjDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Projects
+            </button>
+            <div class="proj-detail-hero">
+              <span class="proj-detail-watermark">📄</span>
+              <div class="proj-detail-header">
+                <h3 class="proj-detail-name">PDF RAG Chatbot</h3>
+                <p class="proj-detail-tagline">Semantic document Q&A chatbot using retrieval-augmented generation</p>
+                <span class="proj-category-badge">NLP / RAG</span>
+              </div>
+            </div>
+            <div class="proj-pso">
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚠️</span> Problem</div>
+                <p class="pso-text">Users working with large PDF documents (reports, manuals, research papers) have no
+                  way to quickly query specific information — they're forced to read manually or use basic keyword
+                  search.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚙️</span> Solution</div>
+                <p class="pso-text">Built a RAG pipeline using LangChain, FAISS vector store, and Gemini-2.0-Flash that
+                  ingests PDFs via PyMuPDF, generates semantic embeddings, and answers natural language questions by
+                  retrieving and synthesizing relevant document chunks.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">✅</span> Outcome</div>
+                <p class="pso-text">Functional chatbot deployable locally or via API. Supports multi-document querying.
+                  Accurate, contextual answers grounded in source documents — not hallucinated.</p>
+              </div>
+            </div>
+            <div class="proj-tech">
+              <div class="tech-group">
+                <div class="tech-group-label">AI / ML</div>
+                <div class="tech-group-tags">
+                  <span class="tag">LangChain</span>
+                  <span class="tag">FAISS</span>
+                  <span class="tag">Gemini-2.0-Flash</span>
+                  <span class="tag">Google Generative AI Embeddings</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Languages</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Python</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Other</div>
+                <div class="tech-group-tags">
+                  <span class="tag">PyMuPDF</span>
+                  <span class="tag">RAG Architecture</span>
+                  <span class="tag">Vector Search</span>
+                </div>
+              </div>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="proj-link-btn" target="_blank">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 6: Student Analytics -->
+          <div class="proj-detail-view" id="projDetail6">
+            <button class="proj-back-btn" onclick="closeProjDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Projects
+            </button>
+            <div class="proj-detail-hero">
+              <span class="proj-detail-watermark">🎓</span>
+              <div class="proj-detail-header">
+                <h3 class="proj-detail-name">Student Analytics Chatbot</h3>
+                <p class="proj-detail-tagline">RAG-powered academic performance and placement analytics chatbot</p>
+                <span class="proj-category-badge">NLP / RAG</span>
+              </div>
+            </div>
+            <div class="proj-pso">
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚠️</span> Problem</div>
+                <p class="pso-text">Academic institutions have placement and performance data stored in databases but no
+                  easy way for staff or students to query it conversationally — requiring manual SQL queries or
+                  spreadsheet analysis.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">⚙️</span> Solution</div>
+                <p class="pso-text">Built a RAG-powered chatbot integrated with a Supabase database that answers natural
+                  language queries about student placement trends, academic performance, failure analysis, and training
+                  recommendations. Supports USN-level queries and aggregate summaries.</p>
+              </div>
+              <div class="pso-block">
+                <div class="pso-label"><span class="pso-icon">✅</span> Outcome</div>
+                <p class="pso-text">Deployed for internal academic analytics use. Enables non-technical staff to query
+                  complex datasets through conversation. Surfaces actionable insights like weak areas by batch and
+                  placement patterns by company.</p>
+              </div>
+            </div>
+            <div class="proj-tech">
+              <div class="tech-group">
+                <div class="tech-group-label">AI / ML</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Gemini API</span>
+                  <span class="tag">RAG</span>
+                  <span class="tag">LangChain</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Database</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Supabase (PostgreSQL)</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Languages</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Python</span>
+                </div>
+              </div>
+              <div class="tech-group">
+                <div class="tech-group-label">Other</div>
+                <div class="tech-group-tags">
+                  <span class="tag">Analytics Dashboard</span>
+                  <span class="tag">NLP Query Interface</span>
+                </div>
+              </div>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="proj-link-btn" target="_blank">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RECOGNITION SECTION -->
+      <section id="recognition">
+        <div class="section-header scroll-reveal">
+          <h2>Recognition</h2>
+        </div>
+
+        <div class="recog-stage" id="recogStage">
+
+          <!-- State A: Recognition Grid -->
+          <div class="recog-grid-view" id="recogGridView">
+            <div class="recog-grid">
+
+              <div class="recog-grid-card scroll-reveal" data-recog="0">
+                <div class="recog-icon">🐝</div>
+                <span class="recog-grid-name">Enhanced Apicultural Threat Detection System</span>
+                <span class="proj-category-badge">Patent</span>
+                <span class="recog-grid-desc">Indian patent for edge AI beehive monitoring using computer vision</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="recog-grid-card scroll-reveal" data-recog="1">
+                <div class="recog-icon">🏛️</div>
+                <span class="recog-grid-name">₹10 Lakh Government Research Grant</span>
+                <span class="proj-category-badge">Grant</span>
+                <span class="recog-grid-desc">State government grant for ML-driven apiculture monitoring research</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="recog-grid-card scroll-reveal" data-recog="2">
+                <div class="recog-icon">📄</div>
+                <span class="recog-grid-name">Virtual Boundary Detection for Industrial Safety</span>
+                <span class="proj-category-badge">Conference Paper</span>
+                <span class="recog-grid-desc">Presented at ICICC 2025 — YOLOv5-based safety zone enforcement</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="recog-grid-card scroll-reveal" data-recog="3">
+                <div class="recog-icon">📰</div>
+                <span class="recog-grid-name">Harnessing the Power of Deep Learning</span>
+                <span class="proj-category-badge">Journal Publication</span>
+                <span class="recog-grid-desc">IJARCCE — Advanced techniques in computer vision</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="recog-grid-card scroll-reveal" data-recog="4">
+                <div class="recog-icon">📰</div>
+                <span class="recog-grid-name">Comprehensive Analysis of Advanced ML Techniques</span>
+                <span class="proj-category-badge">Journal Publication</span>
+                <span class="recog-grid-desc">IJARCCE — Supervised, unsupervised, and reinforcement learning</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- State B: Recognition Detail Views -->
+
+          <!-- Item 0: Patent -->
+          <div class="recog-detail-view" id="recogDetail0">
+            <button class="recog-back-btn" onclick="closeRecogDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Recognition
+            </button>
+            <div class="recog-detail-hero">
+              <span class="recog-detail-watermark">🐝</span>
+              <div class="recog-detail-header">
+                <h3 class="recog-detail-name">Enhanced Apicultural Threat Detection System</h3>
+                <p class="recog-detail-subtitle">Leveraging Advanced Computer Vision Technologies</p>
+                <span class="proj-category-badge">Patent</span>
+                <p class="recog-detail-year">2024</p>
+              </div>
+            </div>
+            <div class="recog-kv">
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Application Number</span>
+                <span class="recog-kv-value">202441071459</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Type</span>
+                <span class="recog-kv-value">Indian Patent Application</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Field</span>
+                <span class="recog-kv-value">Computer Vision, Edge AI, Agricultural Technology</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Status</span>
+                <span class="recog-kv-value">Filed</span>
+              </div>
+            </div>
+            <div class="recog-desc-block">
+              <p>Filed a patent for an intelligent apiculture monitoring system that uses computer vision to detect
+                threats around beehives — including hornets, wasps, and other predators — in real time. The system runs
+                on edge hardware (Jetson Nano) without cloud dependency, making it suitable for remote agricultural
+                deployments. Combined with an acoustic monitoring module using CNN + BiLSTM models to detect colony
+                stress and prevent colony collapse disorder.</p>
+            </div>
+          </div>
+
+          <!-- Item 1: Grant -->
+          <div class="recog-detail-view" id="recogDetail1">
+            <button class="recog-back-btn" onclick="closeRecogDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Recognition
+            </button>
+            <div class="recog-detail-hero">
+              <span class="recog-detail-watermark">🏛️</span>
+              <div class="recog-detail-header">
+                <h3 class="recog-detail-name">₹10 Lakh Government Research Grant</h3>
+                <p class="recog-detail-subtitle">Government of Andhra Pradesh</p>
+                <span class="proj-category-badge">Grant</span>
+                <p class="recog-detail-year">2024</p>
+              </div>
+            </div>
+            <div class="recog-kv">
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Amount</span>
+                <span class="recog-kv-value">₹10,00,000 (10 Lakhs)</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Issued By</span>
+                <span class="recog-kv-value">Government of Andhra Pradesh</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Purpose</span>
+                <span class="recog-kv-value">Enhancement and further development of the ML-Driven Apiculture Monitoring
+                  System</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Type</span>
+                <span class="recog-kv-value">State Government Research Grant</span>
+              </div>
+            </div>
+            <div class="recog-desc-block">
+              <p>Received a ₹10 lakh research grant from the Government of Andhra Pradesh to further develop and scale
+                the ML-driven apiculture monitoring system. The grant recognises the project’s potential impact on
+                agricultural sustainability and bee population preservation in India. Funding supports hardware
+                procurement, field deployment, and continued model development.</p>
+            </div>
+          </div>
+
+          <!-- Item 2: ICICC Conference Paper -->
+          <div class="recog-detail-view" id="recogDetail2">
+            <button class="recog-back-btn" onclick="closeRecogDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Recognition
+            </button>
+            <div class="recog-detail-hero">
+              <span class="recog-detail-watermark">📄</span>
+              <div class="recog-detail-header">
+                <h3 class="recog-detail-name">Virtual Boundary Detection for Industrial Safety</h3>
+                <p class="recog-detail-subtitle">8th International Conference on Innovative Computing and Communication
+                  (ICICC 2025)</p>
+                <span class="proj-category-badge">Conference Paper</span>
+                <p class="recog-detail-year">2025</p>
+              </div>
+            </div>
+            <div class="recog-kv">
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Full Title</span>
+                <span class="recog-kv-value">System and Method for Virtual Boundary Detection and Warning of Safety Zone
+                  Violations in Construction and Industrial Environments</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Conference</span>
+                <span class="recog-kv-value">ICICC 2025 (8th International Conference on Innovative Computing and
+                  Communication)</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Paper ID</span>
+                <span class="recog-kv-value">1346</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Status</span>
+                <span class="recog-kv-value">Accepted &amp; Presented</span>
+              </div>
+            </div>
+            <div class="recog-desc-block">
+              <p>Presented a research paper at ICICC 2025 detailing the design and implementation of a YOLOv5-based
+                computer vision system for real-time safety zone enforcement in construction and industrial
+                environments. The system uses virtual boundary detection via ROI and bounding boxes to monitor worker
+                proximity to hazardous areas and trigger instant alerts — reducing reliance on manual supervision and
+                physical barriers.</p>
+            </div>
+          </div>
+
+          <!-- Item 3: IJARCCE — Deep Learning -->
+          <div class="recog-detail-view" id="recogDetail3">
+            <button class="recog-back-btn" onclick="closeRecogDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Recognition
+            </button>
+            <div class="recog-detail-hero">
+              <span class="recog-detail-watermark">📰</span>
+              <div class="recog-detail-header">
+                <h3 class="recog-detail-name">Harnessing the Power of Deep Learning</h3>
+                <p class="recog-detail-subtitle">Advanced Techniques in Computer Vision — IJARCCE</p>
+                <span class="proj-category-badge">Journal Publication</span>
+                <p class="recog-detail-year">2024</p>
+              </div>
+            </div>
+            <div class="recog-kv">
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Full Title</span>
+                <span class="recog-kv-value">Harnessing the Power of Deep Learning: Advanced Techniques in Computer
+                  Vision</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Journal</span>
+                <span class="recog-kv-value">IJARCCE (International Journal of Advanced Research in Computer and
+                  Communication Engineering)</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">DOI</span>
+                <span class="recog-kv-value">10.17148/IJARCCE.2024.13614</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Type</span>
+                <span class="recog-kv-value">Peer-reviewed Journal Article</span>
+              </div>
+            </div>
+            <div class="recog-desc-block">
+              <p>Published a comprehensive review and analysis of advanced deep learning techniques applied to computer
+                vision tasks. Covers state-of-the-art architectures, training methodologies, and real-world applications
+                across object detection, image segmentation, and visual recognition — with insights drawn from hands-on
+                project experience.</p>
+            </div>
+            <div class="recog-links">
+              <a href="https://doi.org/10.17148/IJARCCE.2024.13614" class="recog-link-btn" target="_blank"
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="currentColor"
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z" />
+                </svg>
+                View Publication →
+              </a>
+            </div>
+          </div>
+
+          <!-- Item 4: IJARCCE — ML Techniques -->
+          <div class="recog-detail-view" id="recogDetail4">
+            <button class="recog-back-btn" onclick="closeRecogDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Recognition
+            </button>
+            <div class="recog-detail-hero">
+              <span class="recog-detail-watermark">📰</span>
+              <div class="recog-detail-header">
+                <h3 class="recog-detail-name">Comprehensive Analysis of Advanced ML Techniques</h3>
+                <p class="recog-detail-subtitle">IJARCCE</p>
+                <span class="proj-category-badge">Journal Publication</span>
+                <p class="recog-detail-year">2024</p>
+              </div>
+            </div>
+            <div class="recog-kv">
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Full Title</span>
+                <span class="recog-kv-value">Comprehensive Analysis of Advanced Techniques in Machine Learning</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Journal</span>
+                <span class="recog-kv-value">IJARCCE (International Journal of Advanced Research in Computer and
+                  Communication Engineering)</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">DOI</span>
+                <span class="recog-kv-value">10.17148/IJARCCE.2024.13611</span>
+              </div>
+              <div class="recog-kv-item">
+                <span class="recog-kv-label">Type</span>
+                <span class="recog-kv-value">Peer-reviewed Journal Article</span>
+              </div>
+            </div>
+            <div class="recog-desc-block">
+              <p>Published a comprehensive analysis of advanced machine learning techniques covering supervised,
+                unsupervised, and reinforcement learning paradigms. Reviews cutting-edge algorithms, model
+                architectures, and optimization strategies, with practical perspectives on applying these techniques to
+                real-world engineering problems.</p>
+            </div>
+            <div class="recog-links">
+              <a href="https://doi.org/10.17148/IJARCCE.2024.13611" class="recog-link-btn" target="_blank"
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="currentColor"
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z" />
+                </svg>
+                View Publication →
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- COMMUNITY SECTION -->
+      <section id="community">
+        <div class="section-header scroll-reveal">
+          <h2>Community</h2>
+        </div>
+
+        <div class="comm-stage" id="commStage">
+
+          <!-- State A: Community Grid -->
+          <div class="comm-grid-view" id="commGridView">
+            <div class="comm-grid">
+
+              <div class="comm-grid-card scroll-reveal" data-comm="0">
+                <div class="comm-icon">👩‍💼</div>
+                <span class="comm-grid-name">Women Empowerment Program</span>
+                <span class="proj-category-badge">Social Impact</span>
+                <span class="exp-grid-duration">80 Hours</span>
+                <span class="comm-grid-desc">Leadership and digital literacy workshops for women in the community</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="comm-grid-card scroll-reveal" data-comm="1">
+                <div class="comm-icon">💧</div>
+                <span class="comm-grid-name">Water Management Initiative</span>
+                <span class="proj-category-badge">Environmental</span>
+                <span class="exp-grid-duration">80 Hours</span>
+                <span class="comm-grid-desc">Awareness and education on sustainable water conservation practices</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="comm-grid-card scroll-reveal" data-comm="2">
+                <div class="comm-icon">♻️</div>
+                <span class="comm-grid-name">Waste Management Initiative</span>
+                <span class="proj-category-badge">Environmental</span>
+                <span class="exp-grid-duration">80 Hours</span>
+                <span class="comm-grid-desc">Community education on waste segregation, recycling, and composting</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="comm-grid-card scroll-reveal" data-comm="3">
+                <div class="comm-icon">🇮🇳</div>
+                <span class="comm-grid-name">Swachh Bharat Initiative</span>
+                <span class="proj-category-badge">Civic</span>
+                <span class="exp-grid-duration">80 Hours</span>
+                <span class="comm-grid-desc">Sanitation awareness and community cleanliness drives under Swachh
+                  Bharat</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+              <div class="comm-grid-card scroll-reveal" data-comm="4">
+                <div class="comm-icon">🏥</div>
+                <span class="comm-grid-name">Health Awareness Program</span>
+                <span class="proj-category-badge">Healthcare</span>
+                <span class="exp-grid-duration">80 Hours</span>
+                <span class="comm-grid-desc">Rural health education covering hygiene, nutrition, and basic
+                  screenings</span>
+                <span class="card-cta">Click to know more →</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- State B: Community Detail Views -->
+
+          <!-- Initiative 0: Women Empowerment -->
+          <div class="comm-detail-view" id="commDetail0">
+            <button class="comm-back-btn" onclick="closeCommDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Community
+            </button>
+            <div class="comm-detail-hero">
+              <span class="comm-detail-watermark">👩‍💼</span>
+              <div class="comm-detail-header">
+                <h3 class="comm-detail-name">Women Empowerment Program</h3>
+                <span class="proj-category-badge">Social Impact</span>
+                <span class="exp-grid-duration" style="display:block;margin-top:0.3rem">80 Hours</span>
+              </div>
+            </div>
+            <div class="comm-detail-block">
+              <h4>📝 What I Did</h4>
+              <p>Participated in and helped organise a series of workshops aimed at empowering women through education,
+                awareness, and skill-building. Contributed to sessions on financial independence and digital tools as
+                part of a broader community outreach program.</p>
+            </div>
+            <div class="comm-detail-block">
+              <h4>📋 Key Activities</h4>
+              <ul>
+                <li>Leadership development workshops</li>
+                <li>Financial literacy and independence awareness sessions</li>
+                <li>Digital awareness and technology access programs</li>
+                <li>Gender equality discussions and awareness drives</li>
+              </ul>
+            </div>
+            <div class="comm-detail-block comm-impact">
+              <h4>✨ Impact</h4>
+              <p>Helped create a more informed and confident community of women with improved awareness of digital tools
+                and financial independence.</p>
+            </div>
+          </div>
+
+          <!-- Initiative 1: Water Management -->
+          <div class="comm-detail-view" id="commDetail1">
+            <button class="comm-back-btn" onclick="closeCommDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Community
+            </button>
+            <div class="comm-detail-hero">
+              <span class="comm-detail-watermark">💧</span>
+              <div class="comm-detail-header">
+                <h3 class="comm-detail-name">Water Management Initiative</h3>
+                <span class="proj-category-badge">Environmental</span>
+                <span class="exp-grid-duration" style="display:block;margin-top:0.3rem">80 Hours</span>
+              </div>
+            </div>
+            <div class="comm-detail-block">
+              <h4>📝 What I Did</h4>
+              <p>Took part in a community initiative focused on educating people about water scarcity and sustainable
+                water management. Helped spread awareness about modern water conservation techniques and smart
+                technologies in water systems.</p>
+            </div>
+            <div class="comm-detail-block">
+              <h4>📋 Key Activities</h4>
+              <ul>
+                <li>Water conservation awareness campaigns</li>
+                <li>Rainwater harvesting concept workshops</li>
+                <li>Wastewater treatment education sessions</li>
+                <li>Exposure to smart water technologies and IoT-based water management systems</li>
+              </ul>
+            </div>
+            <div class="comm-detail-block comm-impact">
+              <h4>✨ Impact</h4>
+              <p>Contributed to building environmental consciousness around water usage and introduced communities to
+                technology-driven conservation solutions.</p>
+            </div>
+          </div>
+
+          <!-- Initiative 2: Waste Management -->
+          <div class="comm-detail-view" id="commDetail2">
+            <button class="comm-back-btn" onclick="closeCommDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Community
+            </button>
+            <div class="comm-detail-hero">
+              <span class="comm-detail-watermark">♻️</span>
+              <div class="comm-detail-header">
+                <h3 class="comm-detail-name">Waste Management Initiative</h3>
+                <span class="proj-category-badge">Environmental</span>
+                <span class="exp-grid-duration" style="display:block;margin-top:0.3rem">80 Hours</span>
+              </div>
+            </div>
+            <div class="comm-detail-block">
+              <h4>📝 What I Did</h4>
+              <p>Participated in a structured waste management awareness program focused on practical, everyday
+                actions
+                that reduce environmental impact. Helped communicate the importance of proper waste segregation and
+                circular economy concepts to the community.</p>
+            </div>
+            <div class="comm-detail-block">
+              <h4>📋 Key Activities</h4>
+              <ul>
+                <li>Waste segregation awareness and demonstrations</li>
+                <li>Recycling best practices education</li>
+                <li>Composting technique workshops</li>
+                <li>Introduction to waste-to-energy concepts</li>
+              </ul>
+            </div>
+            <div class="comm-detail-block comm-impact">
+              <h4>✨ Impact</h4>
+              <p>Encouraged practical, actionable waste reduction habits in the local community, contributing to
+                cleaner
+                and more sustainable living environments.</p>
+            </div>
+          </div>
+
+          <!-- Initiative 3: Swachh Bharat -->
+          <div class="comm-detail-view" id="commDetail3">
+            <button class="comm-back-btn" onclick="closeCommDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Community
+            </button>
+            <div class="comm-detail-hero">
+              <span class="comm-detail-watermark">🇮🇳</span>
+              <div class="comm-detail-header">
+                <h3 class="comm-detail-name">Swachh Bharat Initiative</h3>
+                <span class="proj-category-badge">Civic</span>
+                <span class="exp-grid-duration" style="display:block;margin-top:0.3rem">80 Hours</span>
+              </div>
+            </div>
+            <div class="comm-detail-block">
+              <h4>📝 What I Did</h4>
+              <p>Volunteered in Swachh Bharat-aligned community programs promoting public sanitation, hygiene, and
+                cleanliness. Participated in awareness drives targeting plastic pollution and community-led
+                cleanliness
+                efforts.</p>
+            </div>
+            <div class="comm-detail-block">
+              <h4>📋 Key Activities</h4>
+              <ul>
+                <li>Public sanitation awareness campaigns</li>
+                <li>Plastic pollution reduction drives</li>
+                <li>Community cleanliness and neighbourhood beautification events</li>
+                <li>Open defecation awareness and hygiene education</li>
+              </ul>
+            </div>
+            <div class="comm-detail-block comm-impact">
+              <h4>✨ Impact</h4>
+              <p>Contributed to national cleanliness goals at the grassroots level, helping shift community
+                attitudes
+                toward public hygiene and responsible waste disposal.</p>
+            </div>
+          </div>
+
+          <!-- Initiative 4: Health Awareness -->
+          <div class="comm-detail-view" id="commDetail4">
+            <button class="comm-back-btn" onclick="closeCommDetail()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Community
+            </button>
+            <div class="comm-detail-hero">
+              <span class="comm-detail-watermark">🏥</span>
+              <div class="comm-detail-header">
+                <h3 class="comm-detail-name">Health Awareness Program</h3>
+                <span class="proj-category-badge">Healthcare</span>
+                <span class="exp-grid-duration" style="display:block;margin-top:0.3rem">80 Hours</span>
+              </div>
+            </div>
+            <div class="comm-detail-block">
+              <h4>📝 What I Did</h4>
+              <p>Participated in rural community outreach programs focused on basic health education. Helped
+                conduct
+                awareness sessions and assisted in organising health screenings for underserved communities with
+                limited
+                access to healthcare information.</p>
+            </div>
+            <div class="comm-detail-block">
+              <h4>📋 Key Activities</h4>
+              <ul>
+                <li>Public health education sessions in rural communities</li>
+                <li>Hygiene and sanitation awareness workshops</li>
+                <li>Nutrition and balanced diet awareness programs</li>
+                <li>Vaccination awareness drives</li>
+                <li>Basic health screening assistance</li>
+              </ul>
+            </div>
+            <div class="comm-detail-block comm-impact">
+              <h4>✨ Impact</h4>
+              <p>Helped improve health literacy in rural communities, empowering individuals to make better health
+                decisions and access available healthcare resources.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- INTERESTS SECTION -->
+      <section id="interests" class="section-placeholder"></section>
+
+    </main>
+  </div>
+
+  <script>
+    /* ── Mobile Menu Toggle ─────────────────────── */
+    const toggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    function openMenu() {
+      sidebar.classList.add('open');
+      overlay.classList.add('visible');
+      toggle.classList.add('open');
+    }
+
+    function closeMenu() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('visible');
+      toggle.classList.remove('open');
+    }
+
+    toggle.addEventListener('click', () => {
+      sidebar.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    overlay.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 900) closeMenu();
+
+        const href = link.getAttribute('href');
+        if (href === '#experience' && activeDetailId !== null) closeExpDetail();
+        if (href === '#projects' && activeProjId !== null) closeProjDetail();
+        if (href === '#recognition' && activeRecogId !== null) closeRecogDetail();
+        if (href === '#community' && activeCommId !== null) closeCommDetail();
+      });
+    });
+
+    /* ── Active nav highlight on scroll ─────────── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+    function highlightNav() {
+      const scrollY = window.scrollY + 120;
+      let currentId = 'about';
+      sections.forEach(section => {
+        if (section.offsetTop <= scrollY) currentId = section.id;
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+      });
+    }
+
+    window.addEventListener('scroll', highlightNav, { passive: true });
+    highlightNav();
+
+    /* ── Scroll-triggered reveal ────────────────── */
+    const revealElements = document.querySelectorAll('.scroll-reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    /* ── Experience: Grid ↔ Detail Slide ────────── */
+    const gridView = document.getElementById('expGridView');
+    const allDetails = document.querySelectorAll('.exp-detail-view');
+    let activeDetailId = null;
+
+    // Open a company detail
+    document.querySelectorAll('.exp-grid-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = card.getAttribute('data-exp');
+        openExpDetail(idx);
+      });
+    });
+
+    function openExpDetail(idx) {
+      // Hide grid
+      gridView.classList.add('hidden');
+
+      // Show detail
+      const detail = document.getElementById('expDetail' + idx);
+      detail.classList.add('active');
+      activeDetailId = idx;
+
+      // Scroll to top of experience section
+      document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function closeExpDetail() {
+      // Hide active detail
+      if (activeDetailId !== null) {
+        const detail = document.getElementById('expDetail' + activeDetailId);
+        detail.classList.remove('active');
+        activeDetailId = null;
+      }
+
+      // Show grid
+      gridView.classList.remove('hidden');
+
+      // Scroll to top of experience section
+      document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ── Projects: Grid ↔ Detail Slide ──────────── */
+    const projGridView = document.getElementById('projGridView');
+    let activeProjId = null;
+
+    document.querySelectorAll('.proj-grid-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = card.getAttribute('data-proj');
+        openProjDetail(idx);
+      });
+    });
+
+    function openProjDetail(idx) {
+      projGridView.classList.add('hidden');
+      const detail = document.getElementById('projDetail' + idx);
+      detail.classList.add('active');
+      activeProjId = idx;
+      document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function closeProjDetail() {
+      if (activeProjId !== null) {
+        const detail = document.getElementById('projDetail' + activeProjId);
+        detail.classList.remove('active');
+        activeProjId = null;
+      }
+      projGridView.classList.remove('hidden');
+      document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Re-observe new scroll-reveal elements (projects)
+    document.querySelectorAll('.proj-grid-card.scroll-reveal, #projects .scroll-reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    /* ── Recognition: Grid ↔ Detail Slide ───────── */
+    const recogGridView = document.getElementById('recogGridView');
+    let activeRecogId = null;
+
+    document.querySelectorAll('.recog-grid-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = card.getAttribute('data-recog');
+        openRecogDetail(idx);
+      });
+    });
+
+    function openRecogDetail(idx) {
+      recogGridView.classList.add('hidden');
+      const detail = document.getElementById('recogDetail' + idx);
+      detail.classList.add('active');
+      activeRecogId = idx;
+      document.getElementById('recognition').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function closeRecogDetail() {
+      if (activeRecogId !== null) {
+        const detail = document.getElementById('recogDetail' + activeRecogId);
+        detail.classList.remove('active');
+        activeRecogId = null;
+      }
+      recogGridView.classList.remove('hidden');
+      document.getElementById('recognition').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Re-observe recognition scroll-reveal elements
+    document.querySelectorAll('.recog-grid-card.scroll-reveal, #recognition .scroll-reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      /* ── Interest Tag Popups ─────────────────── */
+      let activePopup = null;
+      let activeTag = null;
+      let activePopupOriginalParent = null;
+      let activePopupNextSibling = null;
+
+      function positionPopup(popup, wrap) {
+        popup.classList.remove('above', 'below');
+
+        // Move popup to body so position:fixed works even inside transformed ancestors
+        activePopupOriginalParent = popup.parentNode;
+        activePopupNextSibling = popup.nextSibling;
+        document.body.appendChild(popup);
+
+        // Temporarily make popup visible off-screen to measure its height
+        popup.style.left = '-9999px';
+        popup.style.top = '0px';
+        popup.classList.add('visible');
+        const popupRect = popup.getBoundingClientRect();
+        const popupWidth = popupRect.width || 240;
+        const popupHeight = popupRect.height || 150;
+        popup.classList.remove('visible');
+
+        const rect = wrap.getBoundingClientRect();
+        const spaceAbove = rect.top;
+        const centerX = rect.left + rect.width / 2;
+        let left = centerX - popupWidth / 2;
+        // Clamp to viewport edges
+        if (left < 8) left = 8;
+        if (left + popupWidth > window.innerWidth - 8) left = window.innerWidth - 8 - popupWidth;
+        popup.style.left = left + 'px';
+        if (spaceAbove > 200) {
+          popup.classList.add('above');
+          popup.style.top = (rect.top - 10 - popupHeight) + 'px';
+        } else {
+          popup.classList.add('below');
+          popup.style.top = (rect.bottom + 10) + 'px';
+        }
+      }
+
+      function closeActivePopup() {
+        if (activePopup) {
+          activePopup.classList.remove('visible');
+          activeTag.classList.remove('active');
+          // Move popup back to its original position in the DOM
+          if (activePopupOriginalParent) {
+            if (activePopupNextSibling) {
+              activePopupOriginalParent.insertBefore(activePopup, activePopupNextSibling);
+            } else {
+              activePopupOriginalParent.appendChild(activePopup);
+            }
+          }
+          activePopup = null;
+          activeTag = null;
+          activePopupOriginalParent = null;
+          activePopupNextSibling = null;
+        }
+      }
+
+      document.querySelectorAll('.tags-container .tag[data-popup], .exp-detail-tags .tag[data-popup]').forEach(tag => {
+        tag.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = tag.getAttribute('data-popup');
+          const popup = document.getElementById('popup-' + id);
+          const wrap = tag.closest('.tag-wrap');
+
+          if (activePopup === popup) {
+            closeActivePopup();
+            return;
+          }
+
+          closeActivePopup();
+          positionPopup(popup, wrap);
+          popup.classList.add('visible');
+          tag.classList.add('active');
+          activePopup = popup;
+          activeTag = tag;
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (activePopup && !e.target.closest('.tag-wrap')) {
+          closeActivePopup();
+        }
+      });
+    }); // end DOMContentLoaded for popups
+
+    /* ── Community: Grid ↔ Detail Slide ───────── */
+    const commGridView = document.getElementById('commGridView');
+    let activeCommId = null;
+
+    document.querySelectorAll('.comm-grid-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = card.getAttribute('data-comm');
+        openCommDetail(idx);
+      });
+    });
+
+    function openCommDetail(idx) {
+      commGridView.classList.add('hidden');
+      const detail = document.getElementById('commDetail' + idx);
+      detail.classList.add('active');
+      activeCommId = idx;
+      document.getElementById('community').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function closeCommDetail() {
+      if (activeCommId !== null) {
+        const detail = document.getElementById('commDetail' + activeCommId);
+        detail.classList.remove('active');
+        activeCommId = null;
+      }
+      commGridView.classList.remove('hidden');
+      document.getElementById('community').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Re-observe community scroll-reveal elements
+    document.querySelectorAll('.comm-grid-card.scroll-reveal, #community .scroll-reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+  </script>
+</body>
+
+</html>
