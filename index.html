@@ -1525,6 +1525,217 @@
       padding: 2rem 0;
     }
 
+    /* ── Gallery Section ──────────────────────────── */
+    #gallery {
+      padding-top: 3.5rem;
+    }
+
+    .gallery-category {
+      margin-bottom: 2.5rem;
+    }
+
+    .gallery-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .gallery-category-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-soft);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .gallery-category-title .gallery-cat-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      font-size: 1rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+      border-color: var(--accent);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.35) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    .gallery-item .gallery-zoom-icon {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 2;
+      font-size: 0.75rem;
+      color: var(--accent);
+    }
+
+    .gallery-item:hover .gallery-zoom-icon {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Gallery Lightbox ─────────────────────────── */
+    .gallery-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(0, 0, 0, 0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .gallery-lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .gallery-lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      transform: scale(0.92);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gallery-lightbox.active img {
+      transform: scale(1);
+    }
+
+    .gallery-lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .gallery-lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: rotate(90deg);
+    }
+
+    .gallery-lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .gallery-lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .gallery-lightbox-prev {
+      left: 20px;
+    }
+
+    .gallery-lightbox-next {
+      right: 20px;
+    }
+
+    .gallery-lightbox-caption {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      padding: 0.4rem 1.2rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
     /* ── Animations ───────────────────────────────── */
     @keyframes fadeInUp {
       from {
@@ -1653,6 +1864,10 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
       .exp-detail-hero,
       .proj-detail-hero,
       .recog-detail-hero,
@@ -1710,6 +1925,10 @@
       .recog-grid,
       .comm-grid {
         grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .exp-detail-hero,
@@ -1774,7 +1993,7 @@
           <li><a href="#projects" data-en="Projects" data-de="Projekte">Projects</a></li>
           <li><a href="#recognition" data-en="Recognition" data-de="Auszeichnungen">Recognition</a></li>
           <li><a href="#community" data-en="Community" data-de="Gemeinschaft">Community</a></li>
-          <li><a href="#interests" data-en="Interests" data-de="Interessen">Interests</a></li>
+          <li><a href="#gallery" data-en="Gallery" data-de="Galerie">Gallery</a></li>
         </ul>
       </nav>
 
@@ -4203,10 +4422,13 @@
               <div class="recog-grid-card scroll-reveal" data-recog="0">
                 <div class="recog-icon">🐝</div>
                 <span class="recog-grid-name" data-en="Enhanced Apicultural Threat Detection System"
-                  data-de="[DE] Enhanced Apicultural Threat Detection System">Enhanced Apicultural Threat Detection
+                  data-de="Verbessertes Bedrohungserkennungssystem">Enhanced Apicultural Threat Detection
                   System</span>
-                <span class="proj-category-badge" data-en="Patent" data-de="[DE] Patent">Patent</span>
-                <span class="recog-grid-desc">Indian patent for edge AI beehive monitoring using computer vision</span>
+                <span class="proj-category-badge" data-en="Patent" data-de="Patent">Patent</span>
+                <span class="recog-grid-desc"
+                  data-en="Indian patent for edge AI beehive monitoring using computer vision"
+                  data-de="Indisches Patent für Edge-KI-Bienenstocküberwachung mittels Computer Vision">Indian patent
+                  for edge AI beehive monitoring using computer vision</span>
                 <span class="card-cta" data-en="Click to know more →" data-de="Klicken Sie für mehr →">Click to know
                   more →</span>
               </div>
@@ -4214,9 +4436,12 @@
               <div class="recog-grid-card scroll-reveal" data-recog="1">
                 <div class="recog-icon">🏛️</div>
                 <span class="recog-grid-name" data-en="₹10 Lakh Government Research Grant"
-                  data-de="[DE] ₹10 Lakh Government Research Grant">₹10 Lakh Government Research Grant</span>
-                <span class="proj-category-badge" data-en="Grant" data-de="[DE] Grant">Grant</span>
-                <span class="recog-grid-desc">State government grant for ML-driven apiculture monitoring research</span>
+                  data-de="₹10 Lakh Forschungsstipendium">₹10 Lakh Government Research Grant</span>
+                <span class="proj-category-badge" data-en="Grant" data-de="Förderung">Grant</span>
+                <span class="recog-grid-desc"
+                  data-en="State government grant for ML-driven apiculture monitoring research"
+                  data-de="Forschungsstipendium der Landesregierung für ML-gestützte Imkerei-Überwachung">State
+                  government grant for ML-driven apiculture monitoring research</span>
                 <span class="card-cta" data-en="Click to know more →" data-de="Klicken Sie für mehr →">Click to know
                   more →</span>
               </div>
@@ -4224,11 +4449,13 @@
               <div class="recog-grid-card scroll-reveal" data-recog="2">
                 <div class="recog-icon">📄</div>
                 <span class="recog-grid-name" data-en="Virtual Boundary Detection for Industrial Safety"
-                  data-de="[DE] Virtual Boundary Detection for Industrial Safety">Virtual Boundary Detection for
+                  data-de="Virtuelle Grenzerkennung">Virtual Boundary Detection for
                   Industrial Safety</span>
-                <span class="proj-category-badge" data-en="Conference Paper" data-de="[DE] Conference Paper">Conference
+                <span class="proj-category-badge" data-en="Conference Paper" data-de="Konferenzbeitrag">Conference
                   Paper</span>
-                <span class="recog-grid-desc">Presented at ICICC 2025 — YOLOv5-based safety zone enforcement</span>
+                <span class="recog-grid-desc" data-en="Presented at ICICC 2025 — YOLOv5-based safety zone enforcement"
+                  data-de="Präsentiert auf der ICICC 2025 — YOLOv5-basierte Sicherheitszonen-Durchsetzung">Presented at
+                  ICICC 2025 — YOLOv5-based safety zone enforcement</span>
                 <span class="card-cta" data-en="Click to know more →" data-de="Klicken Sie für mehr →">Click to know
                   more →</span>
               </div>
@@ -4236,10 +4463,12 @@
               <div class="recog-grid-card scroll-reveal" data-recog="3">
                 <div class="recog-icon">📰</div>
                 <span class="recog-grid-name" data-en="Harnessing the Power of Deep Learning"
-                  data-de="[DE] Harnessing the Power of Deep Learning">Harnessing the Power of Deep Learning</span>
-                <span class="proj-category-badge" data-en="Journal Publication"
-                  data-de="[DE] Journal Publication">Journal Publication</span>
-                <span class="recog-grid-desc">IJARCCE — Advanced techniques in computer vision</span>
+                  data-de="Deep Learning in der Praxis">Harnessing the Power of Deep Learning</span>
+                <span class="proj-category-badge" data-en="Journal Publication" data-de="Fachzeitschrift">Journal
+                  Publication</span>
+                <span class="recog-grid-desc" data-en="IJARCCE — Advanced techniques in computer vision"
+                  data-de="IJARCCE — Fortgeschrittene Techniken in Computer Vision">IJARCCE — Advanced techniques in
+                  computer vision</span>
                 <span class="card-cta" data-en="Click to know more →" data-de="Klicken Sie für mehr →">Click to know
                   more →</span>
               </div>
@@ -4247,11 +4476,13 @@
               <div class="recog-grid-card scroll-reveal" data-recog="4">
                 <div class="recog-icon">📰</div>
                 <span class="recog-grid-name" data-en="Comprehensive Analysis of Advanced ML Techniques"
-                  data-de="[DE] Comprehensive Analysis of Advanced ML Techniques">Comprehensive Analysis of Advanced ML
+                  data-de="Analyse fortgeschrittener ML-Methoden">Comprehensive Analysis of Advanced ML
                   Techniques</span>
-                <span class="proj-category-badge" data-en="Journal Publication"
-                  data-de="[DE] Journal Publication">Journal Publication</span>
-                <span class="recog-grid-desc">IJARCCE — Supervised, unsupervised, and reinforcement learning</span>
+                <span class="proj-category-badge" data-en="Journal Publication" data-de="Fachzeitschrift">Journal
+                  Publication</span>
+                <span class="recog-grid-desc" data-en="IJARCCE — Supervised, unsupervised, and reinforcement learning"
+                  data-de="IJARCCE — Überwachtes, unüberwachtes und bestärkendes Lernen">IJARCCE — Supervised,
+                  unsupervised, and reinforcement learning</span>
                 <span class="card-cta" data-en="Click to know more →" data-de="Klicken Sie für mehr →">Click to know
                   more →</span>
               </div>
@@ -4273,38 +4504,38 @@
               <span class="recog-detail-watermark">🐝</span>
               <div class="recog-detail-header">
                 <h3 class="recog-detail-name" data-en="Enhanced Apicultural Threat Detection System"
-                  data-de="[DE] Enhanced Apicultural Threat Detection System">Enhanced Apicultural Threat Detection
+                  data-de="Verbessertes Bedrohungserkennungssystem">Enhanced Apicultural Threat Detection
                   System</h3>
                 <p class="recog-detail-subtitle">Leveraging Advanced Computer Vision Technologies</p>
-                <span class="proj-category-badge" data-en="Patent" data-de="[DE] Patent">Patent</span>
+                <span class="proj-category-badge" data-en="Patent" data-de="Patent">Patent</span>
                 <p class="recog-detail-year">2024</p>
               </div>
             </div>
             <div class="recog-kv">
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Application Number" data-de="[DE] Application Number">Application
+                <span class="recog-kv-label" data-en="Application Number" data-de="Antragsnummer">Application
                   Number</span>
-                <span class="recog-kv-value" data-en="202441071459" data-de="[DE] 202441071459">202441071459</span>
+                <span class="recog-kv-value" data-en="202441071459" data-de="202441071459">202441071459</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Type" data-de="[DE] Type">Type</span>
+                <span class="recog-kv-label" data-en="Type" data-de="Typ">Type</span>
                 <span class="recog-kv-value" data-en="Indian Patent Application"
-                  data-de="[DE] Indian Patent Application">Indian Patent Application</span>
+                  data-de="Indische Patentanmeldung">Indian Patent Application</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Field" data-de="[DE] Field">Field</span>
+                <span class="recog-kv-label" data-en="Field" data-de="Fachgebiet">Field</span>
                 <span class="recog-kv-value" data-en="Computer Vision, Edge AI, Agricultural Technology"
-                  data-de="[DE] Computer Vision, Edge AI, Agricultural Technology">Computer Vision, Edge AI,
+                  data-de="Computer Vision, Edge-KI, Agrartechnologie">Computer Vision, Edge AI,
                   Agricultural Technology</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Status" data-de="[DE] Status">Status</span>
-                <span class="recog-kv-value" data-en="Filed" data-de="[DE] Filed">Filed</span>
+                <span class="recog-kv-label" data-en="Status" data-de="Status">Status</span>
+                <span class="recog-kv-value" data-en="Filed" data-de="Eingereicht">Filed</span>
               </div>
             </div>
             <div class="recog-desc-block">
               <p data-en="Filed a patent for an intelligent apiculture monitoring system that uses computer vision to detect threats around beehives — including hornets, wasps, and other predators — in real time. The system runs on edge hardware (Jetson Nano) without cloud dependency, making it suitable for remote agricultural deployments. Combined with an acoustic monitoring module using CNN + BiLSTM models to detect colony stress and prevent colony collapse disorder."
-                data-de="[DE] Filed a patent for an intelligent apiculture monitoring system that uses computer vision to detect threats around beehives — including hornets, wasps, and other predators — in real time. The system runs on edge hardware (Jetson Nano) without cloud dependency, making it suitable for remote agricultural deployments. Combined with an acoustic monitoring module using CNN + BiLSTM models to detect colony stress and prevent colony collapse disorder.">
+                data-de="Ein Patent für ein intelligentes Imkerei-Überwachungssystem eingereicht, das Computer Vision nutzt, um Bedrohungen rund um Bienenstöcke — einschließlich Hornissen, Wespen und anderer Räuber — in Echtzeit zu erkennen. Das System läuft auf Edge-Hardware (Jetson Nano) ohne Cloud-Abhängigkeit, was es für abgelegene landwirtschaftliche Einsätze geeignet macht. Kombiniert mit einem akustischen Überwachungsmodul mit CNN + BiLSTM-Modellen zur Erkennung von Koloniestress und Vorbeugung des Bienensterbens.">
                 Filed a patent for an intelligent apiculture monitoring system that uses computer vision to detect
                 threats around beehives — including hornets, wasps, and other predators — in real time. The system runs
                 on edge hardware (Jetson Nano) without cloud dependency, making it suitable for remote agricultural
@@ -4325,40 +4556,40 @@
               <span class="recog-detail-watermark">🏛️</span>
               <div class="recog-detail-header">
                 <h3 class="recog-detail-name" data-en="₹10 Lakh Government Research Grant"
-                  data-de="[DE] ₹10 Lakh Government Research Grant">₹10 Lakh Government Research Grant</h3>
+                  data-de="₹10 Lakh Forschungsstipendium">₹10 Lakh Government Research Grant</h3>
                 <p class="recog-detail-subtitle">Government of Andhra Pradesh</p>
-                <span class="proj-category-badge" data-en="Grant" data-de="[DE] Grant">Grant</span>
+                <span class="proj-category-badge" data-en="Grant" data-de="Förderung">Grant</span>
                 <p class="recog-detail-year">2024</p>
               </div>
             </div>
             <div class="recog-kv">
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Amount" data-de="[DE] Amount">Amount</span>
-                <span class="recog-kv-value" data-en="₹10,00,000 (10 Lakhs)"
-                  data-de="[DE] ₹10,00,000 (10 Lakhs)">₹10,00,000 (10 Lakhs)</span>
+                <span class="recog-kv-label" data-en="Amount" data-de="Betrag">Amount</span>
+                <span class="recog-kv-value" data-en="₹10,00,000 (10 Lakhs)" data-de="₹10.00.000 (10 Lakh)">₹10,00,000
+                  (10 Lakhs)</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Issued By" data-de="[DE] Issued By">Issued By</span>
+                <span class="recog-kv-label" data-en="Issued By" data-de="Ausgestellt von">Issued By</span>
                 <span class="recog-kv-value" data-en="Government of Andhra Pradesh"
-                  data-de="[DE] Government of Andhra Pradesh">Government of Andhra Pradesh</span>
+                  data-de="Regierung von Andhra Pradesh">Government of Andhra Pradesh</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Purpose" data-de="[DE] Purpose">Purpose</span>
+                <span class="recog-kv-label" data-en="Purpose" data-de="Zweck">Purpose</span>
                 <span class="recog-kv-value"
                   data-en="Enhancement and further development of the ML-Driven Apiculture Monitoring System"
-                  data-de="[DE] Enhancement and further development of the ML-Driven Apiculture Monitoring System">Enhancement
+                  data-de="Weiterentwicklung des ML-gestützten Imkerei-Überwachungssystems">Enhancement
                   and further development of the ML-Driven Apiculture Monitoring
                   System</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Type" data-de="[DE] Type">Type</span>
+                <span class="recog-kv-label" data-en="Type" data-de="Typ">Type</span>
                 <span class="recog-kv-value" data-en="State Government Research Grant"
-                  data-de="[DE] State Government Research Grant">State Government Research Grant</span>
+                  data-de="Forschungsstipendium der Landesregierung">State Government Research Grant</span>
               </div>
             </div>
             <div class="recog-desc-block">
               <p data-en="Received a ₹10 lakh research grant from the Government of Andhra Pradesh to further develop and scale the ML-driven apiculture monitoring system. The grant recognises the project’s potential impact on agricultural sustainability and bee population preservation in India. Funding supports hardware procurement, field deployment, and continued model development."
-                data-de="[DE] Received a ₹10 lakh research grant from the Government of Andhra Pradesh to further develop and scale the ML-driven apiculture monitoring system. The grant recognises the project’s potential impact on agricultural sustainability and bee population preservation in India. Funding supports hardware procurement, field deployment, and continued model development.">
+                data-de="Ein Forschungsstipendium von ₹10 Lakh von der Regierung von Andhra Pradesh erhalten, um das ML-gestützte Imkerei-Überwachungssystem weiterzuentwickeln und zu skalieren. Das Stipendium erkennt die potenzielle Wirkung des Projekts auf landwirtschaftliche Nachhaltigkeit und die Erhaltung der Bienenpopulation in Indien an. Die Finanzierung unterstützt die Hardware-Beschaffung, den Feldeinsatz und die kontinuierliche Modellentwicklung.">
                 Received a ₹10 lakh research grant from the Government of Andhra Pradesh to further develop and scale
                 the ML-driven apiculture monitoring system. The grant recognises the project’s potential impact on
                 agricultural sustainability and bee population preservation in India. Funding supports hardware
@@ -4378,45 +4609,45 @@
               <span class="recog-detail-watermark">📄</span>
               <div class="recog-detail-header">
                 <h3 class="recog-detail-name" data-en="Virtual Boundary Detection for Industrial Safety"
-                  data-de="[DE] Virtual Boundary Detection for Industrial Safety">Virtual Boundary Detection for
+                  data-de="Virtuelle Grenzerkennung">Virtual Boundary Detection for
                   Industrial Safety</h3>
                 <p class="recog-detail-subtitle">8th International Conference on Innovative Computing and Communication
                   (ICICC 2025)</p>
-                <span class="proj-category-badge" data-en="Conference Paper" data-de="[DE] Conference Paper">Conference
+                <span class="proj-category-badge" data-en="Conference Paper" data-de="Konferenzbeitrag">Conference
                   Paper</span>
                 <p class="recog-detail-year">2025</p>
               </div>
             </div>
             <div class="recog-kv">
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Full Title" data-de="[DE] Full Title">Full Title</span>
+                <span class="recog-kv-label" data-en="Full Title" data-de="Vollständiger Titel">Full Title</span>
                 <span class="recog-kv-value"
                   data-en="System and Method for Virtual Boundary Detection and Warning of Safety Zone Violations in Construction and Industrial Environments"
-                  data-de="[DE] System and Method for Virtual Boundary Detection and Warning of Safety Zone Violations in Construction and Industrial Environments">System
+                  data-de="System und Verfahren zur virtuellen Grenzerkennung und Warnung bei Sicherheitszonen-Verstößen in Bau- und Industrieumgebungen">System
                   and Method for Virtual Boundary Detection and Warning of Safety Zone
                   Violations in Construction and Industrial Environments</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Conference" data-de="[DE] Conference">Conference</span>
+                <span class="recog-kv-label" data-en="Conference" data-de="Konferenz">Conference</span>
                 <span class="recog-kv-value"
                   data-en="ICICC 2025 (8th International Conference on Innovative Computing and Communication)"
-                  data-de="[DE] ICICC 2025 (8th International Conference on Innovative Computing and Communication)">ICICC
+                  data-de="ICICC 2025 (8. Internationale Konferenz für innovative Datenverarbeitung und Kommunikation)">ICICC
                   2025 (8th International Conference on Innovative Computing and
                   Communication)</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Paper ID" data-de="[DE] Paper ID">Paper ID</span>
-                <span class="recog-kv-value" data-en="1346" data-de="[DE] 1346">1346</span>
+                <span class="recog-kv-label" data-en="Paper ID" data-de="Paper-ID">Paper ID</span>
+                <span class="recog-kv-value" data-en="1346" data-de="1346">1346</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Status" data-de="[DE] Status">Status</span>
+                <span class="recog-kv-label" data-en="Status" data-de="Status">Status</span>
                 <span class="recog-kv-value" data-en="Accepted &amp;amp; Presented"
-                  data-de="[DE] Accepted &amp;amp; Presented">Accepted &amp; Presented</span>
+                  data-de="Akzeptiert &amp; Präsentiert">Accepted &amp; Presented</span>
               </div>
             </div>
             <div class="recog-desc-block">
               <p data-en="Presented a research paper at ICICC 2025 detailing the design and implementation of a YOLOv5-based computer vision system for real-time safety zone enforcement in construction and industrial environments. The system uses virtual boundary detection via ROI and bounding boxes to monitor worker proximity to hazardous areas and trigger instant alerts — reducing reliance on manual supervision and physical barriers."
-                data-de="[DE] Presented a research paper at ICICC 2025 detailing the design and implementation of a YOLOv5-based computer vision system for real-time safety zone enforcement in construction and industrial environments. The system uses virtual boundary detection via ROI and bounding boxes to monitor worker proximity to hazardous areas and trigger instant alerts — reducing reliance on manual supervision and physical barriers.">
+                data-de="Eine Forschungsarbeit auf der ICICC 2025 präsentiert, die das Design und die Implementierung eines YOLOv5-basierten Computer-Vision-Systems zur Echtzeit-Sicherheitszonen-Durchsetzung in Bau- und Industrieumgebungen beschreibt. Das System nutzt virtuelle Grenzerkennung über ROI und Bounding Boxes, um die Nähe von Arbeitern zu Gefahrenbereichen zu überwachen und sofortige Alarme auszulösen — wodurch die Abhängigkeit von manueller Überwachung und physischen Barrieren reduziert wird.">
                 Presented a research paper at ICICC 2025 detailing the design and implementation of a YOLOv5-based
                 computer vision system for real-time safety zone enforcement in construction and industrial
                 environments. The system uses virtual boundary detection via ROI and bounding boxes to monitor worker
@@ -4437,44 +4668,44 @@
               <span class="recog-detail-watermark">📰</span>
               <div class="recog-detail-header">
                 <h3 class="recog-detail-name" data-en="Harnessing the Power of Deep Learning"
-                  data-de="[DE] Harnessing the Power of Deep Learning">Harnessing the Power of Deep Learning</h3>
+                  data-de="Deep Learning in der Praxis">Harnessing the Power of Deep Learning</h3>
                 <p class="recog-detail-subtitle">Advanced Techniques in Computer Vision — IJARCCE</p>
-                <span class="proj-category-badge" data-en="Journal Publication"
-                  data-de="[DE] Journal Publication">Journal Publication</span>
+                <span class="proj-category-badge" data-en="Journal Publication" data-de="Fachzeitschrift">Journal
+                  Publication</span>
                 <p class="recog-detail-year">2024</p>
               </div>
             </div>
             <div class="recog-kv">
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Full Title" data-de="[DE] Full Title">Full Title</span>
+                <span class="recog-kv-label" data-en="Full Title" data-de="Vollständiger Titel">Full Title</span>
                 <span class="recog-kv-value"
                   data-en="Harnessing the Power of Deep Learning: Advanced Techniques in Computer Vision"
-                  data-de="[DE] Harnessing the Power of Deep Learning: Advanced Techniques in Computer Vision">Harnessing
+                  data-de="Die Kraft des Deep Learning nutzen: Fortgeschrittene Techniken in Computer Vision">Harnessing
                   the Power of Deep Learning: Advanced Techniques in Computer
                   Vision</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Journal" data-de="[DE] Journal">Journal</span>
+                <span class="recog-kv-label" data-en="Journal" data-de="Fachzeitschrift">Journal</span>
                 <span class="recog-kv-value"
                   data-en="IJARCCE (International Journal of Advanced Research in Computer and Communication Engineering)"
-                  data-de="[DE] IJARCCE (International Journal of Advanced Research in Computer and Communication Engineering)">IJARCCE
+                  data-de="IJARCCE (International Journal of Advanced Research in Computer and Communication Engineering)">IJARCCE
                   (International Journal of Advanced Research in Computer and
                   Communication Engineering)</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="DOI" data-de="[DE] DOI">DOI</span>
+                <span class="recog-kv-label" data-en="DOI" data-de="DOI">DOI</span>
                 <span class="recog-kv-value" data-en="10.17148/IJARCCE.2024.13614"
-                  data-de="[DE] 10.17148/IJARCCE.2024.13614">10.17148/IJARCCE.2024.13614</span>
+                  data-de="10.17148/IJARCCE.2024.13614">10.17148/IJARCCE.2024.13614</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Type" data-de="[DE] Type">Type</span>
+                <span class="recog-kv-label" data-en="Type" data-de="Typ">Type</span>
                 <span class="recog-kv-value" data-en="Peer-reviewed Journal Article"
-                  data-de="[DE] Peer-reviewed Journal Article">Peer-reviewed Journal Article</span>
+                  data-de="Peer-Review-Fachartikel">Peer-reviewed Journal Article</span>
               </div>
             </div>
             <div class="recog-desc-block">
               <p data-en="Published a comprehensive review and analysis of advanced deep learning techniques applied to computer vision tasks. Covers state-of-the-art architectures, training methodologies, and real-world applications across object detection, image segmentation, and visual recognition — with insights drawn from hands-on project experience."
-                data-de="[DE] Published a comprehensive review and analysis of advanced deep learning techniques applied to computer vision tasks. Covers state-of-the-art architectures, training methodologies, and real-world applications across object detection, image segmentation, and visual recognition — with insights drawn from hands-on project experience.">
+                data-de="Eine umfassende Übersicht und Analyse fortgeschrittener Deep-Learning-Techniken für Computer-Vision-Aufgaben veröffentlicht. Behandelt modernste Architekturen, Trainingsmethoden und reale Anwendungen in Objekterkennung, Bildsegmentierung und visueller Erkennung — mit Erkenntnissen aus praktischer Projekterfahrung.">
                 Published a comprehensive review and analysis of advanced deep learning techniques applied to computer
                 vision tasks. Covers state-of-the-art architectures, training methodologies, and real-world applications
                 across object detection, image segmentation, and visual recognition — with insights drawn from hands-on
@@ -4504,43 +4735,43 @@
               <span class="recog-detail-watermark">📰</span>
               <div class="recog-detail-header">
                 <h3 class="recog-detail-name" data-en="Comprehensive Analysis of Advanced ML Techniques"
-                  data-de="[DE] Comprehensive Analysis of Advanced ML Techniques">Comprehensive Analysis of Advanced ML
+                  data-de="Analyse fortgeschrittener ML-Methoden">Comprehensive Analysis of Advanced ML
                   Techniques</h3>
                 <p class="recog-detail-subtitle">IJARCCE</p>
-                <span class="proj-category-badge" data-en="Journal Publication"
-                  data-de="[DE] Journal Publication">Journal Publication</span>
+                <span class="proj-category-badge" data-en="Journal Publication" data-de="Fachzeitschrift">Journal
+                  Publication</span>
                 <p class="recog-detail-year">2024</p>
               </div>
             </div>
             <div class="recog-kv">
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Full Title" data-de="[DE] Full Title">Full Title</span>
+                <span class="recog-kv-label" data-en="Full Title" data-de="Vollständiger Titel">Full Title</span>
                 <span class="recog-kv-value" data-en="Comprehensive Analysis of Advanced Techniques in Machine Learning"
-                  data-de="[DE] Comprehensive Analysis of Advanced Techniques in Machine Learning">Comprehensive
+                  data-de="Umfassende Analyse fortgeschrittener Techniken im maschinellen Lernen">Comprehensive
                   Analysis of Advanced Techniques in Machine Learning</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Journal" data-de="[DE] Journal">Journal</span>
+                <span class="recog-kv-label" data-en="Journal" data-de="Fachzeitschrift">Journal</span>
                 <span class="recog-kv-value"
                   data-en="IJARCCE (International Journal of Advanced Research in Computer and Communication Engineering)"
-                  data-de="[DE] IJARCCE (International Journal of Advanced Research in Computer and Communication Engineering)">IJARCCE
+                  data-de="IJARCCE (International Journal of Advanced Research in Computer and Communication Engineering)">IJARCCE
                   (International Journal of Advanced Research in Computer and
                   Communication Engineering)</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="DOI" data-de="[DE] DOI">DOI</span>
+                <span class="recog-kv-label" data-en="DOI" data-de="DOI">DOI</span>
                 <span class="recog-kv-value" data-en="10.17148/IJARCCE.2024.13611"
-                  data-de="[DE] 10.17148/IJARCCE.2024.13611">10.17148/IJARCCE.2024.13611</span>
+                  data-de="10.17148/IJARCCE.2024.13611">10.17148/IJARCCE.2024.13611</span>
               </div>
               <div class="recog-kv-item">
-                <span class="recog-kv-label" data-en="Type" data-de="[DE] Type">Type</span>
+                <span class="recog-kv-label" data-en="Type" data-de="Typ">Type</span>
                 <span class="recog-kv-value" data-en="Peer-reviewed Journal Article"
-                  data-de="[DE] Peer-reviewed Journal Article">Peer-reviewed Journal Article</span>
+                  data-de="Peer-Review-Fachartikel">Peer-reviewed Journal Article</span>
               </div>
             </div>
             <div class="recog-desc-block">
               <p data-en="Published a comprehensive analysis of advanced machine learning techniques covering supervised, unsupervised, and reinforcement learning paradigms. Reviews cutting-edge algorithms, model architectures, and optimization strategies, with practical perspectives on applying these techniques to real-world engineering problems."
-                data-de="[DE] Published a comprehensive analysis of advanced machine learning techniques covering supervised, unsupervised, and reinforcement learning paradigms. Reviews cutting-edge algorithms, model architectures, and optimization strategies, with practical perspectives on applying these techniques to real-world engineering problems.">
+                data-de="Eine umfassende Analyse fortgeschrittener Techniken des maschinellen Lernens veröffentlicht, die überwachte, unüberwachte und Verstärkungslern-Paradigmen abdeckt. Bewertet modernste Algorithmen, Modellarchitekturen und Optimierungsstrategien mit praktischen Perspektiven zur Anwendung dieser Techniken auf reale Ingenieurprobleme.">
                 Published a comprehensive analysis of advanced machine learning techniques covering supervised,
                 unsupervised, and reinforcement learning paradigms. Reviews cutting-edge algorithms, model
                 architectures, and optimization strategies, with practical perspectives on applying these techniques to
@@ -4576,10 +4807,10 @@
               <div class="comm-grid-card scroll-reveal" data-comm="0">
                 <div class="comm-icon">👩‍💼</div>
                 <span class="comm-grid-name" data-en="Women Empowerment Program"
-                  data-de="[DE] Women Empowerment Program">Women Empowerment Program</span>
-                <span class="proj-category-badge" data-en="Social Impact" data-de="[DE] Social Impact">Social
-                  Impact</span>
-                <span class="exp-grid-duration" data-en="80 Hours" data-de="[DE] 80 Hours">80 Hours</span>
+                  data-de="Frauenförderungsprogramm">Women Empowerment Program</span>
+                <span class="proj-category-badge" data-en="Social Impact" data-de="Soziale Wirkung">Soziale
+                  Wirkung</span>
+                <span class="exp-grid-duration" data-en="80 Hours" data-de="80 Stunden">80 Hours</span>
                 <span class="comm-grid-desc">Leadership and digital literacy workshops for women in the community</span>
                 <span class="card-cta" data-en="Click to know more →" data-de="Klicken Sie für mehr →">Click to know
                   more →</span>
@@ -4588,10 +4819,9 @@
               <div class="comm-grid-card scroll-reveal" data-comm="1">
                 <div class="comm-icon">💧</div>
                 <span class="comm-grid-name" data-en="Water Management Initiative"
-                  data-de="[DE] Water Management Initiative">Water Management Initiative</span>
-                <span class="proj-category-badge" data-en="Environmental"
-                  data-de="[DE] Environmental">Environmental</span>
-                <span class="exp-grid-duration" data-en="80 Hours" data-de="[DE] 80 Hours">80 Hours</span>
+                  data-de="Wasserwirtschafts-Initiative">Water Management Initiative</span>
+                <span class="proj-category-badge" data-en="Environmental" data-de="Umwelt">Environmental</span>
+                <span class="exp-grid-duration" data-en="80 Hours" data-de="80 Stunden">80 Hours</span>
                 <span class="comm-grid-desc">Awareness and education on sustainable water conservation practices</span>
                 <span class="card-cta" data-en="Click to know more →" data-de="Klicken Sie für mehr →">Click to know
                   more →</span>
@@ -4600,10 +4830,10 @@
               <div class="comm-grid-card scroll-reveal" data-comm="2">
                 <div class="comm-icon">♻️</div>
                 <span class="comm-grid-name" data-en="Waste Management Initiative"
-                  data-de="[DE] Waste Management Initiative">Waste Management Initiative</span>
-                <span class="proj-category-badge" data-en="Environmental"
-                  data-de="[DE] Environmental">Environmental</span>
-                <span class="exp-grid-duration" data-en="80 Hours" data-de="[DE] 80 Hours">80 Hours</span>
+                  data-de="Abfallwirtschafts-Initiative">Waste
+                  Management Initiative</span>
+                <span class="proj-category-badge" data-en="Environmental" data-de="Umwelt">Environmental</span>
+                <span class="exp-grid-duration" data-en="80 Hours" data-de="80 Stunden">80 Hours</span>
                 <span class="comm-grid-desc">Community education on waste segregation, recycling, and composting</span>
                 <span class="card-cta" data-en="Click to know more →" data-de="Klicken Sie für mehr →">Click to know
                   more →</span>
@@ -4612,9 +4842,10 @@
               <div class="comm-grid-card scroll-reveal" data-comm="3">
                 <div class="comm-icon">🇮🇳</div>
                 <span class="comm-grid-name" data-en="Swachh Bharat Initiative"
-                  data-de="[DE] Swachh Bharat Initiative">Swachh Bharat Initiative</span>
-                <span class="proj-category-badge" data-en="Civic" data-de="[DE] Civic">Civic</span>
-                <span class="exp-grid-duration" data-en="80 Hours" data-de="[DE] 80 Hours">80 Hours</span>
+                  data-de="Swachh-Bharat-Initiative">Swachh Bharat Initiative</span>
+                <span class="proj-category-badge" data-en="Civic"
+                  data-de="Bürgerschaftliches Engagement">Bürgerschaftlich</span>
+                <span class="exp-grid-duration" data-en="80 Hours" data-de="80 Stunden">80 Hours</span>
                 <span class="comm-grid-desc">Sanitation awareness and community cleanliness drives under Swachh
                   Bharat</span>
                 <span class="card-cta" data-en="Click to know more →" data-de="Klicken Sie für mehr →">Click to know
@@ -4624,9 +4855,10 @@
               <div class="comm-grid-card scroll-reveal" data-comm="4">
                 <div class="comm-icon">🏥</div>
                 <span class="comm-grid-name" data-en="Health Awareness Program"
-                  data-de="[DE] Health Awareness Program">Health Awareness Program</span>
-                <span class="proj-category-badge" data-en="Healthcare" data-de="[DE] Healthcare">Healthcare</span>
-                <span class="exp-grid-duration" data-en="80 Hours" data-de="[DE] 80 Hours">80 Hours</span>
+                  data-de="Gesundheitsaufklärungsprogramm">Health
+                  Awareness Program</span>
+                <span class="proj-category-badge" data-en="Healthcare" data-de="Gesundheitswesen">Healthcare</span>
+                <span class="exp-grid-duration" data-en="80 Hours" data-de="80 Stunden">80 Hours</span>
                 <span class="comm-grid-desc">Rural health education covering hygiene, nutrition, and basic
                   screenings</span>
                 <span class="card-cta" data-en="Click to know more →" data-de="Klicken Sie für mehr →">Click to know
@@ -4649,23 +4881,23 @@
             <div class="comm-detail-hero">
               <span class="comm-detail-watermark">👩‍💼</span>
               <div class="comm-detail-header">
-                <h3 class="comm-detail-name" data-en="Women Empowerment Program"
-                  data-de="[DE] Women Empowerment Program">Women Empowerment Program</h3>
-                <span class="proj-category-badge" data-en="Social Impact" data-de="[DE] Social Impact">Social
+                <h3 class="comm-detail-name" data-en="Women Empowerment Program" data-de="Frauenförderungsprogramm">
+                  Women Empowerment Program</h3>
+                <span class="proj-category-badge" data-en="Social Impact" data-de="Soziale Wirkung">Social
                   Impact</span>
                 <span class="exp-grid-duration" style="display:block;margin-top:0.3rem">80 Hours</span>
               </div>
             </div>
             <div class="comm-detail-block">
-              <h4 data-en="📝 What I Did" data-de="[DE] 📝 What I Did">📝 What I Did</h4>
+              <h4 data-en="📝 What I Did" data-de="📝 Was ich getan habe">📝 What I Did</h4>
               <p data-en="Participated in and helped organise a series of workshops aimed at empowering women through education, awareness, and skill-building. Contributed to sessions on financial independence and digital tools as part of a broader community outreach program."
-                data-de="[DE] Participated in and helped organise a series of workshops aimed at empowering women through education, awareness, and skill-building. Contributed to sessions on financial independence and digital tools as part of a broader community outreach program.">
+                data-de="Teilnahme an und Mitorganisation einer Reihe von Workshops zur Stärkung von Frauen durch Bildung, Sensibilisierung und Kompetenzaufbau. Beitrag zu Sitzungen über finanzielle Unabhängigkeit und digitale Tools im Rahmen eines breiteren Community-Outreach-Programms.">
                 Participated in and helped organise a series of workshops aimed at empowering women through education,
                 awareness, and skill-building. Contributed to sessions on financial independence and digital tools as
                 part of a broader community outreach program.</p>
             </div>
             <div class="comm-detail-block">
-              <h4 data-en="📋 Key Activities" data-de="[DE] 📋 Key Activities">📋 Key Activities</h4>
+              <h4 data-en="📋 Key Activities" data-de="📋 Hauptaktivitäten">📋 Key Activities</h4>
               <ul>
                 <li>Leadership development workshops</li>
                 <li>Financial literacy and independence awareness sessions</li>
@@ -4674,9 +4906,9 @@
               </ul>
             </div>
             <div class="comm-detail-block comm-impact">
-              <h4 data-en="✨ Impact" data-de="[DE] ✨ Impact">✨ Impact</h4>
+              <h4 data-en="✨ Impact" data-de="✨ Wirkung">✨ Impact</h4>
               <p data-en="Helped create a more informed and confident community of women with improved awareness of digital tools and financial independence."
-                data-de="[DE] Helped create a more informed and confident community of women with improved awareness of digital tools and financial independence.">
+                data-de="Unterstützung bei der Schaffung einer besser informierten und selbstbewussteren Gemeinschaft von Frauen mit geschärftem Bewusstsein für digitale Tools und finanzielle Unabhängigkeit.">
                 Helped create a more informed and confident community of women with improved awareness of digital tools
                 and financial independence.</p>
             </div>
@@ -4694,22 +4926,21 @@
               <span class="comm-detail-watermark">💧</span>
               <div class="comm-detail-header">
                 <h3 class="comm-detail-name" data-en="Water Management Initiative"
-                  data-de="[DE] Water Management Initiative">Water Management Initiative</h3>
-                <span class="proj-category-badge" data-en="Environmental"
-                  data-de="[DE] Environmental">Environmental</span>
+                  data-de="Wasserwirtschafts-Initiative">Water Management Initiative</h3>
+                <span class="proj-category-badge" data-en="Environmental" data-de="Umwelt">Environmental</span>
                 <span class="exp-grid-duration" style="display:block;margin-top:0.3rem">80 Hours</span>
               </div>
             </div>
             <div class="comm-detail-block">
-              <h4 data-en="📝 What I Did" data-de="[DE] 📝 What I Did">📝 What I Did</h4>
+              <h4 data-en="📝 What I Did" data-de="📝 Was ich getan habe">📝 What I Did</h4>
               <p data-en="Took part in a community initiative focused on educating people about water scarcity and sustainable water management. Helped spread awareness about modern water conservation techniques and smart technologies in water systems."
-                data-de="[DE] Took part in a community initiative focused on educating people about water scarcity and sustainable water management. Helped spread awareness about modern water conservation techniques and smart technologies in water systems.">
+                data-de="Teilnahme an einer Gemeinschaftsinitiative zur Aufklärung über Wasserknappheit und nachhaltiges Wassermanagement. Mithilfe bei der Verbreitung von Wissen über moderne Wasserspartechniken und intelligente Technologien in Wassersystemen.">
                 Took part in a community initiative focused on educating people about water scarcity and sustainable
                 water management. Helped spread awareness about modern water conservation techniques and smart
                 technologies in water systems.</p>
             </div>
             <div class="comm-detail-block">
-              <h4 data-en="📋 Key Activities" data-de="[DE] 📋 Key Activities">📋 Key Activities</h4>
+              <h4 data-en="📋 Key Activities" data-de="📋 Hauptaktivitäten">📋 Key Activities</h4>
               <ul>
                 <li>Water conservation awareness campaigns</li>
                 <li>Rainwater harvesting concept workshops</li>
@@ -4718,9 +4949,9 @@
               </ul>
             </div>
             <div class="comm-detail-block comm-impact">
-              <h4 data-en="✨ Impact" data-de="[DE] ✨ Impact">✨ Impact</h4>
+              <h4 data-en="✨ Impact" data-de="✨ Wirkung">✨ Impact</h4>
               <p data-en="Contributed to building environmental consciousness around water usage and introduced communities to technology-driven conservation solutions."
-                data-de="[DE] Contributed to building environmental consciousness around water usage and introduced communities to technology-driven conservation solutions.">
+                data-de="Beitrag zum Aufbau eines Umweltbewusstseins für den Wasserverbrauch und Einführung von technologiegestützten Erhaltungslösungen in den Gemeinden.">
                 Contributed to building environmental consciousness around water usage and introduced communities to
                 technology-driven conservation solutions.</p>
             </div>
@@ -4738,23 +4969,22 @@
               <span class="comm-detail-watermark">♻️</span>
               <div class="comm-detail-header">
                 <h3 class="comm-detail-name" data-en="Waste Management Initiative"
-                  data-de="[DE] Waste Management Initiative">Waste Management Initiative</h3>
-                <span class="proj-category-badge" data-en="Environmental"
-                  data-de="[DE] Environmental">Environmental</span>
+                  data-de="Abfallmanagement-Initiative">Waste Management Initiative</h3>
+                <span class="proj-category-badge" data-en="Environmental" data-de="Umwelt">Environmental</span>
                 <span class="exp-grid-duration" style="display:block;margin-top:0.3rem">80 Hours</span>
               </div>
             </div>
             <div class="comm-detail-block">
-              <h4 data-en="📝 What I Did" data-de="[DE] 📝 What I Did">📝 What I Did</h4>
+              <h4 data-en="📝 What I Did" data-de="📝 Was ich getan habe">📝 What I Did</h4>
               <p data-en="Participated in a structured waste management awareness program focused on practical, everyday actions that reduce environmental impact. Helped communicate the importance of proper waste segregation and circular economy concepts to the community."
-                data-de="[DE] Participated in a structured waste management awareness program focused on practical, everyday actions that reduce environmental impact. Helped communicate the importance of proper waste segregation and circular economy concepts to the community.">
+                data-de="Teilnahme an einem strukturierten Programm zur Abfallwirtschaft mit Fokus auf praktische, alltägliche Maßnahmen zur Reduzierung der Umweltbelastung. Vermittlung der Bedeutung ordnungsgemäßer Abfalltrennung und Kreislaufwirtschaftskonzepte.">
                 Participated in a structured waste management awareness program focused on practical, everyday
                 actions
                 that reduce environmental impact. Helped communicate the importance of proper waste segregation and
                 circular economy concepts to the community.</p>
             </div>
             <div class="comm-detail-block">
-              <h4 data-en="📋 Key Activities" data-de="[DE] 📋 Key Activities">📋 Key Activities</h4>
+              <h4 data-en="📋 Key Activities" data-de="📋 Hauptaktivitäten">📋 Key Activities</h4>
               <ul>
                 <li>Waste segregation awareness and demonstrations</li>
                 <li>Recycling best practices education</li>
@@ -4763,9 +4993,9 @@
               </ul>
             </div>
             <div class="comm-detail-block comm-impact">
-              <h4 data-en="✨ Impact" data-de="[DE] ✨ Impact">✨ Impact</h4>
+              <h4 data-en="✨ Impact" data-de="✨ Wirkung">✨ Impact</h4>
               <p data-en="Encouraged practical, actionable waste reduction habits in the local community, contributing to cleaner and more sustainable living environments."
-                data-de="[DE] Encouraged practical, actionable waste reduction habits in the local community, contributing to cleaner and more sustainable living environments.">
+                data-de="Förderung praktischer, umsetzbarer Gewohnheiten zur Abfallvermeidung in der lokalen Gemeinschaft, was zu einer saubereren und nachhaltigeren Lebensumgebung beiträgt.">
                 Encouraged practical, actionable waste reduction habits in the local community, contributing to
                 cleaner
                 and more sustainable living environments.</p>
@@ -4783,23 +5013,23 @@
             <div class="comm-detail-hero">
               <span class="comm-detail-watermark">🇮🇳</span>
               <div class="comm-detail-header">
-                <h3 class="comm-detail-name" data-en="Swachh Bharat Initiative" data-de="[DE] Swachh Bharat Initiative">
+                <h3 class="comm-detail-name" data-en="Swachh Bharat Initiative" data-de="Swachh-Bharat-Initiative">
                   Swachh Bharat Initiative</h3>
-                <span class="proj-category-badge" data-en="Civic" data-de="[DE] Civic">Civic</span>
+                <span class="proj-category-badge" data-en="Civic" data-de="Bürgerschaftlich">Civic</span>
                 <span class="exp-grid-duration" style="display:block;margin-top:0.3rem">80 Hours</span>
               </div>
             </div>
             <div class="comm-detail-block">
-              <h4 data-en="📝 What I Did" data-de="[DE] 📝 What I Did">📝 What I Did</h4>
+              <h4 data-en="📝 What I Did" data-de="📝 Was ich getan habe">📝 What I Did</h4>
               <p data-en="Volunteered in Swachh Bharat-aligned community programs promoting public sanitation, hygiene, and cleanliness. Participated in awareness drives targeting plastic pollution and community-led cleanliness efforts."
-                data-de="[DE] Volunteered in Swachh Bharat-aligned community programs promoting public sanitation, hygiene, and cleanliness. Participated in awareness drives targeting plastic pollution and community-led cleanliness efforts.">
+                data-de="Ehrenamtliche Tätigkeit in Swachh-Bharat-konformen Programmen zur Förderung der öffentlichen Sanitärversorgung, Hygiene und Sauberkeit. Teilnahme an Aufklärungskampagnen gegen Plastikverschmutzung.">
                 Volunteered in Swachh Bharat-aligned community programs promoting public sanitation, hygiene, and
                 cleanliness. Participated in awareness drives targeting plastic pollution and community-led
                 cleanliness
                 efforts.</p>
             </div>
             <div class="comm-detail-block">
-              <h4 data-en="📋 Key Activities" data-de="[DE] 📋 Key Activities">📋 Key Activities</h4>
+              <h4 data-en="📋 Key Activities" data-de="📋 Hauptaktivitäten">📋 Key Activities</h4>
               <ul>
                 <li>Public sanitation awareness campaigns</li>
                 <li>Plastic pollution reduction drives</li>
@@ -4808,9 +5038,9 @@
               </ul>
             </div>
             <div class="comm-detail-block comm-impact">
-              <h4 data-en="✨ Impact" data-de="[DE] ✨ Impact">✨ Impact</h4>
+              <h4 data-en="✨ Impact" data-de="✨ Wirkung">✨ Impact</h4>
               <p data-en="Contributed to national cleanliness goals at the grassroots level, helping shift community attitudes toward public hygiene and responsible waste disposal."
-                data-de="[DE] Contributed to national cleanliness goals at the grassroots level, helping shift community attitudes toward public hygiene and responsible waste disposal.">
+                data-de="Beitrag zu nationalen Sauberkeitszielen an der Basis; Unterstützung beim Wandel der gesellschaftlichen Einstellung zu öffentlicher Hygiene und verantwortungsvoller Abfallentsorgung.">
                 Contributed to national cleanliness goals at the grassroots level, helping shift community
                 attitudes
                 toward public hygiene and responsible waste disposal.</p>
@@ -4828,16 +5058,17 @@
             <div class="comm-detail-hero">
               <span class="comm-detail-watermark">🏥</span>
               <div class="comm-detail-header">
-                <h3 class="comm-detail-name" data-en="Health Awareness Program" data-de="[DE] Health Awareness Program">
+                <h3 class="comm-detail-name" data-en="Health Awareness Program"
+                  data-de="Gesundheitsbewusstseinsprogramm">
                   Health Awareness Program</h3>
-                <span class="proj-category-badge" data-en="Healthcare" data-de="[DE] Healthcare">Healthcare</span>
+                <span class="proj-category-badge" data-en="Healthcare" data-de="Gesundheitswesen">Healthcare</span>
                 <span class="exp-grid-duration" style="display:block;margin-top:0.3rem">80 Hours</span>
               </div>
             </div>
             <div class="comm-detail-block">
-              <h4 data-en="📝 What I Did" data-de="[DE] 📝 What I Did">📝 What I Did</h4>
+              <h4 data-en="📝 What I Did" data-de="📝 Was ich getan habe">📝 What I Did</h4>
               <p data-en="Participated in rural community outreach programs focused on basic health education. Helped conduct awareness sessions and assisted in organising health screenings for underserved communities with limited access to healthcare information."
-                data-de="[DE] Participated in rural community outreach programs focused on basic health education. Helped conduct awareness sessions and assisted in organising health screenings for underserved communities with limited access to healthcare information.">
+                data-de="Teilnahme an Programmen für ländliche Gemeinden mit Schwerpunkt auf grundlegender Gesundheitsbildung. Durchführung von Aufklärungssitzungen und Unterstützung bei der Organisation von Vorsorgeuntersuchungen.">
                 Participated in rural community outreach programs focused on basic health education. Helped
                 conduct
                 awareness sessions and assisted in organising health screenings for underserved communities with
@@ -4845,7 +5076,7 @@
                 access to healthcare information.</p>
             </div>
             <div class="comm-detail-block">
-              <h4 data-en="📋 Key Activities" data-de="[DE] 📋 Key Activities">📋 Key Activities</h4>
+              <h4 data-en="📋 Key Activities" data-de="📋 Hauptaktivitäten">📋 Key Activities</h4>
               <ul>
                 <li>Public health education sessions in rural communities</li>
                 <li>Hygiene and sanitation awareness workshops</li>
@@ -4855,9 +5086,9 @@
               </ul>
             </div>
             <div class="comm-detail-block comm-impact">
-              <h4 data-en="✨ Impact" data-de="[DE] ✨ Impact">✨ Impact</h4>
+              <h4 data-en="✨ Impact" data-de="✨ Wirkung">✨ Impact</h4>
               <p data-en="Helped improve health literacy in rural communities, empowering individuals to make better health decisions and access available healthcare resources."
-                data-de="[DE] Helped improve health literacy in rural communities, empowering individuals to make better health decisions and access available healthcare resources.">
+                data-de="Verbesserung der Gesundheitskompetenz in ländlichen Gebieten, um Einzelpersonen zu befähigen, bessere Gesundheitsentscheidungen zu treffen und verfügbare Ressourcen zu nutzen.">
                 Helped improve health literacy in rural communities, empowering individuals to make better health
                 decisions and access available healthcare resources.</p>
             </div>
@@ -4866,8 +5097,170 @@
         </div>
       </section>
 
-      <!-- INTERESTS SECTION -->
-      <section id="interests" class="section-placeholder"></section>
+      <!-- GALLERY SECTION -->
+      <section id="gallery">
+        <div class="section-header scroll-reveal">
+          <h2 data-en="Gallery" data-de="Galerie">Gallery</h2>
+        </div>
+
+        <!-- Activity -->
+        <div class="gallery-category scroll-reveal">
+          <h3 class="gallery-category-title" data-en="🏃 Activity" data-de="🏃 Aktivität">
+            <span class="gallery-cat-icon">🏃</span> Activity
+          </h3>
+          <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity.jpeg" alt="Activity photo 1" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity2.jpeg" alt="Activity photo 2" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity3.jpeg" alt="Activity photo 3" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity4.jpeg" alt="Activity photo 4" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity5.jpeg" alt="Activity photo 5" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity6.jpeg" alt="Activity photo 6" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity7.jpeg" alt="Activity photo 7" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity8.jpeg" alt="Activity photo 8" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity9.jpeg" alt="Activity photo 9" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity10.jpeg" alt="Activity photo 10" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity11.jpeg" alt="Activity photo 11" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity12.jpeg" alt="Activity photo 12" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity13.jpeg" alt="Activity photo 13" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity14.jpeg" alt="Activity photo 14" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Activity15.jpeg" alt="Activity photo 15" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Apiculture -->
+        <div class="gallery-category scroll-reveal">
+          <h3 class="gallery-category-title" data-en="🐝 Apiculture" data-de="🐝 Imkerei">
+            <span class="gallery-cat-icon">🐝</span> Apiculture
+          </h3>
+          <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Apiculture.jpg" alt="Apiculture photo 1" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Apiculture%202.jpg" alt="Apiculture photo 2" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dharwad -->
+        <div class="gallery-category scroll-reveal">
+          <h3 class="gallery-category-title" data-en="🏛️ Dharwad" data-de="🏛️ Dharwad">
+            <span class="gallery-cat-icon">🏛️</span> Dharwad
+          </h3>
+          <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Dharwad.jpg" alt="Dharwad photo 1" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Dharwad2.jpg" alt="Dharwad photo 2" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Dharwad3.jpg" alt="Dharwad photo 3" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Dharwad4.jpg" alt="Dharwad photo 4" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Dharwad5.jpg" alt="Dharwad photo 5" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Drone -->
+        <div class="gallery-category scroll-reveal">
+          <h3 class="gallery-category-title" data-en="🚁 Drone" data-de="🚁 Drohne">
+            <span class="gallery-cat-icon">🚁</span> Drone
+          </h3>
+          <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Drone1.jpg" alt="Drone photo 1" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Drone2.jpg" alt="Drone photo 2" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Drone3.jpg" alt="Drone photo 3" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medvarsity -->
+        <div class="gallery-category scroll-reveal">
+          <h3 class="gallery-category-title" data-en="🎓 Medvarsity" data-de="🎓 Medvarsity">
+            <span class="gallery-cat-icon">🎓</span> Medvarsity
+          </h3>
+          <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox(this)">
+              <img src="Gallery/Medvarsity.jpg" alt="Medvarsity photo" loading="lazy">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery Lightbox -->
+      <div class="gallery-lightbox" id="galleryLightbox">
+        <button class="gallery-lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">✕</button>
+        <button class="gallery-lightbox-nav gallery-lightbox-prev" onclick="navLightbox(-1)" aria-label="Previous image">‹</button>
+        <img id="lightboxImg" src="" alt="Gallery full view">
+        <button class="gallery-lightbox-nav gallery-lightbox-next" onclick="navLightbox(1)" aria-label="Next image">›</button>
+        <div class="gallery-lightbox-caption" id="lightboxCaption"></div>
+      </div>
 
     </main>
   </div>
@@ -5268,6 +5661,54 @@
         }, 300);
       }, 5000);
     })();
+
+    /* ── Gallery Lightbox ───────────────────────── */
+    let lightboxImages = [];
+    let lightboxIndex = 0;
+
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      const category = el.closest('.gallery-category');
+      const items = category.querySelectorAll('.gallery-item');
+      lightboxImages = Array.from(items).map(item => item.querySelector('img'));
+      lightboxIndex = lightboxImages.indexOf(img);
+
+      const lb = document.getElementById('galleryLightbox');
+      const lbImg = document.getElementById('lightboxImg');
+      const lbCaption = document.getElementById('lightboxCaption');
+
+      lbImg.src = img.src;
+      lbCaption.textContent = img.alt;
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lb = document.getElementById('galleryLightbox');
+      lb.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function navLightbox(dir) {
+      lightboxIndex = (lightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
+      const img = lightboxImages[lightboxIndex];
+      document.getElementById('lightboxImg').src = img.src;
+      document.getElementById('lightboxCaption').textContent = img.alt;
+    }
+
+    // Close lightbox on backdrop click
+    document.getElementById('galleryLightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+
+    // Close lightbox on Escape, navigate with arrow keys
+    document.addEventListener('keydown', function(e) {
+      const lb = document.getElementById('galleryLightbox');
+      if (!lb.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navLightbox(-1);
+      if (e.key === 'ArrowRight') navLightbox(1);
+    });
 
   </script>
 
