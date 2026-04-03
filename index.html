@@ -324,6 +324,35 @@
       line-height: 1.8;
     }
 
+    .about-bio-wrap {
+      overflow: hidden;
+      max-height: 5.4rem; /* ~3 lines at 1.8 line-height × 1rem font-size */
+      transition: max-height 0.5s ease;
+    }
+
+    .about-bio-wrap.expanded {
+      max-height: 200rem; /* large enough to never clip */
+    }
+
+    .about-readmore {
+      display: inline-block;
+      margin-top: 0.75rem;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--accent);
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: opacity 0.2s ease;
+    }
+
+    .about-readmore:hover {
+      opacity: 0.75;
+    }
+
     .tags-container {
       display: flex;
       flex-wrap: wrap;
@@ -2034,7 +2063,7 @@
           Siddarth Srinivas</h1>
         <p class="fade-in fade-in-d2"
           style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: #c85a2a; margin: 0.25rem 0 0.5rem;">
-          "A Vision without execution is a hallucination."</p>
+          "A Strategy without execution is a hallucination."</p>
         <p class="hero-subheading fade-in fade-in-d2" data-en="AI/ML Engineer" data-de="KI/ML-Ingenieur">AI/ML Engineer
         </p>
 
@@ -2046,43 +2075,62 @@
         </p>
 
         <article class="about-card fade-in fade-in-d4">
-          <p class="about-bio" data-en="I've never been great at sitting still with an idea."
-            data-de="Ich war noch nie gut darin, eine Idee einfach ruhen zu lassen.">
-            I've never been great at sitting still with an idea.
-          </p>
-          <p class="about-bio"
-            data-en="Most people pick a lane. I've spent the last three years refusing to. One month I'm training a Convolutional Neural Network to listen to beehives on a Jetson Nano. The next I'm building Large Language Model pipelines that generate surgical coaching feedback for Virtual Reality simulators. Then I'm automating container security compliance for enterprise DevOps. These aren't accidents — this is how I think. I follow the problem, not the domain."
-            data-de="Die meisten Menschen entscheiden sich für eine Richtung. Ich habe die letzten drei Jahre damit verbracht, das abzulehnen. Einen Monat trainiere ich ein Convolutional Neural Network, das auf einem Jetson Nano Bienenstöcke abhört. Im nächsten baue ich Large-Language-Model-Pipelines, die chirurgisches Coaching-Feedback für Virtual-Reality-Simulatoren generieren. Dann automatisiere ich die Container-Sicherheits-Compliance für Enterprise-DevOps. Das sind keine Zufälle — so denke ich. Ich folge dem Problem, nicht dem Fachgebiet.">
-            Most people pick a lane. I've spent the last three years refusing to. One month I'm training a Convolutional
-            Neural Network to listen to beehives on a Jetson Nano. The next I'm building Large Language Model pipelines
-            that generate surgical coaching feedback for Virtual Reality simulators. Then I'm automating container
-            security compliance for enterprise DevOps. These aren't accidents — this is how I think. I follow the
-            problem, not the domain.
-          </p>
-          <p class="about-bio"
-            data-en="When I got interested in how bees communicate stress, I didn't write a paper about it. I built a system that listens to hive sounds, watches for predators with a camera, and runs entirely offline in the field. That system got a ₹10 lakh government grant and a filed patent — not because the idea was clever, but because it worked."
-            data-de="Als mich interessierte, wie Bienen Stress kommunizieren, schrieb ich keinen Aufsatz darüber. Ich baute ein System, das Bienenstockgeräusche abhört, mit einer Kamera nach Raubtieren sucht und vollständig offline im Feld läuft. Dieses System erhielt ein staatliches Stipendium von ₹10 Lakh und führte zu einer Patentanmeldung — nicht weil die Idee clever war, sondern weil sie funktionierte.">
-            When I got interested in how bees communicate stress, I didn't write a paper about it. I built a system that
-            listens to hive sounds, watches for predators with a camera, and runs entirely offline in the field. That
-            system got a ₹10 lakh government grant and a filed patent — not because the idea was clever, but because it
-            worked.
-          </p>
-          <p class="about-bio"
-            data-en="That's the thread running through everything I do. I'm drawn to the exact moment where thinking has to stop and building has to start — where a model leaves a Jupyter notebook and has to survive contact with the real world. I've done that across agricultural technology, medical simulation, industrial safety, and infrastructure automation. Seven internships across five industries by 21. Not because I couldn't commit — because I was hungry to understand how different worlds actually operate."
-            data-de="Das ist der rote Faden, der sich durch alles zieht, was ich tue. Mich zieht genau der Moment an, in dem das Denken aufhören und das Bauen beginnen muss — wo ein Modell ein Jupyter-Notebook verlässt und den Kontakt mit der realen Welt überstehen muss. Das habe ich in der Agrartechnologie, der medizinischen Simulation, der Industriesicherheit und der Infrastrukturautomatisierung getan. Sieben Praktika in fünf Branchen — mit 21 Jahren. Nicht weil ich mich nicht festlegen konnte — sondern weil ich verstehen wollte, wie verschiedene Welten tatsächlich funktionieren.">
-            That's the thread running through everything I do. I'm drawn to the exact moment where thinking has to stop
-            and building has to start — where a model leaves a Jupyter notebook and has to survive contact with the real
-            world. I've done that across agricultural technology, medical simulation, industrial safety, and
-            infrastructure automation. Seven internships across five industries by 21. Not because I couldn't commit —
-            because I was hungry to understand how different worlds actually operate.
-          </p>
-          <p class="about-bio"
-            data-en="I'm finishing my Bachelor of Engineering in Artificial Intelligence and Machine Learning at New Horizon College of Engineering. But most of what I know came from shipping things, breaking things, and refusing to stop until they worked."
-            data-de="Ich schließe meinen Bachelor of Engineering in Künstlicher Intelligenz und maschinellem Lernen am New Horizon College of Engineering ab. Aber das meiste, was ich weiß, habe ich gelernt, indem ich Dinge gebaut, Dinge kaputtgemacht und mich geweigert habe aufzuhören, bis sie funktionierten.">
-            I'm finishing my Bachelor of Engineering in Artificial Intelligence and Machine Learning at New Horizon
-            College of Engineering. But most of what I know came from shipping things, breaking things, and refusing to
-            stop until they worked.
-          </p>
+          <div class="about-bio-wrap" id="aboutBioWrap">
+            <p class="about-bio"
+              data-en="I follow problems, not domains."
+              data-de="Ich folge Problemen, nicht Fachgebieten.">
+              I follow problems, not domains.
+            </p>
+            <p class="about-bio"
+              data-en="Over the past three years, I've built production systems across fields that rarely overlap: acoustic monitoring for precision agriculture, LLM-driven feedback pipelines for surgical simulation in VR, and automated compliance tooling for enterprise container security. Each project pushed me into unfamiliar territory — and that's exactly where I do my best work."
+              data-de="In den letzten drei Jahren habe ich Produktionssysteme in Bereichen aufgebaut, die sich selten überschneiden: akustische Überwachung für Präzisionslandwirtschaft, LLM-gesteuerte Feedback-Pipelines für chirurgische Simulation in VR und automatisierte Compliance-Tools für Enterprise-Container-Sicherheit. Jedes Projekt hat mich in unbekanntes Terrain geführt — und genau dort leiste ich meine beste Arbeit.">
+              Over the past three years, I've built production systems across fields that rarely overlap: acoustic
+              monitoring for precision agriculture, LLM-driven feedback pipelines for surgical simulation in VR, and
+              automated compliance tooling for enterprise container security. Each project pushed me into unfamiliar
+              territory — and that's exactly where I do my best work.
+            </p>
+            <p class="about-bio"
+              data-en="That approach has produced tangible results. A real-time hive health monitoring system I built on a Jetson Nano — combining CNN-based audio classification with edge-deployed computer vision — earned a ₹10 lakh government grant and a filed patent. Not because the concept was novel, but because it functioned reliably in field conditions, without connectivity, at low cost. The gap between a working prototype and a deployable system is where I invest most of my energy."
+              data-de="Dieser Ansatz hat greifbare Ergebnisse hervorgebracht. Ein Echtzeit-Bienenstock-Gesundheitsüberwachungssystem, das ich auf einem Jetson Nano aufgebaut habe — mit CNN-basierter Audioklassifikation und Edge-basierter Computer Vision — erhielt ein staatliches Stipendium von ₹10 Lakh und führte zu einer Patentanmeldung. Nicht weil das Konzept neuartig war, sondern weil es unter Feldbedingungen zuverlässig funktionierte, ohne Konnektivität und zu geringen Kosten. Die Lücke zwischen einem funktionierenden Prototyp und einem einsetzbaren System ist der Bereich, in den ich den Großteil meiner Energie investiere.">
+              That approach has produced tangible results. A real-time hive health monitoring system I built on a Jetson
+              Nano — combining CNN-based audio classification with edge-deployed computer vision — earned a ₹10 lakh
+              government grant and a filed patent. Not because the concept was novel, but because it functioned reliably
+              in field conditions, without connectivity, at low cost. The gap between a working prototype and a deployable
+              system is where I invest most of my energy.
+            </p>
+            <p class="about-bio"
+              data-en="By 21, I had completed seven internships across five industries — agricultural technology, medical simulation, industrial safety, infrastructure automation, and enterprise DevOps. Each environment taught me something different: how clinical constraints shape system design, how field conditions break assumptions made in the lab, how infrastructure teams think at scale. That accumulated context now lets me move between domains quickly and communicate across them clearly."
+              data-de="Mit 21 Jahren hatte ich sieben Praktika in fünf Branchen absolviert — Agrartechnologie, medizinische Simulation, Arbeitssicherheit, Infrastrukturautomatisierung und Enterprise-DevOps. Jede Umgebung hat mir etwas anderes beigebracht: wie klinische Anforderungen das Systemdesign prägen, wie Feldbedingungen im Labor getroffene Annahmen zunichtemachen, wie Infrastruktur-Teams in großem Maßstab denken. Dieser gesammelte Kontext ermöglicht es mir heute, schnell zwischen Fachgebieten zu wechseln und klar über sie hinweg zu kommunizieren.">
+              By 21, I had completed seven internships across five industries — agricultural technology, medical
+              simulation, industrial safety, infrastructure automation, and enterprise DevOps. Each environment taught me
+              something different: how clinical constraints shape system design, how field conditions break assumptions
+              made in the lab, how infrastructure teams think at scale. That accumulated context now lets me move between
+              domains quickly and communicate across them clearly.
+            </p>
+            <p class="about-bio"
+              data-en="I'm completing my Bachelor of Engineering in Artificial Intelligence and Machine Learning at New Horizon College of Engineering. Most of what I know came from shipping systems, diagnosing failures, and iterating until things worked under real conditions — not just in a notebook."
+              data-de="Ich schließe meinen Bachelor of Engineering in Künstlicher Intelligenz und maschinellem Lernen am New Horizon College of Engineering ab. Das meiste, was ich weiß, stammt aus dem Ausliefern von Systemen, dem Diagnostizieren von Fehlern und dem Iterieren, bis Dinge unter realen Bedingungen funktionierten — nicht nur in einem Notebook.">
+              I'm completing my Bachelor of Engineering in Artificial Intelligence and Machine Learning at New Horizon
+              College of Engineering. Most of what I know came from shipping systems, diagnosing failures, and iterating
+              until things worked under real conditions — not just in a notebook.
+            </p>
+            <p class="about-bio"
+              data-en="I'm looking for environments where rigorous thinking and hands-on building go together: research groups, product teams, or organisations where AI has to leave the lab and hold up under pressure."
+              data-de="Ich suche Umgebungen, in denen rigoroses Denken und praktisches Bauen zusammengehören: Forschungsgruppen, Produktteams oder Organisationen, in denen KI das Labor verlassen und unter Druck bestehen muss.">
+              I'm looking for environments where rigorous thinking and hands-on building go together: research groups,
+              product teams, or organisations where AI has to leave the lab and hold up under pressure.
+            </p>
+          </div>
+          <button
+            class="about-readmore"
+            id="aboutReadMore"
+            onclick="toggleAboutBio()"
+            data-en-read="Read more"
+            data-de-read="Mehr lesen"
+            data-en-less="Read less"
+            data-de-less="Weniger lesen"
+            aria-expanded="false"
+          >Read more</button>
           <div class="tags-container">
             <div class="tag-wrap">
               <span class="tag" data-popup="cv" data-en="Computer Vision" data-de="Computer Vision">Computer
@@ -5256,9 +5304,11 @@
       <!-- Gallery Lightbox -->
       <div class="gallery-lightbox" id="galleryLightbox">
         <button class="gallery-lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">✕</button>
-        <button class="gallery-lightbox-nav gallery-lightbox-prev" onclick="navLightbox(-1)" aria-label="Previous image">‹</button>
+        <button class="gallery-lightbox-nav gallery-lightbox-prev" onclick="navLightbox(-1)"
+          aria-label="Previous image">‹</button>
         <img id="lightboxImg" src="" alt="Gallery full view">
-        <button class="gallery-lightbox-nav gallery-lightbox-next" onclick="navLightbox(1)" aria-label="Next image">›</button>
+        <button class="gallery-lightbox-nav gallery-lightbox-next" onclick="navLightbox(1)"
+          aria-label="Next image">›</button>
         <div class="gallery-lightbox-caption" id="lightboxCaption"></div>
       </div>
 
@@ -5392,6 +5442,18 @@
 
       // Scroll to top of experience section
       document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ── About: Bio Truncation Toggle ────────────── */
+    function toggleAboutBio() {
+      const wrap = document.getElementById('aboutBioWrap');
+      const btn = document.getElementById('aboutReadMore');
+      const isExpanded = wrap.classList.toggle('expanded');
+      btn.setAttribute('aria-expanded', isExpanded);
+
+      const lang = localStorage.getItem('siteLang') || 'en';
+      const suffix = isExpanded ? 'less' : 'read';
+      btn.textContent = btn.getAttribute(`data-${lang}-${suffix}`);
     }
 
     /* ── Projects: Grid ↔ Detail Slide ──────────── */
@@ -5601,6 +5663,15 @@
           el.innerHTML = lang === 'de' ? el.getAttribute('data-de-html') : el.getAttribute('data-en-html');
         });
 
+        // Update About Read More button text if it exists
+        const aboutBtn = document.getElementById('aboutReadMore');
+        const aboutWrap = document.getElementById('aboutBioWrap');
+        if (aboutBtn && aboutWrap) {
+          const isExpanded = aboutWrap.classList.contains('expanded');
+          const suffix = isExpanded ? 'less' : 'read';
+          aboutBtn.textContent = aboutBtn.getAttribute(`data-${lang}-${suffix}`);
+        }
+
         // Update toggle button styling
         const enSpan = document.getElementById('langEN');
         const deSpan = document.getElementById('langDE');
@@ -5697,12 +5768,12 @@
     }
 
     // Close lightbox on backdrop click
-    document.getElementById('galleryLightbox').addEventListener('click', function(e) {
+    document.getElementById('galleryLightbox').addEventListener('click', function (e) {
       if (e.target === this) closeLightbox();
     });
 
     // Close lightbox on Escape, navigate with arrow keys
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       const lb = document.getElementById('galleryLightbox');
       if (!lb.classList.contains('active')) return;
       if (e.key === 'Escape') closeLightbox();
